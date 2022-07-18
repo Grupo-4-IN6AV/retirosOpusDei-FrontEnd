@@ -1,0 +1,33 @@
+<section class="content">
+  <div class="content-body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="mt-5 mb-4">
+            <div class="d-flex align-items-center justify-content-between mb-sm-0 mb-2">
+              <h2 class="font-w500">Popular Rooms</h2>
+              <div class="swiper-pagination style-1 room-swiper-pagination"></div>
+            </div>
+            <div class="swiper front-view-slider">
+              <div class="swiper-wrapper">
+                <div *ngFor="let swiper of hotels" class="swiper-slide">
+                  <div class="popular-rooms">
+                    <img
+                      src="https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_1300,q_auto,w_2000/itemimages/21/62/216281_v5.jpeg"
+                      alt="image" />
+                    <div class="content">
+                      <h3 class="font-w500 text-white pt-3 pb-2 m-0">
+                        <a href="javascript:void(0);">{{swiper.name}}</a>
+                      </h3>
+                      <span class="font-w400 text-white">{{swiper.address}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,52 @@
+<!-- Nav Bar -->
+<header class="navBar">
+  <div class="boxNavbar">
+    <input type="checkbox" name="" id="check">
+
+    <div class="logo-container">
+      <h3 class="logo">Manager <span>Hotels</span></h3>
+    </div>
+
+    <div class="nav-btn">
+      <div class="nav-links">
+        <ul ms-2 me-1>
+          <li *ngIf="home" (click)="changeNavBar('home')" class="nav-link nav-link-active" style="--i: .6s">
+            <a routerLink="">Home</a>
+          </li>
+          <li *ngIf="!home" (click)="changeNavBar('home')" class="nav-link" style="--i: .6s">
+            <a routerLink="">Home</a>
+          </li>
+          <li *ngIf="aboutUs" (click)="changeNavBar('about')" class="nav-link nav-link-active" style="--i: 1s">
+            <a routerLink="/aboutUs">About Us</a>
+          </li>
+          <li *ngIf="!aboutUs" (click)="changeNavBar('about')" class="nav-link" style="--i: 1s">
+            <a routerLink="/aboutUs">About Us</a>
+          </li>
+          <li *ngIf="contactUs === true" (click)="changeNavBar('contact')" class="nav-link nav-link-active" style="--i: 1.35s">
+            <a routerLink="/contactUs">Contact Us</a>
+          </li>
+          <li *ngIf="!contactUs" (click)="changeNavBar('contact')" class="nav-link" style="--i: 1.35s">
+            <a routerLink="/contactUs">Contact Us</a>
+          </li>
+          <li *ngIf="hotel === true" (click)="changeNavBar('hotel')" class="nav-link nav-link-active" style="--i: 1.35s">
+            <a routerLink="/hotels">Hotels</a>
+          </li>
+          <li *ngIf="!hotel" (click)="changeNavBar('hotel')" class="nav-link" style="--i: 1.35s">
+            <a routerLink="/hotels">Hotels</a>
+          </li>
+        </ul>
+      </div>
+      <div class="log-sign" style="--i: 1.8s">
+        <a (click)="changeNavBar('not')" routerLink="/login" class="btn transparent">Log in</a>
+        <a (click)="changeNavBar('not')" routerLink="/register" class="btn solid">Sign up</a>
+      </div>
+    </div>
+
+    <div class="hamburger-menu-container">
+      <div class="hamburger-menu">
+        <div></div>
+      </div>
+    </div>
+  </div>
+</header>
+<router-outlet></router-outlet>
