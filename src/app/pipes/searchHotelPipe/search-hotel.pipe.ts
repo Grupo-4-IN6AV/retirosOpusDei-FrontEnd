@@ -13,7 +13,7 @@ export class SearchHotelPipe implements PipeTransform
   constructor
   (
     private hotelRest: HotelRestService,
-    private landingComponent: HotelComponent
+    private landingComponent: HotelComponent,
   ){ }
 
   transform(hotels:any, search:any){

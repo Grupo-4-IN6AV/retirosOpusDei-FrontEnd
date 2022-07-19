@@ -157,7 +157,7 @@ export class AdminUserComponent implements OnInit {
 
   showTable()
   {
-    this.showTableUsers = !this.showTableUsers;
+    this.showTableUsers =! this.showTableUsers;
     for(let user of this.users)
     {
       user.checked = true
