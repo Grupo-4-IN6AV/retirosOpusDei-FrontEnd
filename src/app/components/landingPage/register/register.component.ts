@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit
     private router : Router
   )
   {
-    this.user = new UserModel('', '','', '', '', '', '', '');
+    this.user = new UserModel('', '','', '', '', '', '', '', true);
   }
 
   ngOnInit(): void

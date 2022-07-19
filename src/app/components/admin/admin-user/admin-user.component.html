@@ -374,23 +374,26 @@
               <tbody>
                 <tr *ngFor="let user of users | searchUserPipe: searchUser">
                   <td (click)="getUser(user._id)">
-                    <mat-checkbox (click)="showButtonActions(); getUser(user._id)" class="example-margin" color="primary">
+                    <mat-checkbox *ngIf="user.checked==true || controloClick==0"
+                     #check="matCheckbox" (click)="showButtonActions(user._id, check); getUser(user._id)" class="example-margin" color="primary">
+                    </mat-checkbox>
+                    <mat-checkbox disabled="" *ngIf="user.checked==false" class="example-margin" color="primary">
                     </mat-checkbox>
                     {{ users.indexOf(user) + 1 }}
                   </td>
                   <td (click)="getUser(user._id)" class="table-img">
                     <img src="assets/images/user/user8.jpg" alt="" />
                   </td>
-                  <td (click)="getUser(user._id)">{{ user.name }}</td>
-                  <td (click)="getUser(user._id)">{{ user.surname }}</td>
-                  <td (click)="getUser(user._id)">{{ user.username }}</td>
-                  <td (click)="getUser(user._id)">{{ user.email }}</td>
-                  <td (click)="getUser(user._id)">{{ user.phone }}</td>
-                  <td (click)="getUser(user._id)" align="center">
-                    <div *ngIf="user.role === 'ADMIN HOTEL'" class="badge col-blue">
+                  <td (click)="getUser(user._id)" data-bs-toggle="modal" data-bs-target="#viewUser">{{ user.name }}</td>
+                  <td (click)="getUser(user._id)" data-bs-toggle="modal" data-bs-target="#viewUser">{{ user.surname }}</td>
+                  <td (click)="getUser(user._id)" data-bs-toggle="modal" data-bs-target="#viewUser">{{ user.username }}</td>
+                  <td (click)="getUser(user._id)" data-bs-toggle="modal" data-bs-target="#viewUser">{{ user.email }}</td>
+                  <td (click)="getUser(user._id)" data-bs-toggle="modal" data-bs-target="#viewUser">{{ user.phone }}</td>
+                  <td (click)="getUser(user._id)"data-bs-toggle="modal" data-bs-target="#viewUser" align="center">
+                    <div *ngIf="user.role === 'ADMIN HOTEL'" data-bs-toggle="modal" data-bs-target="#viewUser" class="badge col-blue">
                       {{ user.role }}
                     </div>
-                    <div *ngIf="user.role === 'CLIENT'" class="badge col-yellow">
+                    <div *ngIf="user.role === 'CLIENT'" data-bs-toggle="modal" data-bs-target="#viewUser" class="badge col-yellow">
                       {{ user.role }}
                     </div>
                   </td>

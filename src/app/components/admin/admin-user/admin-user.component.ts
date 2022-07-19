@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserRestService } from 'src/app/services/userRest/user-rest.service';
 import Swal from 'sweetalert2';
 import { UserModel } from 'src/app/models/user.model';
+import { User } from 'src/app/core/models/user';
 interface Food {
   value: string;
   viewValue: string;
@@ -25,7 +26,7 @@ export class AdminUserComponent implements OnInit {
     private modalService: NgbModal,
     private userRest: UserRestService,
   ) {
-    this.user = new UserModel('', '', '', '', '', '', '', '');
+    this.user = new UserModel('', '', '', '', '', '', '', '', true);
   }
 
   public ngOnInit(): void
@@ -48,7 +49,9 @@ export class AdminUserComponent implements OnInit {
   reset: any;
   notFound: boolean = false;
   buttonActions: boolean = false;
-
+  checked: boolean = true;
+  userCheck : any;
+  controloClick : number = 0
 
   //METÓDOS DEL CRUD DE USERS//
   getUsers() {
@@ -89,7 +92,6 @@ export class AdminUserComponent implements OnInit {
         this.userView = res.user;
         this.userUpdate = res.user;
         this.userDelete = res.user
-        console.log(this.userView)
       },
       error: (err) => { alert(err.error.message) }
     })
@@ -105,6 +107,7 @@ export class AdminUserComponent implements OnInit {
           confirmButtonColor: '#28B463'
         });
         this.getUsers();
+        this.showButtonActions(this.userUpdate._id,false)
       },
       error: (err) => {
         Swal.fire({
@@ -136,6 +139,7 @@ export class AdminUserComponent implements OnInit {
               timer: 2000
             });
             this.getUsers();
+            this.showButtonActions(id,false)
           },
           error: (err) => Swal.fire({
             title: err.error.message,
@@ -151,8 +155,13 @@ export class AdminUserComponent implements OnInit {
     })
   }
 
-  showTable() {
+  showTable()
+  {
     this.showTableUsers = !this.showTableUsers;
+    for(let user of this.users)
+    {
+      user.checked = true
+    }
   }
 
   getUsersByUp() {
@@ -242,9 +251,34 @@ export class AdminUserComponent implements OnInit {
     this.searchUser = this.reset;
   }
 
-  showButtonActions()
+  showButtonActions(userID:any, check:any)
   {
+    this.controloClick += 1
+    let controlCheck =! check.checked
+    if(this.controloClick == 1)
+    {
+      for(let user of this.users)
+      {
+        if(userID != user._id)
+        {
+          user.checked =! controlCheck
+        }
+        else if(userID == user._id)
+        {
+          user.checked = controlCheck
+        }
+      }
+    }
+    else if(this.controloClick == 2)
+    {
+      for(let user of this.users)
+      {
+        user.checked = true;
+      }
+      this.controloClick = 0;
+    }
     this.buttonActions =! this.buttonActions;
+    console.log(this.controloClick)
   }
 
   closeDialog(): void

@@ -8,5 +8,6 @@ export class UserModel {
       public phone: string,
       public email: string,
       public role: string,
+      public checked: boolean,
   ){}
 }
