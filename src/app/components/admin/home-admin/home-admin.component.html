@@ -18,14 +18,14 @@
         <div class="card card-statistic-2">
           <div class="clearfix">
             <div class="card-icon shadow-primary float-start bg-purple">
-              <i class="fas fa-paste"></i>
+              <i class="fas fa-building"></i>
             </div>
             <div class="float-end m-4">
               <div>
-                <h5 class="float-end">Total Booking</h5>
+                <h5 class="float-end">Total Hotels</h5>
               </div>
               <div class="card-body float-end">
-                1,245
+                {{totalHotels}}
               </div>
             </div>
           </div>
@@ -94,7 +94,7 @@
                 <h5 class="float-end">Total Hotels</h5>
               </div>
               <div class="card-body float-end">
-                1,532
+                {{totalHotels}}
               </div>
             </div>
           </div>
@@ -154,178 +154,5 @@
         </div>
       </div>
     </div>
-
-    <div class="row clearfix">
-      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-        <div class="card">
-          <div class="header">
-            <h2>Activity</h2>
-            <button mat-button [matMenuTriggerFor]="menu" class="header-dropdown">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item>Action</button>
-              <button mat-menu-item>Another action</button>
-              <button mat-menu-item>Something else here</button>
-            </mat-menu>
-          </div>
-          <div class="body">
-            <div class="assign-style" style="position: relative; max-height: 355px;" [perfectScrollbar]>
-              <ul class="feedBody">
-                <li class="active-feed">
-                  <div class="feed-user-img">
-                    <img src="assets/images/user/user1.jpg" class="img-radius " alt="User-Profile-Image">
-                  </div>
-                  <h6>
-                    <span class="feedLblStyle lblFileStyle">File</span> Sarah Smith
-                    <small class="text-muted float-end">6 hours ago</small>
-                  </h6>
-                  <p class="m-b-15 m-t-15">
-                    hii John, I have upload doc related to task.
-                  </p>
-                </li>
-                <li class="diactive-feed">
-                  <div class="feed-user-img">
-                    <img src="assets/images/user/user2.jpg" class="img-radius " alt="User-Profile-Image">
-                  </div>
-                  <h6>
-                    <span class="feedLblStyle lblTaskStyle">Task </span> Jalpa Joshi
-                    <small class="text-muted float-end">5 hours ago
-                    </small>
-                  </h6>
-                  <p class="m-b-15 m-t-15">
-                    Please do as specify. Let me know if you have any query.
-                  </p>
-                </li>
-                <li class="diactive-feed">
-                  <div class="feed-user-img">
-                    <img src="assets/images/user/user3.jpg" class="img-radius " alt="User-Profile-Image">
-                  </div>
-                  <h6>
-                    <span class="feedLblStyle lblCommentStyle">comment</span> Lina Smith
-                    <small class="text-muted float-end">6 hours ago</small>
-                  </h6>
-                  <p class="m-b-15 m-t-15">
-                    Hey, How are you??
-                  </p>
-                </li>
-                <li class="active-feed">
-                  <div class="feed-user-img">
-                    <img src="assets/images/user/user4.jpg" class="img-radius " alt="User-Profile-Image">
-                  </div>
-                  <h6>
-                    <span class="feedLblStyle lblReplyStyle">Reply</span> Jacob Ryan
-                    <small class="text-muted float-end">7 hours ago</small>
-                  </h6>
-                  <p class="m-b-15 m-t-15">
-                    I am fine. You??
-                  </p>
-                </li>
-                <li class="active-feed">
-                  <div class="feed-user-img">
-                    <img src="assets/images/user/user5.jpg" class="img-radius " alt="User-Profile-Image">
-                  </div>
-                  <h6>
-                    <span class="feedLblStyle lblFileStyle">File</span> Sarah Smith
-                    <small class="text-muted float-end">6 hours ago</small>
-                  </h6>
-                  <p class="m-b-15 m-t-15">
-                    hii John, I have upload doc related to task.
-                  </p>
-                </li>
-                <li class="diactive-feed">
-                  <div class="feed-user-img">
-                    <img src="assets/images/user/user6.jpg" class="img-radius " alt="User-Profile-Image">
-                  </div>
-                  <h6>
-                    <span class="feedLblStyle lblTaskStyle">Task </span> Jalpa Joshi
-                    <small class="text-muted float-end">5 hours ago
-                    </small>
-                  </h6>
-                  <p class="m-b-15 m-t-15">
-                    Please do as specify. Let me know if you have any query.
-                  </p>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-        <div class="card">
-          <div class="header">
-            <h2>Customer Review</h2>
-            <button mat-button [matMenuTriggerFor]="menu" class="header-dropdown">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item>Action</button>
-              <button mat-menu-item>Another action</button>
-              <button mat-menu-item>Something else here</button>
-            </mat-menu>
-          </div>
-          <div class="body">
-            <div class="review-block">
-              <div class="row">
-                <div class="review-img">
-                  <img src="assets/images/user/user1.jpg" alt="">
-                </div>
-                <div class="col">
-                  <h6 class="m-b-5">Alis Smith
-                    <span class="float-end m-r-10 text-muted"> a week ago</span>
-                  </h6>
-                  <i class="material-icons">star</i>
-                  <i class="material-icons">star</i>
-                  <i class="material-icons">star</i>
-                  <i class="material-icons">star_half</i>
-                  <i class="material-icons">star_border</i>
-                  <p class="m-t-15 m-b-15 text-muted">Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit. Etiam vel rutrum ex, at
-                    ornare mi. In quis scelerisque dui, eget rhoncus orci. Fusce et sodales
-                    ipsum.
-                    Nam id nunc euismod, aliquet arcu quis, mattis nisi.</p>
-                  <button mat-icon-button class="m-r-10 col-blue">
-                    <mat-icon>thumb_up</mat-icon>
-                  </button>
-                  <button mat-icon-button class="m-r-10 col-red">
-                    <mat-icon>thumb_down</mat-icon>
-                  </button>
-                </div>
-              </div>
-              <div class="row mt-3">
-                <div class="review-img">
-                  <img src="assets/images/user/user2.jpg" alt="">
-                </div>
-                <div class="col">
-                  <h6 class="m-b-5">John Dio
-                    <span class="float-end m-r-10 text-muted"> a week ago</span>
-                  </h6>
-                  <i class="material-icons">star</i>
-                  <i class="material-icons">star_half</i>
-                  <i class="material-icons">star_border</i>
-                  <i class="material-icons">star_border</i>
-                  <i class="material-icons">star_border</i>
-                  <p class="m-t-15 m-b-15 text-muted">Nam quis ligula est. Nunc sed risus non
-                    turpis tristique tempor. Ut sollicitudin
-                    faucibus magna nec gravida. Suspendisse ullamcorper justo vel porta
-                    imperdiet.
-                    Nunc nec ipsum vel augue placerat faucibus. </p>
-                  <button mat-icon-button class="m-r-10 col-blue">
-                    <mat-icon>thumb_up</mat-icon>
-                  </button>
-                  <button mat-icon-button class="m-r-10 col-red">
-                    <mat-icon>thumb_down</mat-icon>
-                  </button>
-                </div>
-              </div>
-              <div class="text-center  m-b-5">
-                <a href="javascript:void(0)" class="b-b-primary text-primary">View all Customer Reviews</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>

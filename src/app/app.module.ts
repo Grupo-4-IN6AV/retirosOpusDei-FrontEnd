@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-
+import { FullCalendarModule } from '@fullcalendar/angular'; // the main connector. must go first
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin
 
 /*IMPORTACIONES MANUALES*/
 import { MatRadioModule } from '@angular/material/radio';
@@ -27,7 +29,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { NgApexchartsModule } from 'ng-apexcharts';
-
+import {  } from "@angular/material/snack-bar";
+import { MatTooltipModule } from "@angular/material/tooltip";
+FullCalendarModule.registerPlugins([
+  dayGridPlugin,
+  timeGridPlugin,
+  listPlugin,
+  interactionPlugin,
+]);
+import timeGridPlugin from "@fullcalendar/timegrid";
+import listPlugin from "@fullcalendar/list";
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -60,6 +71,10 @@ import { RegisterComponent } from './components/landingPage/register/register.co
 import { ContactUsComponent } from './components/landingPage/contact-us/contact-us.component';
 import { HotelComponent } from './components/landingPage/hotel/hotel.component';
 import { SearchHotelPipe } from './pipes/searchHotelPipe/search-hotel.pipe';
+import { EventsAdminComponent } from './components/admin/event-admin/event-admin.component';
+import { HotelViewComponent } from './components/landingPage/hotel-view/hotel-view.component';
+import { SearchHotelTablePipe } from './pipes/searchHotelTable/search-hotel-table.pipe';
+import { SearchEventPipe } from './pipes/searchEventPipe/search-event.pipe';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -89,6 +104,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         ContactUsComponent,
         HotelComponent,
         SearchHotelPipe,
+        EventsAdminComponent,
+        HotelViewComponent,
+        SearchHotelTablePipe,
+        SearchEventPipe
     ],
     imports: [
         FormsModule,
@@ -129,6 +148,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         MatIconModule,
         MatSelectModule,
         NgApexchartsModule,
+        FullCalendarModule, // register FullCalendar with you app
         NgxEchartsModule.forRoot({
           echarts: () => import('echarts'),
         }),

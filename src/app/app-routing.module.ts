@@ -12,6 +12,8 @@ import { RegisterComponent } from './components/landingPage/register/register.co
 import { ContactUsComponent } from './components/landingPage/contact-us/contact-us.component';
 import { HotelComponent } from './components/landingPage/hotel/hotel.component';
 import { HotelAdminComponent } from './components/admin/hotel-admin/hotel-admin.component';
+import { EventsAdminComponent } from './components/admin/event-admin/event-admin.component';
+import { HotelViewComponent } from './components/landingPage/hotel-view/hotel-view.component';
 
 const routes: Routes =
 [
@@ -24,6 +26,7 @@ const routes: Routes =
       {path: 'hotels', component: HotelComponent},
       {path: 'login', component: LoginComponent},
       {path: 'register', component: RegisterComponent},
+      {path: 'viewHotel', component: HotelViewComponent},
     ]
   },
   {
@@ -32,6 +35,7 @@ const routes: Routes =
       {path: 'home', component: HomeAdminComponent},
       {path: 'user', component: AdminUserComponent},
       {path: 'hotel', component: HotelAdminComponent},
+      {path: 'event', component: EventsAdminComponent},
     ]
   },
   { path: '**', component: NotFoundPageComponent}

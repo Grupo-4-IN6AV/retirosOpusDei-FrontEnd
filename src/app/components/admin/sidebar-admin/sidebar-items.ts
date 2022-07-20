@@ -36,4 +36,16 @@ export const ROUTES: RouteInfo[] = [
     badgeClass: '',
     submenu: [],
   },
+  {
+    path: 'event',
+    title: 'Events',
+    moduleName: 'admin',
+    iconType: 'material-icons-two-tone',
+    icon: 'event_note',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    submenu: [],
+  },
 ];

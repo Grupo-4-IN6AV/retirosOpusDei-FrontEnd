@@ -24,7 +24,7 @@ export class HotelAdminComponent implements OnInit {
 
   hotels: any;
   hotel: HotelModel;
-  searchHotel:any
+  searchHotelTable:any
   hotelView: any;
   hotelUpdate: any;
   hotelDelete: any;
@@ -39,6 +39,7 @@ export class HotelAdminComponent implements OnInit {
   checked: boolean = true;
 
   users: any;
+  hotelDeleted:any;
 
   constructor(
     public dialog: MatDialog,
@@ -99,6 +100,7 @@ export class HotelAdminComponent implements OnInit {
       next: (res: any) => {
         this.hotelView = res.hotel;
         this.hotelUpdate = res.hotel;
+        this.hotelDeleted = res.hotel
       },
       error: (err) => {alert(err.error.message)}
     })
@@ -108,13 +110,14 @@ export class HotelAdminComponent implements OnInit {
   {
     this.hotelRest.updateHotel(this.hotelUpdate._id, this.hotelUpdate).subscribe({
 
-      next: (res:any)=> 
+      next: (res:any)=>
       {
         Swal.fire({
           icon:'success',
           title: res.message,
           confirmButtonColor: '#28B463'
         });
+        this.showButtonActions(this.hotelUpdate._id,false)
         this.getHotels();
       },
       error: (err)=>
@@ -128,7 +131,7 @@ export class HotelAdminComponent implements OnInit {
     })
   }
 
-  deleteHotel(id: string) 
+  deleteHotel(id: string)
   {
     Swal.fire({
       title: 'Do you want to delete this Hotel?',
@@ -148,6 +151,7 @@ export class HotelAdminComponent implements OnInit {
               showConfirmButton: false,
               timer: 2000
             });
+            this.showButtonActions(id,false)
             this.getHotels();
           },
           error: (err) => Swal.fire({
@@ -158,7 +162,7 @@ export class HotelAdminComponent implements OnInit {
           })
         })
         this.getHotels();
-      } else if (result.isDenied) 
+      } else if (result.isDenied)
       {
         Swal.fire('Hotel Not Deleted','', 'info')
       }
@@ -168,7 +172,7 @@ export class HotelAdminComponent implements OnInit {
   getUsersAdminHotel()
   {
     this.userRest.getUsersAdminHotel().subscribe({
-      next: (res: any) => 
+      next: (res: any) =>
       {
         this.users = res.users
       },
@@ -206,7 +210,7 @@ export class HotelAdminComponent implements OnInit {
       error: (err) => console.log(err)
     })
   }
-  
+
   getHotelName(params:any) {
     this.hotelRest.getHotelName(params).subscribe({
       next: (res: any) => {
@@ -222,7 +226,7 @@ export class HotelAdminComponent implements OnInit {
     this.nameUp = this.reset
     this.nameDown = this.reset
     this.getHotels();
-    this.searchHotel = this.reset;
+    this.searchHotelTable = this.reset;
   }
 
   showButtonActions(hotelID:any, check:any)
@@ -252,7 +256,6 @@ export class HotelAdminComponent implements OnInit {
       this.controloClick = 0;
     }
     this.buttonActions =! this.buttonActions;
-    console.log(this.controloClick)
   }
 
   closeDialog(): void

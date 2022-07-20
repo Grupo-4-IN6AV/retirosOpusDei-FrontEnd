@@ -17,6 +17,7 @@ import {
 
 import { EChartsOption } from 'echarts';
 import { UserRestService } from 'src/app/services/userRest/user-rest.service';
+import { HotelRestService } from 'src/app/services/hotelRest/hotel-rest.service';
 
 export type SparklineChartOptions = {
   series: ApexAxisChartSeries;
@@ -54,7 +55,7 @@ export type areaChartOptions = {
   templateUrl: './home-admin.component.html',
   styleUrls: ['./home-admin.component.sass']
 })
-export class HomeAdminComponent implements OnInit, OnDestroy
+export class HomeAdminComponent implements OnInit
 {
 
   users: any;
@@ -62,9 +63,13 @@ export class HomeAdminComponent implements OnInit, OnDestroy
   totalAdminsHotels: any;
   totalClients: any;
 
+  hotels: any;
+  totalHotels:any
+
   ngOnInit(): void
   {
     this.getUsers();
+    this.getHotels();
   }
 
   getUsers()
@@ -88,16 +93,29 @@ export class HomeAdminComponent implements OnInit, OnDestroy
         //DATA A LA GRAFICA//
         this.donut_chart.series[0].data.push(
           {
-            value: this.totalAdminsHotels, name:'Admins Hotels'
+            value: this.totalAdminsHotels, name:'ADMIN HOTELS'
           },
           {
-            value: this.totalClients, name:'Clients'
+            value: this.totalClients, name:'CLIENTS'
           }
           )
       },
       error: (err) => console.log(err)
     })
   }
+
+  getHotels()
+  {
+    this.hotelRest.getHotels().subscribe({
+      next: (res: any) =>
+      {
+        this.hotels = res.hotels
+        this.totalHotels = this.hotels.length;
+      },
+      error: (err) => console.log(err)
+    })
+  }
+
 
   donut_chart: EChartsOption =
   {
@@ -230,17 +248,12 @@ export class HomeAdminComponent implements OnInit, OnDestroy
 
   constructor
   (
+    private hotelRest: HotelRestService,
     private userRest: UserRestService
   )
   {
 
   }
-  ngOnDestroy(): void
-  {
-    this.totalAdminsHotels = undefined;
-    this.totalClients = undefined;
-  }
-
 
 
 }
