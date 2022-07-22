@@ -19,7 +19,7 @@
       Return Cards
       <span class="btn-icon-end"><i class="fas fa-arrow-left"></i> </span>
     </button>
-    <button (click)="showCalendar()" type="button" class="ms-3 btn btn-event btn-secondary">
+    <button  (click)="showCalendar()" type="button" class="ms-3 btn btn-event btn-secondary">
       View Calendar
       <span class="btn-icon-end"><i class="fas fa-calendar"></i> </span>
     </button>
@@ -134,7 +134,7 @@
           <div class="contact-details">
             <div class="modalHeader">
               <div class="editRowModal">
-                <div *ngIf="eventView" class="modalHeader clearfix">
+                <div *ngIf="eventView || viewModal" class="modalHeader clearfix">
                   <div class="modal-about contact-header">
                     <div class="contact-details-img">
                       <img src="../../../../assets/images/user/usrbig2.jpg" alt="avatar" />
@@ -142,6 +142,12 @@
                     <div class="contact-details-heading">
                       <div class="contact-details-name mb-2">
                         {{ eventView.name }}
+                      </div>
+                      <div *ngIf="availableEvent === false" class="badge col-red">
+                        Finalized
+                      </div>
+                      <div *ngIf="availableEvent === true" class="badge col-green">
+                        OnGoing
                       </div>
                     </div>
                   </div>
@@ -209,6 +215,7 @@
     </div>
   </div>
 
+
   <div *ngIf="showTableEvents && !showCalendarEvents" class="row clearfix mt-5">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div class="card">
@@ -260,6 +267,7 @@
                   <th>Date</th>
                   <th>Start Hour</th>
                   <th>End Hour</th>
+                  <th>State</th>
                 </tr>
               </thead>
               <tbody>
@@ -286,6 +294,14 @@
                     event.startHour }}</td>
                   <td (click)="getEvent(event._id)" data-bs-toggle="modal" data-bs-target="#viewEvent">{{ event.endHour
                     }}</td>
+                    <td *ngIf="available[events.indexOf(event)] === false"
+                     (click)="getEvent(event._id)" data-bs-toggle="modal" data-bs-target="#viewEvent">
+                     <span class="label bg-red m-b-10">Finalized</span>
+                    </td>
+                    <td *ngIf="available[events.indexOf(event)] === true"
+                     (click)="getEvent(event._id)" data-bs-toggle="modal" data-bs-target="#viewEvent">
+                     <span class="label bg-green m-b-10">OnGoing</span>
+                    </td>
                 </tr>
                 <tr rowspan="9" *ngIf="notFound === true">
                   <td colspan="9" class="text-center">Not Events Found</td>

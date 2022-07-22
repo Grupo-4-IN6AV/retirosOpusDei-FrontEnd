@@ -1,0 +1,122 @@
+<section class="content">
+  <h1 style="margin-top: 4rem">
+    &nbsp;<i class="fa fa-bed" aria-hidden="true"> </i>
+    Rooms
+  </h1>
+  <hr />
+
+  <div class="text-center d-flex mt-2 mb-2" style="justify-content:center">
+    <div ngbDropdown>
+      <button type="button" class="ms-3 btn btn-event btn-success"
+      id="dropdownBasic1" ngbDropdownToggle>
+      Add Room
+      <span class="btn-icon-end"><i class="fas fa-bed"></i></span>
+    </button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button (click)="getHotel(hotel._id); getTypeRoomHotel(hotel._id)" data-bs-toggle="modal" data-bs-target="#addRoom" *ngFor="let hotel of hotels" ngbDropdownItem>{{hotel.name}}</button>
+      </div>
+    </div>
+    <button type="button" class="ms-3 btn btn-event btn-secondary">
+      Table Rooms
+      <span class="btn-icon-end"><i class="fas fa-table"></i> </span>
+    </button>
+    <button type="button" class="ms-3 btn btn-event btn-secondary">
+      Return Cards
+      <span class="btn-icon-end"><i class="fas fa-arrow-left"></i> </span>
+    </button>
+    <button routerLink="/admin/home" type="button" class="ms-3 btn btn-event btn-dark">
+      Back Home
+      <span class="btn-icon-end"><i class="fas fa-home"></i> </span>
+    </button>
+  </div>
+  <hr />
+
+  <!--CARDS DE ROOMS-->
+  <div *ngIf="!showTableRooms">
+    <div class="container">
+      <div class="products-container">
+        <div *ngFor="let room of rooms" class="product" data-name="p-1">
+          <h5 class="card-title">{{ room.name }}</h5>
+          <h6 class="card-subtitle mt-1 mb-2">Q.{{newPrices[rooms.indexOf(room)]}}</h6>
+          <h6 class="card-subtitle mb-2 text-muted">{{ room.typeRoom.name }}</h6>
+          <p class="card-text">{{ room.hotel.name }}</p>
+          <button  class="btn btn-success m-3" data-bs-toggle="modal" data-bs-target="#updateHotel"
+            class="btn btn-warning m-2">
+            <i class="fa fa-pencil" aria-hidden="true"> </i> Update
+          </button>
+          <button class="btn btn-danger">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+            Delete
+          </button>
+          <button data-bs-toggle="modal" data-bs-target="#viewHotel"
+            class="btn btn-secondary ms-2">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            View
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!--ADD ROOM-->
+<div class="modal fade" id="addRoom" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-basic-title">
+          <i class="fas fa-bed"></i>
+          &nbsp;Add Room
+        </h3>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div *ngIf="hotelSelected" class="modal-body">
+        <form (ngSubmit)="saveRoom(addRoomForm)" #addRoomForm="ngForm">
+          <div class="text-inside">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Name</mat-label>
+              <input autocomplete="off" [(ngModel)]="room.name" name="name" matInput />
+            </mat-form-field>
+          </div>
+          <div class="text-inside">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Description</mat-label>
+              <input autocomplete="off" [(ngModel)]="room.description" name="description" matInput />
+            </mat-form-field>
+          </div>
+          <div class="text-inside">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Price Night</mat-label>
+              <input type="number" min="1" autocomplete="off" [(ngModel)]="room.price" name="price" matInput />
+            </mat-form-field>
+          </div>
+          <div class="text-inside">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Type Room</mat-label>
+              <mat-select [(ngModel)]="room.typeRoom" name="typeRoom">
+                <mat-option *ngFor="let typeRoom of typesRoomsHotel" value="{{typeRoom._id}}">{{typeRoom.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="text-inside">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Hotel</mat-label>
+              <input disabled autocomplete="off" value="{{hotelSelected.name}}" name="hotel" matInput />
+            </mat-form-field>
+          </div>
+          <hr />
+          <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+              <i class="fa fa-times-circle" aria-hidden="true"></i> Discard
+              Save
+            </button>
+            <button type="submit" class="btn btn-success" data-bs-dismiss="modal">
+              <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Room
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</section>

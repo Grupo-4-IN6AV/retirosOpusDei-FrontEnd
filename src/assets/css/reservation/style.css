@@ -1058,7 +1058,7 @@ p {
 .tabs2-wrapper .tabs li a:hover,
 .tabs2-wrapper .tabs li.active a {
   color: #fff;
-  background: #06779c;
+  background: #1976ED;
 }
 
 .sorting {
@@ -1213,14 +1213,14 @@ p {
   display: block;
   width: 50px;
   height: 1px;
-  background: #f8af00;
+  background: #1976ED;
   position: absolute;
   left: 0;
   bottom: -1px;
 }
 
 .room-wide-price {
-  border-left: 2px solid #f8af00;
+  border-left: 2px solid #1976ED;
   line-height: 1.4;
   padding-top: 5px;
   padding-left: 10px;
@@ -1229,7 +1229,7 @@ p {
 .room-wide .caption .txt3 {
   font-family: 'Oswald', sans-serif;
   font-size: 32px;
-  color: #06779c;
+  color: #1976ED;
   text-transform: uppercase;
 }
 
@@ -1259,7 +1259,7 @@ p {
   display: block;
   width: 50px;
   height: 1px;
-  background: #f8af00;
+  background: #1976ed;
   position: absolute;
   left: 0;
   bottom: -1px;
@@ -1270,13 +1270,14 @@ p {
   display: inline-block;
   position: relative;
   font-size: 13px;
-  color: #f8af00;
+  color: #1976ED;
+  text-decoration: none;
   font-weight: 600;
   transition: all 0.3s ease-out;
 }
 
 .room-wide .caption .txt6 a:hover {
-  color: #06779c;
+  color: black;
 }
 
 .room-wide .caption .txt6 a i {
@@ -1311,17 +1312,19 @@ p {
   display: block;
   text-align: center;
   text-decoration: underline;
-  background: #06779c;
+  background: #1976ED;
   color: #fff;
   text-transform: uppercase;
   padding: 11px 3px;
   border-radius: 3px;
   font-size: 13px;
   transition: all 0.3s ease-out;
+  text-decoration: none;
 }
 
 .room-wide .caption .txt9 a:hover {
-  background: #fab100;
+  background: #d9d9d9;
+  color: black;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
 }
 
@@ -2518,13 +2521,14 @@ p {
   display: inline-block;
   position: relative;
   font-size: 12px;
-  color: #f8af00;
+  color: #1976ED;
+  text-decoration: none;
   font-weight: 600;
   transition: all 0.3s ease-out;
 }
 
 .room .caption .txt4 a:hover {
-  color: #06779c;
+  color: black;
 }
 
 .room .caption .txt4 a i {
@@ -2541,14 +2545,15 @@ p {
   display: block;
   text-decoration: underline;
   padding: 15px 60px 15px 50px;
-  background: #f8af00;
-  color: #fff;
+  background: #d9d9d9;
+  color: black;
   font-size: 16px;
   transition: all 0.3s ease-out;
 }
 
 .room .select-txt a:hover {
-  background: #06779c;
+  background: #1976ED;
+  color:white;
 }
 
 .room .select-txt a span {
@@ -3701,20 +3706,45 @@ h2 a {
   background: #06779c;
 }
 
+@media screen and (min-width:1024px)
+{
+ .descriptionResponsive p
+ {
+  min-width: 44rem;
+ }
+}
 
+@media screen and (min-width:576px) and (max-width:767px)
+{
+ .descriptionResponsive p
+ {
+  min-width: 32rem;
+ }
+}
 
+@media screen and (min-width:768px) and (max-width:991px)
+{
+ .descriptionResponsive p
+ {
+  min-width: 45rem;
+ }
+}
 
-
-
+@media screen and (min-width:992px) and (max-width:1023px)
+{
+ .descriptionResponsive p
+ {
+  min-width: 32rem;
+ }
+}
 
 
 /*----- media queries ------*/
-@media (max-width: 1430px) {
+@media (max-width: 1440px) {
   .sf-mega ul li .sf-mega {
     left: auto;
     right: 100%;
   }
-
 }
 
 @media (min-width: 1260px) {}

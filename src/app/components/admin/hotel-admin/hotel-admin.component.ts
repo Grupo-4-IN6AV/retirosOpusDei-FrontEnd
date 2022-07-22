@@ -7,11 +7,6 @@ import { UserRestService } from 'src/app/services/userRest/user-rest.service';
 import { HotelModel } from 'src/app/models/hotel.model'
 import Swal from 'sweetalert2';
 
-interface Food {
-  value: string;
-  viewValue: string;
-}
-
 @Component({
   selector: 'app-hotel-admin',
   templateUrl: './hotel-admin.component.html',
@@ -109,7 +104,6 @@ export class HotelAdminComponent implements OnInit {
   updateHotel()
   {
     this.hotelRest.updateHotel(this.hotelUpdate._id, this.hotelUpdate).subscribe({
-
       next: (res:any)=>
       {
         Swal.fire({

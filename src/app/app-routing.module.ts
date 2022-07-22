@@ -14,6 +14,9 @@ import { HotelComponent } from './components/landingPage/hotel/hotel.component';
 import { HotelAdminComponent } from './components/admin/hotel-admin/hotel-admin.component';
 import { EventsAdminComponent } from './components/admin/event-admin/event-admin.component';
 import { HotelViewComponent } from './components/landingPage/hotel-view/hotel-view.component';
+import { ServicesAdminComponent } from './components/admin/services-admin/services-admin.component';
+import { RoomAdminComponent } from './components/admin/room-admin/room-admin.component';
+import { TypeRoomAdminComponent } from './components/admin/type-room-admin/type-room-admin.component';
 
 const routes: Routes =
 [
@@ -26,7 +29,7 @@ const routes: Routes =
       {path: 'hotels', component: HotelComponent},
       {path: 'login', component: LoginComponent},
       {path: 'register', component: RegisterComponent},
-      {path: 'viewHotel', component: HotelViewComponent},
+      {path: 'viewRoom', component: HotelViewComponent},
     ]
   },
   {
@@ -36,6 +39,9 @@ const routes: Routes =
       {path: 'user', component: AdminUserComponent},
       {path: 'hotel', component: HotelAdminComponent},
       {path: 'event', component: EventsAdminComponent},
+      {path: 'service', component: ServicesAdminComponent},
+      {path: 'room', component: RoomAdminComponent},
+      {path: 'typeRoom', component: TypeRoomAdminComponent},
     ]
   },
   { path: '**', component: NotFoundPageComponent}

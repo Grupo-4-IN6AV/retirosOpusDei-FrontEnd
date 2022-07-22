@@ -252,7 +252,7 @@
             <div class="text-inside">
               <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>Administrator</mat-label>
-                <mat-select [(ngModel)]="hotelUpdate.admin" name="admin">
+                <mat-select [(ngModel)]="hotelUpdate.admin._id" name="admin">
                   <mat-option  *ngFor="let user of users" value="{{user._id}}">{{user.name}} {{user.surname}}</mat-option>
                 </mat-select>
               </mat-form-field>

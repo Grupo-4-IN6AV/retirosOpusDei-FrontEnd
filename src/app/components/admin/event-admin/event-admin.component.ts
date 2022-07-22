@@ -7,6 +7,7 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import esLocale from '@fullcalendar/core/locales/es'
+import { DOCUMENT } from '@angular/common';
 
 import {
   CalendarOptions,
@@ -35,6 +36,7 @@ export class EventsAdminComponent implements OnInit {
   eventUpdate: any;
   eventDeleted: any;
   notFound: boolean = false
+  viewModal: boolean = false
 
   //MOSTRAR FECHAS//
   newDates: any;
@@ -44,13 +46,17 @@ export class EventsAdminComponent implements OnInit {
   buttonActions: boolean = false;
   controloClick : number = 0
 
+  actualDate:any;
+  available:any;
+  availableEvent:any;
+
   //show Calendar//
   showCalendarEvents : boolean = false;
-
   constructor
   (
     public hotelRest : HotelRestService,
     public eventRest : EventRestService,
+
   )
   {
     this.event = new EventModel('','','','','','');
@@ -62,15 +68,14 @@ export class EventsAdminComponent implements OnInit {
   };
 
 
-  handleDateClick(arg)
-  {
-    alert('date click! ' + arg.dateStr)
-  }
 
   ngOnInit(): void
   {
+
     this.getHotels();
     this.getEvents();
+    this.actualDate = new Date();
+    document.getElementById
   }
 
   dateFilter = (d: Date) =>
@@ -129,24 +134,43 @@ export class EventsAdminComponent implements OnInit {
       next: (res: any) =>
       {
         this.events = res.events
+        var color;
         var arrayDates = [];
         var calendarArray = [];
+        var availableEventsArray = [];
         for(var key=0; key<this.events.length; key++)
         {
+            var eventID = this.events[key]._id;
             var nameEvent = this.events[key].name
             var actualDate = this.events[key].date;
             var splitActualDate = actualDate.split('T');
+            var formDate = splitActualDate[0]+' '+this.events[key].endHour
+            var compareDate = new Date(formDate);
+            if(compareDate<this.actualDate)
+            {
+              availableEventsArray.push(false)
+              color = "fc-event-danger"
+            }
+            else
+            {
+              availableEventsArray.push(true)
+              color = "fc-event-success"
+            }
             arrayDates.push(splitActualDate[0])
             calendarArray.push(
               {
                 title: nameEvent,
+                description:eventID,
                 date: splitActualDate[0],
-                className: "fc-event-primary",
+                className: color,
               }
               )
+
         }
         this.calendarOptions.events = calendarArray;
         this.newDates = arrayDates;
+        this.available = availableEventsArray;
+        console.log(this.calendarOptions)
       },
       error: (err) => console.log(err)
     })
@@ -164,6 +188,16 @@ export class EventsAdminComponent implements OnInit {
         let splitDate = date.split('T');
         this.newDate = splitDate[0];
 
+        var formDate = splitDate[0]+' '+res.event.endHour
+        var compareDate = new Date(formDate);
+        if(compareDate<this.actualDate)
+        {
+          this.availableEvent = false
+        }
+        else
+        {
+          this.availableEvent = true
+        }
         let splitStartHour = res.event.startHour.split(':');
         let compareStartHour = splitStartHour[0]+splitStartHour[1]
         if(compareStartHour > 1159)

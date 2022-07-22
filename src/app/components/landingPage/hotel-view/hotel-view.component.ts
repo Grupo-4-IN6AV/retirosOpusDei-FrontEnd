@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ScriptRoomsService} from '../../../services/cargarScripts/script-rooms.service'
 import Swiper from 'swiper';
+import { RoomRestService } from 'src/app/services/roomRest/room-rest.service';
 
 @Component({
   selector: 'app-hotel-view',
@@ -11,13 +12,16 @@ export class HotelViewComponent implements OnInit {
 
   constructor
   (
-    private CargarScripts: ScriptRoomsService
+    public roomRest: RoomRestService
   )
   {
   }
   ngOnInit(): void
   {
+    this.getRoomsHotel();
   }
+
+  rooms : any;
 
   viewBlock : boolean = true;
   viewList : boolean = false
@@ -32,5 +36,16 @@ export class HotelViewComponent implements OnInit {
   {
     this.viewList = true
     this.viewBlock = false;
+  }
+
+  getRoomsHotel()
+  {
+    this.roomRest.getRooms().subscribe({
+      next: (res: any) =>
+      {
+        this.rooms = res.rooms
+      },
+      error: (err) => console.log(err)
+    })
   }
 }

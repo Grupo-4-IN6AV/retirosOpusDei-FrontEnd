@@ -47,19 +47,20 @@
     <div id="second-tab-group" class="tabgroup">
       <div *ngIf="viewBlock">
         <div class="row">
-          <div class="col-lg-4">
+          <!--FOR-->
+          <div *ngFor="let room of rooms" class="col-lg-4">
             <div class="room-wrapper">
               <div class="room-inner">
                 <div class="room">
                   <figure>
                     <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG90ZWwlMjByb29tfGVufDB8fDB8fA%3D%3D&w=1000&q=80" alt="" class="img-fluid">
                     <figcaption>
-                      <div class="txt1">GRAND DELVATORE</div>
-                      <div class="txt2">START FROM $450.00</div>
+                      <div style="color:white" class="txt1">{{room.name}}</div>
                     </figcaption>
                   </figure>
                   <div class="caption">
-                    <div class="txt1">Grand Delux Room</div>
+                    <div class="txt1">{{room.typeRoom.name}}
+                    </div>
                     <div class="txt2">
                       39 REVEW
                       <div class="small-stars">
@@ -71,8 +72,7 @@
                       </div>
                     </div>
                     <div class="txt3">
-                      Lorem ipsum dolor sit amet, con cateur non troppo di sarono. El brave al
-                      mundo.
+                      {{room.description}}
                     </div>
                     <div class="txt4">
                       <a href="details.html">See Room Details<i class="fa fa-caret-right" aria-hidden="true"></i></a>
@@ -86,11 +86,12 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
       <div>
         <div *ngIf="viewList" class="room-wide-wrapper">
-          <div class="room-wide-inner">
+          <div  *ngFor="let room of rooms" class="room-wide-inner">
             <div class="room-wide clearfix">
               <figure>
                 <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG90ZWwlMjByb29tfGVufDB8fDB8fA%3D%3D&w=1000&q=80" alt="" class="img-fluid">
@@ -108,27 +109,22 @@
                         <i class="fa fa-star"></i>
                       </div>
                     </div>
-                    <div class="txt2">MODERN DELUX DELVATORE</div>
+                    <div class="txt2">{{room.name}}</div>
                   </div>
                   <div class="room-wide-right">
                     <div class="room-wide-price">
-                      <div class="txt3">$ 450.00</div>
+                      <div class="txt3">Q.{{room.price}}</div>
                       <div class="txt4">PER NIGHT</div>
                     </div>
                   </div>
                 </div>
-                <div style="font-family:Roboto, sans-serif">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                  sodales blandit faucibus. Nunc duo finibus, mi in tincidunt aliquet, ex orci
-                  Morbi porttitor mi id metus mollis. Sed dictum ligula. Lacosta pensare non tropo
-                  di sarono al brio monta.
+                <div class="descriptionResponsive" style="font-family:Roboto, sans-serif">
+                  <p>{{room.description}}</p>
                 </div>
                 <div class="room-wide-columns clearfix">
                   <div class="room-wide-left">
                     <div class="txt6"><a href="details.html">See Room Details<i class="fa fa-caret-right"
                           aria-hidden="true"></i></a></div>
-                  </div>
-                  <div class="room-wide-right">
-                    <div class="txt7">DEPOSIT:<span>REQUIRED 30%</span></div>
                   </div>
                 </div>
                 <div class="room-wide-columns clearfix">

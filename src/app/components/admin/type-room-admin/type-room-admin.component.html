@@ -1,0 +1,312 @@
+<section class="content">
+  <h1 style="margin-top: 4rem">
+    &nbsp;
+    <i class="bx bxs-bed" style="font-size:2.9rem"></i>
+    Type Rooms
+  </h1>
+  <hr />
+
+  <div class="text-center mt-2 mb-2">
+    <button type="button" type="button" data-bs-toggle="modal" data-bs-target="#addTypeRoom" class=" ms-3 btn btn-event btn-success">
+      Add Type Room
+      <span class="btn-icon-end"><i class="bx bxs-bed" aria-labelledby="true"></i></span>
+    </button>
+    <button *ngIf="!showTableTypeRoom" (click)="showTable()" type="button" class="ms-3 btn btn-event btn-secondary">
+      Table Type Rooms
+      <span class="btn-icon-end"><i class="fas fa-table"></i> </span>
+    </button>
+    <button *ngIf="showTableTypeRoom" (click)="showTable()"  type="button"
+      class="ms-3 btn btn-event btn-secondary">
+      Return Cards
+      <span class="btn-icon-end"><i class="fas fa-arrow-left"></i> </span>
+    </button>
+    <button routerLink="/admin/home" type="button" class="ms-3 btn btn-event btn-dark">
+      Back Home
+      <span class="btn-icon-end"><i class="fas fa-home"></i> </span>
+    </button>
+  </div>
+  <hr/>
+
+
+  <!--CARDS DE HOTELS-->
+  <div *ngIf="!showTableTypeRoom">
+    <div class="container">
+      <div class="products-container">
+        <div *ngFor="let typeRoom of typesRooms" class="product" data-name="p-1">
+          <h5 class="card-title">{{ typeRoom.name }}</h5>
+          <h6 class="card-subtitle mt-1 mb-2">{{ typeRoom.description }}</h6>
+          <h6 class="card-subtitle mb-2 text-muted">{{ typeRoom.hotel.name }}</h6>
+          <button (click)="getTypeRoom(typeRoom._id)" class="btn btn-success m-3" data-bs-toggle="modal" data-bs-target="#updateTypeRoom"
+            class="btn btn-warning m-2">
+            <i class="fa fa-pencil" aria-hidden="true"> </i> Update
+          </button>
+          <button (click)="deleteTypeRoom(typeRoom._id)" class="btn btn-danger">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+            Delete
+          </button>
+          <button (click)="getTypeRoom(typeRoom._id)"  data-bs-toggle="modal" data-bs-target="#viewTypeRoom"
+            class="btn btn-secondary ms-2">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            View
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--ADD HOTEL-->
+  <div class="modal fade" id="addTypeRoom" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="modal-basic-title">
+            <i class="bx bxs-bed" style="font-size: 1.5rem"></i>
+            &nbsp;Add Type Room
+          </h3>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="saveTypeRoom(addTypeRoomForm)" #addTypeRoomForm="ngForm">
+            <div class="text-inside">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Name</mat-label>
+                <input autocomplete="off" [(ngModel)]="typeRoom.name" name="name" matInput />
+              </mat-form-field>
+            </div>
+            <div class="text-inside">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Description</mat-label>
+                <input autocomplete="off" [(ngModel)]="typeRoom.description" name="description" matInput />
+              </mat-form-field>
+            </div>
+            <div class="text-inside">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Number Persons</mat-label>
+                <input autocomplete="off" type="number" min="1" [(ngModel)]="typeRoom.numberPersons" name="numberPersons" matInput />
+              </mat-form-field>
+            </div>
+            <div class="text-inside">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Hotel</mat-label>
+                <mat-select [(ngModel)]="typeRoom.hotel" name="admin">
+                  <mat-option  *ngFor="let hotel of hotels" value="{{hotel._id}}">{{hotel.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <hr />
+            <div class="modal-footer justify-content-center">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                <i class="fa fa-times-circle" aria-hidden="true"></i> Discard
+                Save
+              </button>
+              <button type="submit" class="btn btn-success" data-bs-dismiss="modal">
+                <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Type Room
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--MODAL VIEW HOTEL-->
+<div class="modal fade" id="viewTypeRoom" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="addContainer">
+        <div class="contact-details">
+          <div class="modalHeader">
+            <div class="editRowModal">
+              <div *ngIf="typeRoomView" class="modalHeader clearfix">
+                <div class="modal-about contact-header">
+                  <div class="contact-details-img">
+                    <img src="../../../../assets/images/user/usrbig2.jpg" alt="avatar" />
+                  </div>
+                  <div class="contact-details-heading">
+                    <div class="contact-details-name mb-2">
+                      {{ typeRoomView.name }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button mat-icon-button data-bs-dismiss="modal" aria-label="Close dialog">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+          <hr />
+          <div *ngIf="typeRoomView" class="descripcion">
+            <div class="count-container">
+              <div class="box">
+                <h3>Name:</h3>
+              </div>
+
+              <div class="box">
+                <p>{{ typeRoomView.name }}</p>
+              </div>
+
+              <div class="box">
+                <h3>Description:</h3>
+              </div>
+
+              <div class="box">
+                <p>{{ typeRoomView.description }}</p>
+              </div>
+
+              <div class="box">
+                <h3>Number Persons:</h3>
+              </div>
+
+              <div class="box">
+                <p>{{ typeRoomView.numberPersons }} persons</p>
+              </div>
+
+              <div class="box">
+                <h3>Hotel</h3>
+              </div>
+
+              <div class="box">
+                <p>{{ typeRoomView.hotel.name }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--UPDATE SERVICE-->
+<div class="modal fade" id="updateTypeRoom" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-basic-title">
+          <i class="fas fa-pencil" aria-hidden="true"></i>
+          &nbsp;Update Type Room
+        </h3>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="updateTypeRoom()" *ngIf="typeRoomUpdate">
+          <div class="text-inside">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Name</mat-label>
+              <input autocomplete="off" [(ngModel)]="typeRoomUpdate.name" name="name" matInput />
+            </mat-form-field>
+          </div>
+          <div class="text-inside">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Description</mat-label>
+              <input autocomplete="off" [(ngModel)]="typeRoomUpdate.description" name="description" matInput />
+            </mat-form-field>
+          </div>
+          <div class="text-inside">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Number Persons</mat-label>
+              <input autocomplete="off" [(ngModel)]="typeRoomUpdate.numberPersons" name="numberPersons" matInput />
+            </mat-form-field>
+          </div>
+          <hr />
+          <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+              <i class="fa fa-times-circle" aria-hidden="true"></i> Discard Update
+            </button>
+            <button type="submit" class="btn btn-success" data-bs-dismiss="modal">
+              <i class="fa fa-floppy-o" aria-hidden="true"></i> Update Type Room
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--View Table TypeRoos-->
+<div *ngIf="showTableTypeRoom" class="row clearfix mt-5">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="card">
+      <div class="materialTableHeader mb-3">
+        <div class="row">
+          <div class="col-8">
+            <ul class="header-buttons-left ml-0">
+              <li class="dropdown">
+                <div class="header">
+                  <h2>Table Type Rooms</h2>
+                </div>
+              </li>
+              <li class="dropdown m-l-20">
+                <label for="search-input">
+                  <i class="material-icons search-icon">search</i>
+                </label>
+                <input [(ngModel)]="searchTypeRoom" placeholder="Search.." type="text" #filter
+                  class="browser-default search-field" aria-label="Search box" />
+              </li>
+              <li *ngIf="buttonActions">
+                <div class="icon-button-demo m-l-10">
+                  <button (click)="deleteTypeRoom(typeRoomDeleted._id)" mat-mini-fab color="warn">
+                    <mat-icon class="col-white">delete
+                    </mat-icon>
+                  </button>
+                </div>
+              </li>
+              <li *ngIf="buttonActions">
+                <div class="icon-button-demo m-l-10">
+                  <button data-bs-toggle="modal" data-bs-target="#updateTypeRoom" mat-mini-fab class="colorUpdate">
+                    <mat-icon class="col-white">edit
+                    </mat-icon>
+                  </button>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="tableBody">
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th class="text-center">#</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Number Persons</th>
+                <th>Hotel</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let typeRoom of typesRooms | searchTypeRoomPipe:searchTypeRoom">
+                <td (click)="getTypeRoom(typeRoom._id)">
+                  <mat-checkbox *ngIf="typeRoom.checked==true || controloClick==0" #check="matCheckbox"
+                    (click)="showButtonActions(typeRoom._id, check); getTypeRoom(typeRoom._id)" class="example-margin"
+                    color="primary">
+                  </mat-checkbox>
+                  <mat-checkbox disabled="" *ngIf="typeRoom.checked==false" class="example-margin" color="primary">
+                  </mat-checkbox>
+                  {{ typesRooms.indexOf(typeRoom) + 1 }}
+                </td>
+                <td (click)="getTypeRoom(typeRoom._id)" data-bs-toggle="modal" data-bs-target="#viewTypeRoom">{{ typeRoom.name }}</td>
+                <td (click)="getTypeRoom(typeRoom._id)" data-bs-toggle="modal" data-bs-target="#viewTypeRoom">{{typeRoom.description }}</td>
+                <td (click)="getTypeRoom(typeRoom._id)" data-bs-toggle="modal" data-bs-target="#viewTypeRoom">{{typeRoom.numberPersons}} persons</td>
+                <td (click)="getTypeRoom(typeRoom._id)" data-bs-toggle="modal" data-bs-target="#viewTypeRoom">{{typeRoom.hotel.name}}</td>
+              </tr>
+              <tr rowspan="9" *ngIf="notFound === true">
+                <td colspan="9" class="text-center">Not Types Rooms Found</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<h1 *ngIf="notFound === true && showTableTypeRoom === false" class="text-center">
+  Not Events Found
+</h1>
+
+</section>

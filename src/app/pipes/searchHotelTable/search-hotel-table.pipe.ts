@@ -2,7 +2,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { HotelAdminComponent } from 'src/app/components/admin/hotel-admin/hotel-admin.component';
 import { HotelRestService } from 'src/app/services/hotelRest/hotel-rest.service';
 
-
 @Pipe({
   name: 'searchHotelTable'
 })
