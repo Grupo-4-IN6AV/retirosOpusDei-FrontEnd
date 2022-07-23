@@ -29,7 +29,7 @@ const routes: Routes =
       {path: 'hotels', component: HotelComponent},
       {path: 'login', component: LoginComponent},
       {path: 'register', component: RegisterComponent},
-      {path: 'viewRoom', component: HotelViewComponent},
+      {path: 'viewRoom/:id', component: HotelViewComponent},
     ]
   },
   {

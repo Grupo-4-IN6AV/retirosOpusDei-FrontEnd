@@ -99,7 +99,10 @@ export class TypeRoomAdminComponent implements OnInit {
           confirmButtonColor: '#28B463'
         });
         this.getTypeRooms();
-        this.showButtonActions(this.typeRoomUpdate._id,false)
+        if(this.showTableTypeRoom==true)
+        {
+          this.showButtonActions(this.typeRoomUpdate._id,false)
+        }
       },
       error: (err)=>
       {

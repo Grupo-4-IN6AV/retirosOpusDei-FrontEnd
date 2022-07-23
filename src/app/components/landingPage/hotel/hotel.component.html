@@ -101,7 +101,7 @@
                   <p>{{ hotel.description }}</p>
                   <div>
                     <span class="price"><small>AVG/NIGHT</small>$620</span>
-                    <a routerLink="/viewRoom" class="button btn-small full-width text-center" title="">
+                    <a routerLink="/viewRoom/{{hotel._id}}" class="button btn-small full-width text-center" title="">
                       VIEW
                     </a>
                   </div>
@@ -134,7 +134,7 @@
                       <span class="review">270 reviews</span>
                     </div>
                     <p class="description">{{ hotel.description }}</p>
-                    <a routerLink="/viewRoom" class="button btn-small">VIEW</a>
+                    <a [routerLink]="['/viewRoom/' + hotel._id]" class="button btn-small">VIEW</a>
                   </div>
                 </article>
               </div>
@@ -150,10 +150,10 @@
                         height="160" /></a>
                   </figure>
                   <div class="details">
-                    <a title="View all" class="pull-right button uppercase">Select</a>
+                    <a [routerLink]="['/viewRoom/' + hotel._id]" title="View all" class="pull-right button uppercase">VIEW</a>
                     <h4 class="box-title">{{ hotel.name }}</h4>
                     <label class="price-wrapper">
-                      <span class="price-per-unit">$322</span>avg/night
+                      <span class="price-per-unit" style="color:#1975D6">$322</span>avg/night
                     </label>
                   </div>
                 </article>

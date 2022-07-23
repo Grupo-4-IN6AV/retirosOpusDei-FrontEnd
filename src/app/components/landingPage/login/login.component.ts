@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit
         const verificarAdmin = res.already.role;
         //VERIFICA A DONDE LLEVARME//
         if(verificarAdmin == 'ADMIN')
-         {this.router.navigate(['/admin/home']);}
+         {this.router.navigateByUrl('/admin/home')}
       },
       error: (err: any) => {
         Swal.fire({

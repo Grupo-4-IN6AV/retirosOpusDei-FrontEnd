@@ -83,7 +83,7 @@
             <div class="text-inside">
               <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>Date</mat-label>
-                <input [(ngModel)]="addDate" name="date" matInput [matDatepicker]="picker">
+                <input [(ngModel)]="addDate" [min]="actualDate" name="date" matInput [matDatepicker]="picker">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>

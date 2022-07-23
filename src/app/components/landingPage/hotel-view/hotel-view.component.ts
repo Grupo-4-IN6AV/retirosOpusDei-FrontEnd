@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ScriptRoomsService} from '../../../services/cargarScripts/script-rooms.service'
-import Swiper from 'swiper';
+import { ActivatedRoute } from '@angular/router';
 import { RoomRestService } from 'src/app/services/roomRest/room-rest.service';
 
 @Component({
@@ -10,21 +9,33 @@ import { RoomRestService } from 'src/app/services/roomRest/room-rest.service';
 })
 export class HotelViewComponent implements OnInit {
 
+  idHotel:any;
+  roomsHotel:any;
   constructor
   (
-    public roomRest: RoomRestService
+    public activatedRoute: ActivatedRoute,
+    private roomRest: RoomRestService,
   )
   {
   }
-  ngOnInit(): void
-  {
-    this.getRoomsHotel();
+
+  ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe( ruta => {
+      this.idHotel = ruta.get('id');
+    });
+    this.getRooms();
   }
 
-  rooms : any;
+  getRooms()
+  {
+    this.roomRest.getRoomsHotel(this.idHotel).subscribe({
+      next: (res:any)=> this.roomsHotel = res.rooms,
+      error: (err)=> console.log(err)
+    })
+  }
 
   viewBlock : boolean = true;
-  viewList : boolean = false
+  viewList : boolean = false;
 
   viewBlockRoom()
   {
@@ -38,14 +49,4 @@ export class HotelViewComponent implements OnInit {
     this.viewBlock = false;
   }
 
-  getRoomsHotel()
-  {
-    this.roomRest.getRooms().subscribe({
-      next: (res: any) =>
-      {
-        this.rooms = res.rooms
-      },
-      error: (err) => console.log(err)
-    })
-  }
 }

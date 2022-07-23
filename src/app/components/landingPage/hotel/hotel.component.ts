@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { HotelRestService } from 'src/app/services/hotelRest/hotel-rest.service';
 import { ScriptsHotelsService } from 'src/app/services/cargarScripts/scripts-hotels.service';
+import { RoomRestService } from 'src/app/services/roomRest/room-rest.service';
+import { HotelViewComponent } from '../hotel-view/hotel-view.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hotel',
@@ -21,10 +24,15 @@ export class HotelComponent implements OnInit {
   viewList: boolean = true;
   viewBlock: boolean = false;
 
+  //HABITACIONES DEL HOTEL//
+  rooms:any;
+
   constructor
   (
+    private roomRest : RoomRestService,
     private hotelRest: HotelRestService,
-    private _ScriptsHotes: ScriptsHotelsService
+    private _ScriptsHotes: ScriptsHotelsService,
+    private router: Router,
   )
   {
     _ScriptsHotes.Carga(["landingHotel"]);
@@ -72,7 +80,6 @@ export class HotelComponent implements OnInit {
     })
   }
 
-
   //VISTA DE HOTELES//
 
   hotelsViewList()
@@ -95,5 +102,11 @@ export class HotelComponent implements OnInit {
     this.viewGrid = false;
     this.viewList = false;
   }
+
+  getRoomsHotel(id:string)
+  {
+
+  }
+
 
 }

@@ -23,6 +23,16 @@ export class RoomAdminComponent implements OnInit
   //Precio en Quetzales//
   newPrices:any
 
+  roomView:any;
+  roomUpdate:any;
+  roomDeleted:any;
+  newDateRoom:any;
+  searchRoom:any;
+  buttonActions: boolean = false;
+  controloClick : number = 0
+  notFound: boolean = false;
+  newDates:any;
+
   constructor
   (
     private hotelRest: HotelRestService,
@@ -57,6 +67,7 @@ export class RoomAdminComponent implements OnInit
       {
         this.rooms = res.rooms;
         var arrayPrices = [];
+        var arrayDates = [];
         for(var key=0; key<this.rooms.length; key++)
         {
             var actualPrice = this.rooms[key].price;
@@ -71,8 +82,11 @@ export class RoomAdminComponent implements OnInit
               var newPrice = stringPrices+'.00'
               arrayPrices.push(newPrice);
             }
+            let split = this.rooms[key].dateAvailable.split('T');
+            arrayDates.push(split[0])
         }
         this.newPrices = arrayPrices;
+        this.newDates = arrayDates;
       },
       error: (err) => console.log(err)
     })
@@ -93,7 +107,6 @@ export class RoomAdminComponent implements OnInit
     this.typeRoomRest.getTypesRoomsHotel(id).subscribe({
       next: (res: any) => {
         this.typesRoomsHotel = res.typeRooms;
-        console.log(this.typesRoomsHotel)
       },
       error: (err) => {alert(err.error.message)}
     })
@@ -131,6 +144,127 @@ export class RoomAdminComponent implements OnInit
       },
     })
     addRoomForm.reset();
+  }
+
+  getRoom(id : string)
+  {
+    this.roomRest.getRoom(id).subscribe({
+      next: (res: any) => {
+        this.roomView = res.room;
+        this.roomUpdate = res.room;
+        this.roomDeleted = res.room;
+        let split = this.roomView.dateAvailable.split('T');
+        this.newDateRoom = split[0]
+      },
+      error: (err) => {alert(err.error.message)}
+    })
+  }
+
+  showTable()
+  {this.showTableRooms =! this.showTableRooms;
+    for(let room of this.rooms)
+    {
+      room.checked = true
+    }
+  }
+
+  showButtonActions(roomID:any, check:any)
+  {
+    this.controloClick += 1
+    let controlCheck =! check.checked
+    if(this.controloClick == 1)
+    {
+      for(let room of this.rooms)
+      {
+        if(roomID != room._id)
+        {
+          room.checked =! controlCheck
+        }
+        else if(roomID == room._id)
+        {
+          room.checked = controlCheck
+        }
+      }
+    }
+    else if(this.controloClick == 2)
+    {
+      for(let room of this.rooms)
+      {
+        room.checked = true;
+      }
+      this.controloClick = 0;
+    }
+    this.buttonActions =! this.buttonActions;
+  }
+
+
+  deleteRoom(id: string)
+  {
+    Swal.fire({
+      title: 'Do you want to delete this Room?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      denyButtonText: `Don't delete`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.roomRest.deleteRoom(id).subscribe({
+          next: (res: any) => {
+            Swal.fire({
+              title: res.message,
+              icon: 'success',
+              position: 'center',
+              showConfirmButton: false,
+              timer: 2000
+            });
+            this.getRooms();
+            if(this.showTableRooms==true)
+            {
+              this.showButtonActions(this.roomUpdate._id,false)
+            }
+          },
+          error: (err) => Swal.fire({
+            title: err.error.message,
+            icon: 'error',
+            position: 'center',
+            timer: 3000
+          })
+        })
+        this.getRooms();
+      } else if (result.isDenied)
+      {
+        Swal.fire('Room Not Deleted','', 'info')
+      }
+    })
+  }
+
+
+  updateRoom()
+  {
+    this.roomRest.updateRoom(this.roomUpdate._id, this.roomUpdate).subscribe({
+      next: (res:any)=>
+      {
+        Swal.fire({
+          icon:'success',
+          title: res.message,
+          confirmButtonColor: '#28B463'
+        });
+        this.getRooms();
+        if(this.showTableRooms==true)
+        {
+          this.showButtonActions(this.roomUpdate._id,false)
+        }
+      },
+      error: (err)=>
+      {
+        Swal.fire({
+          icon: 'error',
+          title: err.error.message || err.error,
+          confirmButtonColor: '#E74C3C'
+        });
+      },
+    })
   }
 
 }

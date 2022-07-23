@@ -4615,3 +4615,111 @@ h2 a {
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
+
+.principal-price
+{
+  display: flex;
+}
+
+.principal-price .room-wide-price
+{
+  margin-left: 7.5rem;
+}
+
+.principal-price .room-wide-price .txt3
+{
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.7rem;
+  color: #1976ED;
+  text-transform: uppercase;
+}
+
+.principal-price .room-wide-price .txt4
+{
+  text-transform: uppercase;
+  font-size: 9px;
+  color: #999999;
+  letter-spacing: 2px;
+}
+
+
+@media screen and (min-width:240px) and (max-width: 420px) {
+  .principal-price
+{
+  flex-wrap: wrap;
+  padding-bottom: 10px;
+}
+
+.principal-price .room-wide-price
+{
+  margin-left: .5rem;
+}
+.principal-price .room-wide-price .txt4
+{
+  margin-bottom: 10px;
+}
+}
+
+@media screen and (min-width:420px) and (max-width:430px) {
+  .principal-price
+{
+  flex-wrap: nowrap;
+  padding-bottom: 0;
+}
+
+.principal-price .room-wide-price
+{
+  margin-left: 5rem;
+}
+}
+
+@media screen and (min-width:430px) and (max-width:500px) {
+  .principal-price
+{
+  padding-bottom: 0;
+}
+
+.principal-price .room-wide-price
+{
+  margin-left: 10rem;
+}
+}
+
+@media screen and (min-width:501px) and (max-width:768px) {
+  .principal-price
+{
+  padding-bottom: 0;
+}
+
+.principal-price .room-wide-price
+{
+  margin-left: 17rem;
+}
+}
+
+@media screen and (min-width:768px) and (max-width:991px) {
+  .principal-price
+{
+  padding-bottom: 0;
+}
+
+.principal-price .room-wide-price
+{
+  margin-left: 25rem;
+}
+}
+@media screen and (min-width:1200px){
+  .details-room{
+    min-width: 5rem;
+    max-width: 5rem;
+  }
+  .principal-price
+{
+  padding-bottom: 0;
+}
+
+.principal-price .room-wide-price
+{
+  margin-left: 7rem;
+}
+}

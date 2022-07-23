@@ -54,7 +54,7 @@ import {
   PerfectScrollbarConfigInterface,
 } from 'ngx-perfect-scrollbar';
 import { ClickOutsideModule } from 'ng-click-outside';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AdminUserComponent } from './components/admin/admin-user/admin-user.component';
 import { HotelAdminComponent } from './components/admin/hotel-admin/hotel-admin.component';
 import { SearchUserPipePipe } from './pipes/searchUserPiper/search-user-pipe.pipe';
@@ -80,6 +80,7 @@ import { SearchServicePipe } from './pipes/searchService/search-service.pipe';
 import { RoomAdminComponent } from './components/admin/room-admin/room-admin.component';
 import { TypeRoomAdminComponent } from './components/admin/type-room-admin/type-room-admin.component';
 import { SearchTypeRoomPipe } from './pipes/searchTypeRoom/search-type-room.pipe';
+import { SearchRoomPipe } from './pipes/searchRoom/search-room.pipe';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -118,6 +119,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         RoomAdminComponent,
         TypeRoomAdminComponent,
         SearchTypeRoomPipe,
+        SearchRoomPipe,
     ],
     imports: [
         FormsModule,
