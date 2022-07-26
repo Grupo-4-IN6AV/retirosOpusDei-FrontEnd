@@ -1,46 +1,113 @@
-.btn1
+body
 {
-  min-height: 3.125rem;
-  font-weight: 600;
-  background-color: #043E85;
-  color: #FFFFFF;
+   font-size: 8500px
+ }
+
+ .text-light { color: #043E85 !important; }
+ .bg-dark { background-color: #EBF2FE !important; }
+ .bg-dark-x { background-color: #FFFFFF;}
+
+ .body {
+   font-family: 'Spartan', sans-serif;
+   font-weight: 300;
+   color: #043E85;
+ }
+
+ .btn1 {
+   min-height: 3.125rem;
+   font-weight: 600;
+   background-color: #369E62;
+   color: #043E85;
+ }
+
+ .btn1:hover
+ {
+   background-color: #3FB471;
+   color: #FFFFFF;
+ }
+
+ .btn {
+   min-height: 3.125rem;
+   font-weight: 600;
+ }
+
+ .form-control {
+   min-height: 3.125rem;
+   line-height: initial;
+ }
+ .form-control:focus {
+   background-color: #ffffff;
+   outline: none;
+ }
+
+ .img-1 {
+   background-image: url('../../../../assets/images/login/img1.jpg');
+   background-size: cover;
+   background-position: center;
+ }
+
+ .img-2 {
+   background-image: url('../../../../assets/images/login/img2.jpg');
+   background-size: cover;
+   background-position: center;
+ }
+
+ .img-3 {
+   background-image: url('../../../../assets/images/login/img3.jpg');
+   background-size: cover;
+   background-position: center;
+ }
+
+ .etiqueta
+ {
+   color: #043E85;
+ }
+
+ .etiqueta:hover
+ {
+   color: #369E62;
+ }
+
+ .letras
+ {
+   color: #043E85;
+ }
+
+.logo
+{
+ width: 18rem;
+ height: 18rem;
 }
 
-.btn1:hover
+.div
 {
-  background-color: #0762d1;
-  color: #FFFFFF;
-  cursor: pointer;
+text-align: center;
 }
 
-.btn1:disabled
+.color
 {
-  background-color: #3975c0;
+ color: #FFFFFF;
 }
 
-.color , .label
+.btn-primary
 {
-  color: #043E85;
-  text-decoration: none;
-  cursor: pointer;
+ background-color: #043E85;
+ border-color: #043E85;
 }
 
-.label:hover
+.btn-primary:hover
 {
-  font-weight: 500;
+ background-color: #043e85e4;
+ border-color: #043e85e4;
 }
 
-input[type=checkbox] {
-  cursor: pointer;
+.btn-primary:focus
+{
+ background-color: #043E85;
+ border-color: #043E85;
 }
 
-input[type=checkbox]:checked
+span
 {
-  background-color: #16191C;
-  border-color: #16191C;
-}
-
-.requiredField
-{
-  color: darkgoldenrod
+  color: red;
 }

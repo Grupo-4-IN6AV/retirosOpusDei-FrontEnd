@@ -21,12 +21,12 @@ export class HotelRestService {
   //FUNCIONES DE ADMINISTRADOR//
   getHotels()
   {
-    return this.http.get(environment.baseURI + 'hotel/getHotels', { headers: this.httpOptions });
+    return this.http.get(environment.baseURI + 'hotel/getHotels', { headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())});
   }
 
   saveHotel(params : {})
   {
-    return this.http.post(environment.baseURI + 'hotel/saveHotel', params, { headers: this.httpOptions });
+    return this.http.post(environment.baseURI + 'hotel/saveHotel', params, { headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())});
   }
 
   getHotel(id : string)
@@ -51,11 +51,18 @@ export class HotelRestService {
 
   updateHotel(id : string, params : {})
   {
-    return this.http.put(environment.baseURI + 'hotel/updateHotel/' + id,  params, { headers: this.httpOptions });
+    return this.http.put(environment.baseURI + 'hotel/updateHotel/' + id,  params, { headers: this.httpOptions.set('Authorization', this.credentialReset.getToken()) });
   }
 
   deleteHotel(id : string)
   {
-    return this.http.delete(environment.baseURI + 'hotel/deleteHotel/' + id,  { headers: this.httpOptions });
+    return this.http.delete(environment.baseURI + 'hotel/deleteHotel/' + id,  { headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())});
+  }
+
+
+  //FUNCIONES DE ADMINISTRADOR DEL HOTEL//
+  getHotelManager()
+  {
+    return this.http.get(environment.baseURI + 'hotel/getHotelManager', { headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())});
   }
 }

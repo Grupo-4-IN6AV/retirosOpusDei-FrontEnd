@@ -25,6 +25,7 @@ export class RoomRestService
     return this.http.get(environment.baseURI + 'room/getRooms' ,{ headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())});
   }
 
+  //CUALQUIER USUARIO//
   getRoomsHotel(id:string)
   {
     return this.http.get(environment.baseURI + 'room/getRoomByHotel/' + id ,{ headers: this.httpOptions});
@@ -53,5 +54,26 @@ export class RoomRestService
   updateRoom(id:string, params:{})
   {
     return this.http.put(environment.baseURI + 'room/updateRoom/' + id , params, { headers: this.httpOptions});
+  }
+
+  //FUNCIONES DEL ADMINISTRADOR DEL HOTEL//
+  saveRoomHotel(params:{})
+  {
+    return this.http.post(environment.baseURI + 'room/saveRoomHotel', params, { headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())});
+  }
+
+  getRoomsHotelAdmin()
+  {
+    return this.http.get(environment.baseURI + 'room/getRoomsHotelAdmin' ,{ headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())});
+  }
+
+  updateRoomHotel(id:string, params:{})
+  {
+    return this.http.put(environment.baseURI + 'room/updateRoomHotel/' + id , params, { headers: this.httpOptions});
+  }
+
+  deleteRoomHotel(id:string)
+  {
+    return this.http.delete(environment.baseURI + 'room/deleteRoomHotel/' + id ,{ headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())});
   }
 }

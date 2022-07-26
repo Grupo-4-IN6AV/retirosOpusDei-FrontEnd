@@ -153,5 +153,4 @@ export class SidebarAdminComponent implements OnInit
     })
   }
 
-
 }

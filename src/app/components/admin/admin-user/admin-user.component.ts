@@ -1,16 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { Component, EnvironmentInjector, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserRestService } from 'src/app/services/userRest/user-rest.service';
 import Swal from 'sweetalert2';
 import { UserModel } from 'src/app/models/user.model';
-import { User } from 'src/app/core/models/user';
-interface Food {
-  value: string;
-  viewValue: string;
-}
-
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-admin-user',
   templateUrl: './admin-user.component.html',
@@ -53,10 +47,19 @@ export class AdminUserComponent implements OnInit {
   userCheck : any;
   controloClick : number = 0
 
+  //IMAGENES//
+  userImage: any;
+  uri:any;
+  uriUser: any;
+
   //METÓDOS DEL CRUD DE USERS//
   getUsers() {
     this.userRest.getUsers().subscribe({
-      next: (res: any) => this.users = res.users,
+      next: (res: any) =>
+      {
+        this.users = res.users;
+        this.uriUser = environment.baseURI+'user/getImage/'
+      },
       error: (err) => console.log(err)
     })
   }
@@ -92,6 +95,8 @@ export class AdminUserComponent implements OnInit {
         this.userView = res.user;
         this.userUpdate = res.user;
         this.userDelete = res.user
+        this.userImage = this.userView.image;
+        this.uri = environment.baseURI + 'user/getImage/' + this.userImage;
       },
       error: (err) => { alert(err.error.message) }
     })
@@ -101,6 +106,7 @@ export class AdminUserComponent implements OnInit {
     this.userUpdate.password = undefined;
     this.userRest.updateUser(this.userUpdate._id, this.userUpdate).subscribe({
       next: (res: any) => {
+
         Swal.fire({
           icon: 'success',
           title: res.message,

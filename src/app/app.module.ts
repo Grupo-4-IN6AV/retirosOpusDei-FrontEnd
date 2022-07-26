@@ -30,7 +30,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import {  } from "@angular/material/snack-bar";
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from "@angular/material/tooltip";
+
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
   timeGridPlugin,
@@ -81,6 +84,16 @@ import { RoomAdminComponent } from './components/admin/room-admin/room-admin.com
 import { TypeRoomAdminComponent } from './components/admin/type-room-admin/type-room-admin.component';
 import { SearchTypeRoomPipe } from './pipes/searchTypeRoom/search-type-room.pipe';
 import { SearchRoomPipe } from './pipes/searchRoom/search-room.pipe';
+import {HeaderAdminHotelComponent} from './layout/header-admin-hotel/header-admin-hotel.component'
+import { SidebarAdminHotelComponent } from './components/hotelAdmin/sidebar-admin-hotel/sidebar-admin-hotel.component';
+import { LayoutAdminHotelComponent } from './components/hotelAdmin/layout-admin-hotel/layout-admin-hotel.component';
+import { HomeAdminHotelComponent } from './components/hotelAdmin/home-admin-hotel/home-admin-hotel.component';
+import { SidebarrightAdminHotelComponent } from './components/hotelAdmin/sidebarright-admin-hotel/sidebarright-admin-hotel.component';
+import { ProfileAdminHotelComponent } from './components/hotelAdmin/profile-admin-hotel/profile-admin-hotel.component';
+import { ServicesAdminHotelComponent } from './components/hotelAdmin/services-admin-hotel/services-admin-hotel.component';
+import { EventsAdminHotelComponent } from './components/hotelAdmin/events-admin-hotel/events-admin-hotel.component';
+import { TypesRoomsAdminHotelComponent } from './components/hotelAdmin/types-rooms-admin-hotel/types-rooms-admin-hotel.component';
+import { RoomsAdminHotelComponent } from './components/hotelAdmin/rooms-admin-hotel/rooms-admin-hotel.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -120,6 +133,16 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         TypeRoomAdminComponent,
         SearchTypeRoomPipe,
         SearchRoomPipe,
+        LayoutAdminHotelComponent,
+        SidebarAdminHotelComponent,
+        HomeAdminHotelComponent,
+        SidebarrightAdminHotelComponent,
+        HeaderAdminHotelComponent,
+        ProfileAdminHotelComponent,
+        ServicesAdminHotelComponent,
+        EventsAdminHotelComponent,
+        TypesRoomsAdminHotelComponent,
+        RoomsAdminHotelComponent
     ],
     imports: [
         FormsModule,
@@ -164,6 +187,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         NgxEchartsModule.forRoot({
           echarts: () => import('echarts'),
         }),
+        MatTabsModule,
+        MatExpansionModule,
+        MatTooltipModule,
       ],
     providers:[
     ],
