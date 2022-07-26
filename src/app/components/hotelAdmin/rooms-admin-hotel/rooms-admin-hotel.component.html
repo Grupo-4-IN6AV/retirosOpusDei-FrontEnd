@@ -5,6 +5,13 @@
   </h1>
   <hr />
 
+  <div *ngIf="!showTableRooms" class="row d-flex justify-content-center align-items-center">
+    <div class="form">
+        <i class="fa fa-search ms-2"></i>
+        <input [(ngModel)]="searchRoom" type="text" class="form-control form-input" placeholder="Search Room...">
+    </div>
+  </div>
+
   <div class="text-center d-flex mt-2 mb-2" style="justify-content:center">
     <button type="button" class="ms-3 btn btn-event btn-success" data-bs-toggle="modal" data-bs-target="#addRoom">
       Add Room
@@ -30,7 +37,7 @@
   <div *ngIf="!showTableRooms">
     <div class="container">
       <div class="products-container">
-        <div *ngFor="let room of rooms" class="product" data-name="p-1">
+        <div *ngFor="let room of rooms | searchRoomBarPipe:searchRoom" class="product" data-name="p-1">
           <h5 class="card-title">{{ room.name }}</h5>
           <h6 class="card-subtitle mt-1 mb-2">Q.{{newPrices[rooms.indexOf(room)]}}</h6>
           <h6 class="card-subtitle mb-2 text-muted">{{ room.typeRoom.name }}</h6>

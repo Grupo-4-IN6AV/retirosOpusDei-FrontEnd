@@ -94,6 +94,12 @@ import { ServicesAdminHotelComponent } from './components/hotelAdmin/services-ad
 import { EventsAdminHotelComponent } from './components/hotelAdmin/events-admin-hotel/events-admin-hotel.component';
 import { TypesRoomsAdminHotelComponent } from './components/hotelAdmin/types-rooms-admin-hotel/types-rooms-admin-hotel.component';
 import { RoomsAdminHotelComponent } from './components/hotelAdmin/rooms-admin-hotel/rooms-admin-hotel.component';
+import { SearchUserBarPipe } from './pipes/searchUserBar/search-user-bar.pipe';
+import { SearchEventBarPipe } from './pipes/searchEventBar/search-event-bar.pipe';
+import { SearchHotelBarPipe } from './pipes/searchHotelBar/search-hotel-bar.pipe';
+import { SearchRoomBarPipe } from './pipes/searchRoomBar/search-room-bar.pipe';
+import { SearchServiceBarPipe } from './pipes/searchServiceBar/search-service-bar.pipe';
+import { SearchTypeRoomBarPipe } from './pipes/searchTypeRoomBar/search-type-room-bar.pipe';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -142,7 +148,13 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         ServicesAdminHotelComponent,
         EventsAdminHotelComponent,
         TypesRoomsAdminHotelComponent,
-        RoomsAdminHotelComponent
+        RoomsAdminHotelComponent,
+        SearchUserBarPipe,
+        SearchEventBarPipe,
+        SearchHotelBarPipe,
+        SearchRoomBarPipe,
+        SearchServiceBarPipe,
+        SearchTypeRoomBarPipe
     ],
     imports: [
         FormsModule,
