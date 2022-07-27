@@ -72,11 +72,11 @@
                     </div>
                     </div>
                     <div class="txt4">
-                      <a [routerLink]="['/viewRoomDetails/' + room._id]" >See Room Details<i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                      <a style="cursor: pointer;" [routerLink]="['/viewRoomDetails/' + room._id]" >See Room Details<i class="fa fa-caret-right" aria-hidden="true"></i></a>
                     </div>
                   </div>
                   <div class="select-txt">
-                    <a href="details.html"><span>SELECT THIS ROOM<i class="fa fa-angle-right"
+                    <a style="cursor: pointer;" (click)="pedirLogin()"><span>SELECT THIS ROOM<i class="fa fa-angle-right"
                           aria-hidden="true"></i></span></a>
                   </div>
                 </div>

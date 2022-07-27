@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RoomRestService } from 'src/app/services/roomRest/room-rest.service';
 import { environment } from 'src/environments/environment';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hotel-view',
@@ -19,6 +21,7 @@ export class HotelViewComponent implements OnInit {
   (
     public activatedRoute: ActivatedRoute,
     private roomRest: RoomRestService,
+    private router: Router,
   )
   {
   }
@@ -55,6 +58,21 @@ export class HotelViewComponent implements OnInit {
   {
     this.viewList = true
     this.viewBlock = false;
+  }
+
+  pedirLogin()
+  {
+    Swal.fire({
+      icon: 'info',
+      title: 'Attention',
+      text: 'You need to login to Reserve this Room.',
+      footer: '<a>You do not have Account? <a href="register"><b>&nbsp;Register</b></a></a>'
+    })
+  }
+
+  redirectRegister()
+  {
+    this.router.navigateByUrl[('')];
   }
 
 }
