@@ -26,6 +26,7 @@ import { ServicesAdminHotelComponent } from './components/hotelAdmin/services-ad
 import { EventsAdminHotelComponent } from './components/hotelAdmin/events-admin-hotel/events-admin-hotel.component';
 import { TypesRoomsAdminHotelComponent } from './components/hotelAdmin/types-rooms-admin-hotel/types-rooms-admin-hotel.component';
 import { RoomsAdminHotelComponent } from './components/hotelAdmin/rooms-admin-hotel/rooms-admin-hotel.component';
+import { ViewRoomDetailsComponent } from './components/landingPage/view-room-details/view-room-details.component';
 
 
 const routes: Routes =
@@ -40,6 +41,7 @@ const routes: Routes =
       {path: 'login', component: LoginComponent},
       {path: 'register', component: RegisterComponent},
       {path: 'viewRoom/:id', component: HotelViewComponent},
+      {path: 'viewRoomDetails/:id', component: ViewRoomDetailsComponent},
     ]
   },
   {

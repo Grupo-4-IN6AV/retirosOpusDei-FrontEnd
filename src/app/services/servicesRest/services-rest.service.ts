@@ -81,4 +81,9 @@ export class ServicesRestService
   {
     return this.http.put(environment.baseURI + 'service/saveIconService/' + id,  params,{ headers: this.httpOptions.set('Authorization', this.credentialReset.getToken()) });
   }
+
+  getServicesHotelID(id:string)
+  {
+    return this.http.get(environment.baseURI + 'service/getServiceHotelID/'+ id, {headers:this.httpOptions.set('Authorization', this.credentialReset.getToken())})
+  }
 }

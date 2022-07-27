@@ -3,6 +3,7 @@ import { HotelRestService } from 'src/app/services/hotelRest/hotel-rest.service'
 import { RoomModel } from 'src/app/models/room.model'
 import { TypeRoomRestService } from 'src/app/services/typeRoomRest/type-room-rest.service';
 import { RoomRestService } from 'src/app/services/roomRest/room-rest.service';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -32,6 +33,11 @@ export class RoomsAdminHotelComponent implements OnInit {
   notFound: boolean = false;
   newDates:any;
 
+  //Imagenes//
+  filesToUpload: any;
+  uriRoom: any;
+  uri: any;
+
   constructor
   (
     private hotelRest: HotelRestService,
@@ -55,6 +61,7 @@ export class RoomsAdminHotelComponent implements OnInit {
       next: (res: any) =>
       {
         this.rooms = res.rooms;
+        this.uriRoom = environment.baseURI+'room/getImageRoom/'
         var arrayPrices = [];
         var arrayDates = [];
         for(var key=0; key<this.rooms.length; key++)
@@ -132,6 +139,7 @@ export class RoomsAdminHotelComponent implements OnInit {
         this.roomView = res.room;
         this.roomUpdate = res.room;
         this.roomDeleted = res.room;
+        this.uri = environment.baseURI + 'room/getImageRoom/' + res.room.image;
         let split = this.roomView.dateAvailable.split('T');
         this.newDateRoom = split[0]
       },
@@ -267,5 +275,40 @@ export class RoomsAdminHotelComponent implements OnInit {
       },
     })
   }
+
+  //UPLOAD IMAGE//
+  filesChange(inputFile: any)
+  {
+    this.filesToUpload = <Array<File>>inputFile.target.files;
+  }
+
+  uploadImage()
+  {
+    this.roomRest.requestFiles(this.roomView._id, this.filesToUpload, 'image')
+      .then((res: any) => {
+        if (!res.error)
+        {
+          this.getRooms();
+          Swal.fire
+            ({
+              icon: 'success',
+              title: 'Image added Successfully.',
+              confirmButtonColor: '#28B463'
+            });
+        }
+        else
+        {
+          console.log(res)
+        }
+      })
+      .catch(error =>
+        {
+          Swal.fire({
+            icon: 'error',
+            title: error,
+            confirmButtonColor: '#E74C3C'
+          });
+        })
+    }
 
 }

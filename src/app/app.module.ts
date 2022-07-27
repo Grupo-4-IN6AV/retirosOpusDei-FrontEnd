@@ -5,6 +5,8 @@ import { SharedModule } from './shared/shared.module';
 import { FullCalendarModule } from '@fullcalendar/angular'; // the main connector. must go first
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
 import interactionPlugin from '@fullcalendar/interaction'; // a plugin
+import { SwiperModule } from "swiper/angular";
+
 
 /*IMPORTACIONES MANUALES*/
 import { MatRadioModule } from '@angular/material/radio';
@@ -100,6 +102,11 @@ import { SearchHotelBarPipe } from './pipes/searchHotelBar/search-hotel-bar.pipe
 import { SearchRoomBarPipe } from './pipes/searchRoomBar/search-room-bar.pipe';
 import { SearchServiceBarPipe } from './pipes/searchServiceBar/search-service-bar.pipe';
 import { SearchTypeRoomBarPipe } from './pipes/searchTypeRoomBar/search-type-room-bar.pipe';
+import { ViewRoomDetailsComponent } from './components/landingPage/view-room-details/view-room-details.component';
+import { SearchEventHotelPipe } from './pipes/searchEventHotel/search-event-hotel.pipe';
+import { SearchServiceHotelPipe } from './pipes/searchServiceHotel/search-service-hotel.pipe';
+import { SearchRoomHotelPipe } from './pipes/searchRoomHotel/search-room-hotel.pipe';
+import { SearchTypeRoomHotelPipe } from './pipes/searchTypeRoomHotel/search-type-room-hotel.pipe';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -154,9 +161,15 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         SearchHotelBarPipe,
         SearchRoomBarPipe,
         SearchServiceBarPipe,
-        SearchTypeRoomBarPipe
+        SearchTypeRoomBarPipe,
+        ViewRoomDetailsComponent,
+        SearchEventHotelPipe,
+        SearchServiceHotelPipe,
+        SearchRoomHotelPipe,
+        SearchTypeRoomHotelPipe,
     ],
     imports: [
+        SwiperModule,
         FormsModule,
         CommonModule,
         BrowserModule,

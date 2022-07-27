@@ -101,7 +101,7 @@
                   <p>{{ hotel.description }}</p>
                   <div>
                     <span class="price"><small>AVG/NIGHT</small>$620</span>
-                    <a routerLink="/viewRoom/{{hotel._id}}" class="button btn-small full-width text-center" title="">
+                    <a [routerLink]="['/viewRoom/' + hotel._id]"  class="button btn-small full-width text-center" title="">
                       VIEW
                     </a>
                   </div>

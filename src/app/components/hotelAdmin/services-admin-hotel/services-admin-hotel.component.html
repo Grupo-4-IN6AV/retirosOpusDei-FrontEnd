@@ -325,7 +325,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let service of services">
+                <tr *ngFor="let service of services | searchServiceHotelPipe:searchService">
                   <td (click)="getService(service._id)">
                     <mat-checkbox *ngIf="service.checked==true || controloClick==0" #check="matCheckbox"
                       (click)="showButtonActions(service._id, check); getService(service._id)" class="example-margin"

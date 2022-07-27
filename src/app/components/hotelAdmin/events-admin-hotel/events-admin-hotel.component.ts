@@ -3,6 +3,7 @@ import { EventModel } from '../../../models/event.modal';
 import { HotelRestService } from '../../../services/hotelRest/hotel-rest.service';
 import { EventRestService } from '../../../services/eventRest/event-rest.service';
 import Swal from 'sweetalert2';
+import { environment } from 'src/environments/environment';
 import timeGridPlugin from '@fullcalendar/timegrid'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
@@ -55,6 +56,11 @@ export class EventsAdminHotelComponent implements OnInit
   actualDate:any;
   available:any;
   availableEvent:any;
+
+  //carga de imagen//
+  filesToUpload: any;
+  uriEvent: any;
+  uri: any;
 
 
   //show Calendar//
@@ -134,6 +140,7 @@ export class EventsAdminHotelComponent implements OnInit
       next: (res: any) =>
       {
         this.events = res.events
+        this.uriEvent = environment.baseURI+'event/getImageEvent/'
         var color;
         var arrayDates = [];
         var calendarArray = [];
@@ -218,6 +225,7 @@ export class EventsAdminHotelComponent implements OnInit
         this.eventView = res.event;
         this.eventUpdate = res.event;
         this. eventDeleted = res.event;
+        this.uri = environment.baseURI + 'event/getImageEvent/' + res.event.image;
         let date = res.event.date;
         let splitDate = date.split('T');
         this.newDate = splitDate[0];
@@ -351,5 +359,40 @@ export class EventsAdminHotelComponent implements OnInit
       error: (err) => console.log(err)
     })
   }
+
+  //UPLOAD IMAGE//
+  filesChange(inputFile: any)
+  {
+    this.filesToUpload = <Array<File>>inputFile.target.files;
+  }
+
+  uploadImage()
+  {
+    this.eventRest.requestFiles(this.eventView._id, this.filesToUpload, 'image')
+      .then((res: any) => {
+        if (!res.error)
+        {
+          this.getEventsHotel();
+          Swal.fire
+            ({
+              icon: 'success',
+              title: 'Image added Successfully.',
+              confirmButtonColor: '#28B463'
+            });
+        }
+        else
+        {
+          console.log(res)
+        }
+      })
+      .catch(error =>
+        {
+          Swal.fire({
+            icon: 'error',
+            title: error,
+            confirmButtonColor: '#E74C3C'
+          });
+        })
+    }
 
 }

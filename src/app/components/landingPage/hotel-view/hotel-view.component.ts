@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RoomRestService } from 'src/app/services/roomRest/room-rest.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-hotel-view',
@@ -11,6 +12,9 @@ export class HotelViewComponent implements OnInit {
 
   idHotel:any;
   roomsHotel:any;
+  rooms: any;
+  uriRoom: any;
+
   constructor
   (
     public activatedRoute: ActivatedRoute,
@@ -29,7 +33,11 @@ export class HotelViewComponent implements OnInit {
   getRooms()
   {
     this.roomRest.getRoomsHotel(this.idHotel).subscribe({
-      next: (res:any)=> this.roomsHotel = res.rooms,
+      next: (res:any)=>
+      {
+        this.roomsHotel = res.rooms;
+        this.uriRoom = environment.baseURI+'room/getImageRoom/'
+      },
       error: (err)=> console.log(err)
     })
   }

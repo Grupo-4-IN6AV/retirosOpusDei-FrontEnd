@@ -51,7 +51,8 @@
               <div class="room-inner">
                 <div class="room">
                   <figure>
-                    <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG90ZWwlMjByb29tfGVufDB8fDB8fA%3D%3D&w=1000&q=80" alt="" class="img-fluid">
+                    <img style="min-height: 15rem; object-fit: cover" *ngIf="room.image!==undefined" crossorigin="anonymous" src="{{uriRoom+room.image}}">
+                    <img style="min-height: 15rem; object-fit: cover" *ngIf="room.image===undefined" src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG90ZWwlMjByb29tfGVufDB8fDB8fA%3D%3D&w=1000&q=80" alt="" class="img-fluid">
                     <figcaption>
                       <div style="color:white" class="txt1">{{room.name}}</div>
                     </figcaption>
@@ -70,9 +71,8 @@
                       <div class="txt4">PER NIGHT</div>
                     </div>
                     </div>
-
                     <div class="txt4">
-                      <a href="details.html">See Room Details<i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                      <a [routerLink]="['/viewRoomDetails/' + room._id]" >See Room Details<i class="fa fa-caret-right" aria-hidden="true"></i></a>
                     </div>
                   </div>
                   <div class="select-txt">
@@ -91,7 +91,8 @@
           <div  *ngFor="let room of roomsHotel" class="room-wide-inner">
             <div class="room-wide clearfix">
               <figure>
-                <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG90ZWwlMjByb29tfGVufDB8fDB8fA%3D%3D&w=1000&q=80" alt="" class="img-fluid">
+                <img class="img-fluid" style="object-fit: cover" *ngIf="room.image!==undefined" crossorigin="anonymous" src="{{uriRoom+room.image}}">
+                <img *ngIf="room.image==undefined"  src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG90ZWwlMjByb29tfGVufDB8fDB8fA%3D%3D&w=1000&q=80" alt="" class="img-fluid">
               </figure>
               <div class="caption">
                 <div class="room-wide-columns clearfix">

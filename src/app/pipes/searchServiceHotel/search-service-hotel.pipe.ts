@@ -1,19 +1,19 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ServicesAdminComponent } from 'src/app/components/admin/services-admin/services-admin.component';
+import { ServicesAdminHotelComponent } from 'src/app/components/hotelAdmin/services-admin-hotel/services-admin-hotel.component';
 import { ServicesRestService } from 'src/app/services/servicesRest/services-rest.service';
 
 
 @Pipe({
-  name: 'searchServicePipe'
+  name: 'searchServiceHotelPipe'
 })
-export class SearchServicePipe implements PipeTransform {
+export class SearchServiceHotelPipe implements PipeTransform {
 
   services: any;
 
   constructor
   (
     private serviceRest: ServicesRestService,
-    private serviceComponent: ServicesAdminComponent
+    private serviceComponent: ServicesAdminHotelComponent
   ){ }
 
   transform(services:any, search:any){

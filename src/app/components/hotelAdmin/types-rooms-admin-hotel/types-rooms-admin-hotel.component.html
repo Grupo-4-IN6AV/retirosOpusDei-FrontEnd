@@ -285,7 +285,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let typeRoom of typesRooms">
+              <tr *ngFor="let typeRoom of typesRooms | searchTypeRoomHotelPipe:searchTypeRoom">
                 <td (click)="getTypeRoom(typeRoom._id)">
                   <mat-checkbox *ngIf="typeRoom.checked==true || controloClick==0" #check="matCheckbox"
                     (click)="showButtonActions(typeRoom._id, check); getTypeRoom(typeRoom._id)" class="example-margin"
