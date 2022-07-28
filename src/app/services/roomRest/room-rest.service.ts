@@ -28,7 +28,12 @@ export class RoomRestService
   //CUALQUIER USUARIO//
   getRoomsHotel(id:string)
   {
-    return this.http.get(environment.baseURI + 'room/getRoomByHotel/' + id ,{ headers: this.httpOptions});
+    return this.http.get(environment.baseURI + 'room/getRoomByHotel/' + id ,{ headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())});
+  }
+
+  getRoomsHotelPrice()
+  {
+    return this.http.get(environment.baseURI + 'room/getRoomsPrice' ,{ headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())});
   }
 
   saveRoom(params:{})

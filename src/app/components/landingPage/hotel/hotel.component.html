@@ -100,7 +100,7 @@
                 <div>
                   <p>{{ hotel.description }}</p>
                   <div>
-                    <span class="price"><small>AVG/NIGHT</small>$620</span>
+                    <span class="price"><small>AVG/NIGHT</small>Q.{{prices[hotels.indexOf(hotel)].toFixed(2)}}</span>
                     <a [routerLink]="['/viewRoom/' + hotel._id]"  class="button btn-small full-width text-center" title="">
                       VIEW
                     </a>
@@ -122,7 +122,7 @@
                   <div class="details">
                     <span class="price">
                       <small>avg/night</small>
-                      $620
+                      Q.{{prices[hotels.indexOf(hotel)].toFixed(2)}}
                     </span>
                     <h4 class="box-title">
                       {{ hotel.name }}<small>{{ hotel.address }}</small>
@@ -153,7 +153,7 @@
                     <a [routerLink]="['/viewRoom/' + hotel._id]" title="View all" class="pull-right button uppercase">VIEW</a>
                     <h4 class="box-title">{{ hotel.name }}</h4>
                     <label class="price-wrapper">
-                      <span class="price-per-unit" style="color:#1975D6">$322</span>avg/night
+                      <span class="price-per-unit" style="color:#1975D6">Q.{{prices[hotels.indexOf(hotel)].toFixed(2)}}</span>avg/night
                     </label>
                   </div>
                 </article>

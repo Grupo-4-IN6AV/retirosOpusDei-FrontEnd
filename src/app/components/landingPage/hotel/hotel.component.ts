@@ -26,6 +26,7 @@ export class HotelComponent implements OnInit {
 
   //HABITACIONES DEL HOTEL//
   rooms:any;
+  prices:any;
 
   constructor
   (
@@ -41,6 +42,7 @@ export class HotelComponent implements OnInit {
   ngOnInit(): void
   {
     this.getHotels();
+    this.getPricesHotels();
   }
 
   getHotels()
@@ -75,6 +77,17 @@ export class HotelComponent implements OnInit {
       next: (res: any) =>
       {
         this.hotels = res.hotels
+      },
+      error: (err) => console.log(err)
+    })
+  }
+
+  getPricesHotels()
+  {
+    this.roomRest.getRoomsHotelPrice().subscribe({
+      next: (res: any) =>
+      {
+        this.prices = res.arrayPrices
       },
       error: (err) => console.log(err)
     })

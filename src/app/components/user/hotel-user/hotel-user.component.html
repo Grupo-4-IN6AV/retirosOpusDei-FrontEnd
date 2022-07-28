@@ -1,0 +1,80 @@
+<section class="content">
+  <h1 style="margin-top: 4rem">
+    &nbsp;<i class="fa fa-building" aria-hidden="true"> </i>
+    Hotels
+  </h1>
+  <hr />
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="form">
+      <i class="fa fa-search ms-2"></i>
+      <input [(ngModel)]="searchHotel" type="text" class="form-control form-input" placeholder="Search Hotel...">
+    </div>
+  </div>
+  <hr />
+
+  <div class="row mt-5" style="width: 100%; display: flex; justify-content: center;">
+    <div *ngFor="let hotel of hotels | searchHotelBarPipe:searchHotel" class="col-sm-9 col-md-9 col-lg-9 mb-4">
+      <div style="background-color: white; min-height: 14rem;"
+        class="hotel-card rounded-lg overflow-hidden d-block d-lg-flex">
+        <div class="hotel-card_images">
+          <div id="bootstrapCarousel" class="carousel slide h-100" data-bs-ride="carousel">
+            <div class="carousel-inner h-100">
+              <div class="carousel-item h-100 active">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Hotel_pic.jpg" class="d-block w-100" alt="Hotel Image">
+              </div>
+              <div class="carousel-item h-100">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Hotel_pic.jpg" class="d-block w-100" alt="Hotel Image">
+              </div>
+              <div class="carousel-item h-100">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Hotel_pic.jpg" class="d-block w-100" alt="Hotel Image">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#bootstrapCarousel"
+              data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </button>
+            <a class="carousel-control-next" type="button" data-bs-target="#bootstrapCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+        <div class="hotel-card_info p-4">
+          <div class="d-flex align-items-center mb-2">
+            <h5 class="mb-0 mr-2" style="color: black;">{{hotel.name}}&nbsp;</h5>
+            <div>
+              <i class="fa fa-star text-warning"></i>
+              <i class="fa fa-star text-warning"></i>
+              <i class="fa fa-star text-warning"></i>
+              <i class="fa fa-star text-warning"></i>
+              <i class="fa fa-star text-warning"></i>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between align-items-end">
+            <div class="hotel-card_details">
+              <div class="text-muted mb-2"><i class="fas fa-map-marker-alt"></i> {{hotel.address}}</div>
+              <div class="mb-2"><span class="badge bg-primary">4.5</span> <a
+                  class="text-muted">{{hotel.description}}</a>
+              </div>
+              <p>Services</p>
+              <div class="amnities d-flex mb-3">
+                <i *ngFor="let service of services[hotels.indexOf(hotel)]" class="me-2 fa {{service.icon}}"
+                  src="images/icons/desk-bell.svg" data-toggle="tooltip" data-placement="top" title="Desk bell"
+                  alt="Desk bell"></i>
+              </div>
+              <ul class="hotel-checklist pl-0 mb-0" style="columns: 3;">
+                <li *ngFor="let service of services[hotels.indexOf(hotel)]"><i
+                    class="fa {{service.icon}}"></i>&nbsp;{{service.name}}</li>
+              </ul>
+            </div>
+            <div class="hotel-card_pricing text-center">
+              <h3>Q.{{prices[hotels.indexOf(hotel)].toFixed(2)}}</h3>
+              <button class="btn btn-sample">Check Rooms</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

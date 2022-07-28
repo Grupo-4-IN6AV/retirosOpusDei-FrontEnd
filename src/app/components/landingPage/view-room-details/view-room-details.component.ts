@@ -55,8 +55,6 @@ export class ViewRoomDetailsComponent implements OnInit
     this.serviceRest.getServicesHotelID(id).subscribe({
       next: (res: any) => {
         this.services = res.services;
-        console.log(this.services);
-
       },
       error: (err) => {alert(err.error.message)}
     })

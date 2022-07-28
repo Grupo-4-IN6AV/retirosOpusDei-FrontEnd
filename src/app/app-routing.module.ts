@@ -28,6 +28,10 @@ import { TypesRoomsAdminHotelComponent } from './components/hotelAdmin/types-roo
 import { RoomsAdminHotelComponent } from './components/hotelAdmin/rooms-admin-hotel/rooms-admin-hotel.component';
 import { ViewRoomDetailsComponent } from './components/landingPage/view-room-details/view-room-details.component';
 
+import { LayoutUserComponent } from './components/user/layout-user/layout-user.component';
+import { HomeUserComponent } from './components/user/home-user/home-user.component';
+import { HotelUserComponent } from './components/user/hotel-user/hotel-user.component'
+import { HotelAdminHotelComponent } from './components/hotelAdmin/hotel-admin-hotel/hotel-admin-hotel.component';
 
 const routes: Routes =
 [
@@ -61,7 +65,19 @@ const routes: Routes =
     [
       {path: 'home', component: HomeAdminHotelComponent},
       {path: 'profile', component: ProfileAdminHotelComponent},
+      {path: 'hotel', component: HotelAdminHotelComponent},
       {path: 'event', component: EventsAdminHotelComponent},
+      {path: 'service', component: ServicesAdminHotelComponent},
+      {path: 'room', component: RoomsAdminHotelComponent},
+      {path: 'typeRoom', component: TypesRoomsAdminHotelComponent},
+    ]
+  },
+  {
+    path: 'user', component:LayoutUserComponent, children:
+    [
+      {path: 'home', component: HomeUserComponent},
+      {path: 'profile', component: ProfileAdminHotelComponent},
+      {path: 'hotel', component: HotelUserComponent},
       {path: 'service', component: ServicesAdminHotelComponent},
       {path: 'room', component: RoomsAdminHotelComponent},
       {path: 'typeRoom', component: TypesRoomsAdminHotelComponent},

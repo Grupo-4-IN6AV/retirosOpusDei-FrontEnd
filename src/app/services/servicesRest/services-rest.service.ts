@@ -86,4 +86,9 @@ export class ServicesRestService
   {
     return this.http.get(environment.baseURI + 'service/getServiceHotelID/'+ id, {headers:this.httpOptions.set('Authorization', this.credentialReset.getToken())})
   }
+
+  getServicesHotelArray()
+  {
+    return this.http.get(environment.baseURI + 'service/getArrayServices', {headers:this.httpOptions.set('Authorization', this.credentialReset.getToken())})
+  }
 }

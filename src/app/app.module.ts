@@ -107,6 +107,13 @@ import { SearchEventHotelPipe } from './pipes/searchEventHotel/search-event-hote
 import { SearchServiceHotelPipe } from './pipes/searchServiceHotel/search-service-hotel.pipe';
 import { SearchRoomHotelPipe } from './pipes/searchRoomHotel/search-room-hotel.pipe';
 import { SearchTypeRoomHotelPipe } from './pipes/searchTypeRoomHotel/search-type-room-hotel.pipe';
+import { SidebarUserComponent } from './components/user/sidebar-user/sidebar-user.component';
+import { SidebarrightUserComponent } from './components/user/sidebarright-user/sidebarright-user.component';
+import { LayoutUserComponent } from './components/user/layout-user/layout-user.component';
+import {HeaderUserComponent} from './layout/header-user/header-user.component';
+import { HomeUserComponent } from './components/user/home-user/home-user.component';
+import { HotelUserComponent } from './components/user/hotel-user/hotel-user.component';
+import { HotelAdminHotelComponent } from './components/hotelAdmin/hotel-admin-hotel/hotel-admin-hotel.component'
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -167,6 +174,13 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         SearchServiceHotelPipe,
         SearchRoomHotelPipe,
         SearchTypeRoomHotelPipe,
+        SidebarUserComponent,
+        SidebarrightUserComponent,
+        LayoutUserComponent,
+        HeaderUserComponent,
+        HomeUserComponent,
+        HotelUserComponent,
+        HotelAdminHotelComponent
     ],
     imports: [
         SwiperModule,
