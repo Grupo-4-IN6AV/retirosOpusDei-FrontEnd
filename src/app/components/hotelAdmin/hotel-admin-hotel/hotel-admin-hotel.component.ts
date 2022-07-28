@@ -24,6 +24,7 @@ export class HotelAdminHotelComponent implements OnInit {
   //Hotel//
   hotel:any;
   updateHotel:any;
+  hotelImage: any;
 
   //Usuario Logueado//
   user:any;
@@ -44,20 +45,12 @@ export class HotelAdminHotelComponent implements OnInit {
     this.getHotel();
   }
 
-  cleanForm()
-  {
-    this.password = this.reset;
-    this.newPassword = this.reset;
-  }
-
   userLogin()
   {
     this.userRest.getUser(this.credentialRest.getIdentity()._id).subscribe({
       next: (res: any) => {
         this.user = res.user;
         this.updateUser = res.user
-        this.userImage = this.user.image;
-        this.uri = environment.baseURI + 'user/getImage/' + this.userImage;
       },
       error: (err) => {alert(err.error.message)}
     })
@@ -135,6 +128,8 @@ export class HotelAdminHotelComponent implements OnInit {
         next: (res: any) => {
           this.hotel = res.hotel;
           this.updateHotel = res.hotel;
+          this.hotelImage = res.hotel.image;
+          this.uri = environment.baseURI + 'hotel/getImageHotel/' + res.hotel.image;
         },
         error: (err) => {alert(err.error.message)}
       })

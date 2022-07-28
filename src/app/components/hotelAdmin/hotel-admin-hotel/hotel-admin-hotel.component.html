@@ -17,8 +17,8 @@
               </div>
               <img *ngIf="!hotel.image" data-bs-toggle="modal" data-bs-target="#viewPhoto"
                 src="assets/images/user/usrbig3.jpg" class="user-img" alt="">
-              <img *ngIf="hotel.image" data-bs-toggle="modal" data-bs-target="#viewPhoto" src="{{uri}}"
-                crossorigin="anonymous" class="user-img redimention" alt="">
+                <img *ngIf="hotel.image" data-bs-toggle="modal" data-bs-target="#viewPhoto"
+                src="{{uri}}" class="user-img" alt="" crossorigin="anonymous">
               <div>
                 <span class="phone">
                   <i class="material-icons">phone</i>+502 {{hotel.phone}}</span>
@@ -145,8 +145,8 @@
           <button type="button" class="btn-close btn-close-black" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <img *ngIf="!userImage" src="assets/images/user/usrbig3.jpg" style="max-width:100%" alt="">
-          <img *ngIf="userImage" src="{{uri}}" style="max-width:100%" crossorigin="anonymous" alt="">
+          <img *ngIf="!hotelImage" src="assets/images/user/usrbig3.jpg" style="max-width:100%" alt="">
+          <img *ngIf="hotelImage" src="{{uri}}" style="max-width:100%" crossorigin="anonymous" alt="">
         </div>
       </div>
     </div>
