@@ -33,6 +33,10 @@ import { HomeUserComponent } from './components/user/home-user/home-user.compone
 import { HotelUserComponent } from './components/user/hotel-user/hotel-user.component'
 import { HotelAdminHotelComponent } from './components/hotelAdmin/hotel-admin-hotel/hotel-admin-hotel.component';
 
+import { AdminHotelGuard } from './guards/admin-hotel.guard'
+import { AdminGuard } from './guards/admin.guard'
+import { UserGuard } from './guards/user.guard'
+
 const routes: Routes =
 [
   {
@@ -49,7 +53,7 @@ const routes: Routes =
     ]
   },
   {
-    path: 'admin', component:LayoutAdminComponent,children:
+    path: 'admin', canActivate:[AdminGuard], component:LayoutAdminComponent,children:
     [
       {path: 'home', component: HomeAdminComponent},
       {path: 'user', component: AdminUserComponent},
@@ -61,7 +65,7 @@ const routes: Routes =
     ]
   },
   {
-    path: 'admin-hotel', component:LayoutAdminHotelComponent, children:
+    path: 'admin-hotel', canActivate:[AdminHotelGuard], component:LayoutAdminHotelComponent, children:
     [
       {path: 'home', component: HomeAdminHotelComponent},
       {path: 'profile', component: ProfileAdminHotelComponent},
@@ -73,7 +77,7 @@ const routes: Routes =
     ]
   },
   {
-    path: 'user', component:LayoutUserComponent, children:
+    path: 'user', canActivate:[UserGuard], component:LayoutUserComponent, children:
     [
       {path: 'home', component: HomeUserComponent},
       {path: 'profile', component: ProfileAdminHotelComponent},
