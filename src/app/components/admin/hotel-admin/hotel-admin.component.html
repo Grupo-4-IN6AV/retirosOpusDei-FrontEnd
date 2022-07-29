@@ -189,9 +189,9 @@
               </div>
               <div class="text-inside">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Administrador</mat-label>
+                  <mat-label>Administrator</mat-label>
                   <mat-select [(ngModel)]="hotel.admin" name="admin">
-                    <mat-option  *ngFor="let user of users" value="{{user._id}}">{{user.name}} {{user.surname}}</mat-option>
+                    <mat-option *ngFor="let user of users" value="{{user._id}}">{{user.name}} {{user.surname}}</mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
@@ -210,7 +210,6 @@
         </div>
       </div>
     </div>
-
 
 
   <!--UPDATE HOTEL-->
@@ -259,9 +258,7 @@
             <div class="text-inside">
               <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>Administrator</mat-label>
-                <mat-select [(ngModel)]="hotelUpdate.admin._id" name="admin">
-                  <mat-option  *ngFor="let user of users" value="{{user._id}}">{{user.name}} {{user.surname}}</mat-option>
-                </mat-select>
+                <input autocomplete="off" disabled value="{{hotelUpdate.admin.name}} {{hotelUpdate.admin.surname}}" name="admin" type="text" matInput />
               </mat-form-field>
             </div>
             <hr />

@@ -36,7 +36,7 @@
   <div *ngIf="!roomsHotel && !eventsHotel" class="row mt-5"
     style="width: 100%; display: flex; justify-content: center;">
     <div class="col-sm-9 col-md-9 col-lg-9 mb-4">
-      <div *ngFor="let hotel of hotels | searchHotelBarPipe:searchHotel" style="    
+      <div *ngFor="let hotel of hotels | searchHotelBarPipe:searchHotel" style="
       background-color: white; min-height: 16rem; max-height: 16rem;"
         class="hotel-card rounded-lg  mb-4 overflow-hidden d-block d-lg-flex">
         <div class="hotel-card_images">
@@ -252,12 +252,12 @@
             <div class="info">
               <h6 style="color:black"><i class="fa fa-calendar"></i> Select Your Dates</h6>
             </div>
-            <div class="d-flex justify-content-between mt-3">
-              <form>
+            <div class="d-flex justify-content-between mt-3" style="flex-wrap: wrap;">
+              <form (ngSubmit)="saveReservation()"  #add="ngForm">
                 <div class="text-inside">
                   <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>Entry Date</mat-label>
-                    <input [min]="actualDate" name="date" matInput [matDatepicker]="picker">
+                    <input [(ngModel)]="entryDate" style="color:#121212" [min]="actualDate" name="date" matInput [matDatepicker]="picker">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                   </mat-form-field>
@@ -265,43 +265,37 @@
                 <div class="text-inside">
                   <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>Exit Date</mat-label>
-                    <input [min]="actualDate" name="date" matInput [matDatepicker]="picker">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                    <input  [(ngModel)]="exitDate" style="color:#121212" [min]="actualDate" name="date2" matInput [matDatepicker]="picker2">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div class="text-inside">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Total Persons</mat-label>
+                    <input style="color: #121212;" min="1" autocomplete="off" [(ngModel)]="totalPersons" type="number" name="persons" matInput />
                   </mat-form-field>
                 </div>
               </form>
               <div style="color:black" class="d-flex flex-row align-items-center spec">
                 <div class="invoice-box" style="margin-top: -2rem;">
                   <table>
-                    <tr class="heading">
-                      <td>Item</td>
-
-                      <td>Price</td>
+                    <tr rowspan="2" class="heading text-center">
+                      <td colspan="2">Your Reservation</td>
                     </tr>
-
                     <tr class="item">
-                      <td>Website design</td>
-
-                      <td>$300.00</td>
+                      <td>Night Price</td>
+                      <td>Q.{{room.price.toFixed(2)}}</td>
                     </tr>
-
-                    <tr class="item">
-                      <td>Hosting (3 months)</td>
-
-                      <td>$75.00</td>
-                    </tr>
-
                     <tr class="item last">
-                      <td>Domain name (1 year)</td>
-
-                      <td>$10.00</td>
+                      <td>Total Nights</td>
+                      <td *ngIf="!exitDate || !entryDate">0</td>
+                      <td *ngIf="exitDate && entryDate">{{calculateNights(exitDate.getTime() , entryDate.getTime())}}</td>
                     </tr>
-
                     <tr class="total">
                       <td></td>
-
-                      <td>Total: $385.00</td>
+                      <td *ngIf="!exitDate || !entryDate">Total: Q.0.00</td>
+                      <td *ngIf="exitDate && entryDate">Total: Q.{{(totalNights*room.price).toFixed(2)}}</td>
                     </tr>
                   </table>
                 </div>
@@ -313,9 +307,8 @@
           </div>
           <div class="p-3 bg-white border-bottom">
             <div class="info">
-              <span><i class="fa fa-check text-muted"></i> <small class="spec-text-color">Free
-                  Cancellation</small></span>
-              <span><i class="fa fa-car text-muted"></i> <small class="spec-text-color">Free Parking</small></span>
+
+
             </div>
             <div class="d-flex justify-content-between mt-3">
             </div>
@@ -323,50 +316,33 @@
         </div>
         <div class="bg-white p-2 px-3 border-bottom">
           <div class="row">
-            <div class="col-md-6">
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="check-in">
-                  <span>Check-in</span>
+            <div class="container">
+              <div class="d-flex justify-content-center align-items-center">
+                <div  *ngIf="entryDate" class="check-in me-4">
+                  <span  *ngIf="entryDate" style="color:black">Entry Date</span>
                   <div class="d-flex flex-row align-items-center">
-                    <h1 class="date-o">24</h1>
+                    <h1 *ngIf="entryDate" class="date-o" style="color:#1976ED">{{calculateDayEntry(entryDate)}}</h1>
                     <div class="d-flex flex-column ml-2 date">
-                      <span>July 20</span>
-                      <span>Friday</span>
+                      <span *ngIf="entryDate" style="color: black;">{{calculateMonthEntry(entryDate)}}</span>
                     </div>
                   </div>
                 </div>
-                <div class="d-flex flex-column align-items-center">
-                  <i class="fa fa-moon-o"></i>
-                  <small>2</small>
-                </div>
-                <div class="check-out">
-                  <span>Check-out</span>
+                <div *ngIf="exitDate" class="check-out ms-4">
+                  <span  *ngIf="exitDate" style="color:black">Exit Date</span>
                   <div class="d-flex flex-row align-items-center">
-                    <h1 class="date-o">25</h1>
+                    <h1 *ngIf="exitDate" style="color: #1976ed;" class="date-o">{{calculateDayExit(exitDate)}}</h1>
                     <div class="d-flex flex-column ml-2 date">
-                      <span>July 20</span>
-                      <span>Friday</span>
+                      <span *ngIf="exitDate" style="color: black;">{{calculateMonthExit(exitDate)}}</span>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="text-right d-flex flex-column mt-4">
-                <span class="text-primary">Change Date</span>
               </div>
             </div>
           </div>
         </div>
-        <div class="complete p-3 mt-2">
-          <div class="text-left">
-            <span class="d-block">Cancellation Policy</span>
-            <span class="text-success">Until 23 Dec 23:00 GMT 100% Money Back</span>
-          </div>
           <div class="text-center mt-4 mb-4">
-            <button class="btn btn-danger booking">Complete Booking</button>
+            <button (click)="saveReservation()" type="submit" class="btn btn-sample booking" data-bs-dismiss="modal">Check Reservation</button>
           </div>
-        </div>
       </div>
     </div>
   </div>

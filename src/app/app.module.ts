@@ -113,7 +113,10 @@ import { LayoutUserComponent } from './components/user/layout-user/layout-user.c
 import {HeaderUserComponent} from './layout/header-user/header-user.component';
 import { HomeUserComponent } from './components/user/home-user/home-user.component';
 import { HotelUserComponent } from './components/user/hotel-user/hotel-user.component';
-import { HotelAdminHotelComponent } from './components/hotelAdmin/hotel-admin-hotel/hotel-admin-hotel.component'
+import { HotelAdminHotelComponent } from './components/hotelAdmin/hotel-admin-hotel/hotel-admin-hotel.component';
+import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
+import { UserCalendarComponent } from './components/user/user-calendar/user-calendar.component';
+import { HistoryComponent } from './components/user/history/history.component'
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -180,7 +183,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         HeaderUserComponent,
         HomeUserComponent,
         HotelUserComponent,
-        HotelAdminHotelComponent
+        HotelAdminHotelComponent,
+        UserProfileComponent,
+        UserCalendarComponent,
+        HistoryComponent
     ],
     imports: [
         SwiperModule,

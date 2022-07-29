@@ -71,6 +71,7 @@
                 <h5 class="float-end">Total Clients</h5>
               </div>
               <div class="card-body float-end">
+                {{totalClients}}
               </div>
             </div>
           </div>
@@ -90,10 +91,10 @@
             </div>
             <div class="float-end m-4">
               <div>
-                <h5 class="float-end">Total Hotels</h5>
+                <h5 class="float-end">Total Profits</h5>
               </div>
               <div class="card-body float-end">
-
+                Q.{{money.toFixed(2)}}
               </div>
             </div>
           </div>
@@ -112,22 +113,11 @@
         <div class="card">
           <div class="header">
             <h2>
-              {{hotel.name}}
+              Popular Rooms - {{hotel.name}}
             </h2>
-            <button mat-button [matMenuTriggerFor]="menu" class="header-dropdown">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item>Action</button>
-              <button mat-menu-item>Another action</button>
-              <button mat-menu-item>Something else here</button>
-            </mat-menu>
           </div>
-          <div class="body">
-            <apx-chart [series]="areaChartOptions.series" [chart]="areaChartOptions.chart"
-              [xaxis]="areaChartOptions.xaxis" [yaxis]="areaChartOptions.yaxis" [colors]="areaChartOptions.colors"
-              [stroke]="areaChartOptions.stroke" [legend]="areaChartOptions.legend" [tooltip]="areaChartOptions.tooltip"
-              [dataLabels]="areaChartOptions.dataLabels"></apx-chart>
+          <div class="body"  style="height: 100%">
+            <div echarts [options]="bar_chart" class="echart-height"></div>
           </div>
         </div>
       </div>

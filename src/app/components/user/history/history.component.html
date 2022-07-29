@@ -1,0 +1,43 @@
+<section class="content">
+  <h1 style="margin-top: 4rem">
+    &nbsp;<i class="fa fa-timeline" aria-hidden="true"> </i>
+    Your History
+  </h1>
+  <hr />
+  <div class="container-fluid">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="body">
+        <section id="cd-timeline" class="cd-container">
+          <div *ngFor="let reservation of reservations" class="cd-timeline-block">
+            <div class="cd-timeline-img cd-picture">
+              <img *ngIf="reservation.hotel.image===undefined" style="object-fit: cover;" src="assets/images/user/user1.jpg"
+                crossorigin="anonymous" alt="" />
+              <img *ngIf="reservation.hotel.image!==undefined" src="{{uriHotel+reservation.hotel.image}}"
+                crossorigin="anonymous" alt="" />
+            </div>
+            <div class="cd-timeline-content">
+              <h2 class="timelineLabelColor">
+                <strong>{{reservation.hotel.name}}</strong>
+              </h2>
+              <h6>
+                <i class="fas fa bed"></i>
+                <strong>Room :</strong> {{reservation.room.room.name}}
+              </h6>
+              <h6>
+                <i class="fas fa bed"></i>
+                <strong>Date Entry :</strong> {{entryDates[reservations.indexOf(reservation)]}}
+              </h6>
+              <h6>
+                <i class="fas fa bed"></i>
+                <strong>Date Exit :</strong> {{exitDates[reservations.indexOf(reservation)]}}
+              </h6>
+              <a style="cursor: pointer;" class="cd-read-more"><i class="fas fa-eye"></i> View Details</a>
+              <span class="cd-date">{{months[reservations.indexOf(reservation)]}}
+                {{days[reservations.indexOf(reservation)]}}</span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>

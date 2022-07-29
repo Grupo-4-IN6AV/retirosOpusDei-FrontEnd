@@ -71,6 +71,16 @@ export class HotelRestService {
     return this.http.put(environment.baseURI + 'hotel/updateHotelManager/' + id, params,{ headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())});
   }
 
+  getTotalClientes()
+  {
+    return this.http.get(environment.baseURI + 'hotel/getTotalClients', { headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())});
+  }
+
+  getTotalMoney()
+  {
+    return this.http.get(environment.baseURI + 'hotel/getTotalMoney', { headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())});
+  }
+
     //CARGA DE IMAGEN//
     requestFiles(
       hotelID: string,

@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Chart } from 'chart.js';
 
 import {
   ChartComponent,
@@ -22,6 +23,8 @@ import { CredentialsRestService } from 'src/app/services/credentialsRest/credent
 import { RoomRestService } from 'src/app/services/roomRest/room-rest.service';
 import { ServicesRestService } from 'src/app/services/servicesRest/services-rest.service';
 import { TypeRoomRestService } from 'src/app/services/typeRoomRest/type-room-rest.service';
+import { ReservationRestService } from 'src/app/services/reservationRest/reserevation-rest.service';
+import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 
 export type SparklineChartOptions = {
   series: ApexAxisChartSeries;
@@ -73,12 +76,18 @@ export class HomeAdminHotelComponent implements OnInit {
 
   typesRooms: any;
 
+  money:any;
+  totalClients: any;
+
   ngOnInit(): void {
     this.getHotel();
     this.userLogin();
     this.getRooms();
     this.getServices();
     this.getTypesRooms();
+    this.getTotalMoney();
+    this.getHotelsClients();
+    this.graficBar();
   }
 
   userLogin() {
@@ -155,9 +164,94 @@ export class HomeAdminHotelComponent implements OnInit {
     })
   }
 
+  getHotelsClients()
+  {
+    this.hotelRest.getTotalClientes().subscribe({
+      next: (res: any) =>
+      {
+        this.totalClients = res.count
+      },
+      error: (err) => {alert(err.error.message)}
+    })
+  }
+
+  getTotalMoney()
+  {
+    this.hotelRest.getTotalMoney().subscribe({
+      next: (res: any) =>
+      {
+        this.money = res.totalMoney
+      },
+      error: (err) => {alert(err.error.message)}
+    })
+  }
+
+    //MANEJO DE LAS GRÁFICAS//
+    setData:any;
+    reservations: any;
+
+  graficBar()
+  {
+    this.roomRest.getRoomsHotelAdmin().subscribe({
+      next: (res: any) =>
+      {
+        this.reservations = res.rooms;
+        const setDataSetsXAxis = []
+        const setDataNumber = [];
+        for (var key=0; key < this.reservations.length; key ++)
+        {
+          var data =  this.reservations[key];
+          setDataSetsXAxis.push(data.name)
+          setDataNumber.push(data.sales)
+        }
+        this.bar_chart =
+        {
+          grid: {
+            top: '6',
+            right: '0',
+            bottom: '17',
+            left: '25',
+          },
+          xAxis: {
+            data: setDataSetsXAxis,
+
+            axisLabel: {
+              fontSize: 10,
+              color: '#9aa0ac',
+            },
+          },
+          tooltip: {
+            show: true,
+            showContent: true,
+            alwaysShowContent: false,
+            triggerOn: 'mousemove',
+            trigger: 'axis',
+          },
+          yAxis: {
+            axisLabel: {
+              fontSize: 10,
+              color: '#9aa0ac',
+            },
+          },
+          series: [
+            {
+              name: 'sales',
+              type: 'bar',
+              data: setDataNumber,
+            },
+          ],
+          color: ['#7C12F3',],
+        };
+
+      },
+      error: (err) => {console.log(err)}
+    })
+
+  }
+
+  bar_chart: EChartsOption
 
   donut_chart: EChartsOption
-
 
   @ViewChild('chart') chart: ChartComponent;
   // sparkline chart start
@@ -257,7 +351,8 @@ export class HomeAdminHotelComponent implements OnInit {
       private credentialsRest: CredentialsRestService,
       private roomRest: RoomRestService,
       private serviceRest: ServicesRestService,
-      private typeRoomRest: TypeRoomRestService
+      private typeRoomRest: TypeRoomRestService,
+      private reservationRest: ReservationRestService
     ) {
 
   }

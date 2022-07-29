@@ -74,22 +74,6 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="project_widget">
-                  <div class="header">
-                    <h2><i class="fa fa-building"></i><strong> Your Hotel</strong></h2>
-                  </div>
-                  <div class="body">
-                    <ul>
-                      <li><b>Name:</b> {{hotel.name}}</li>
-                      <li><b>Description:</b> {{hotel.description}}</li>
-                      <li><b>Email:</b> {{hotel.email}}</li>
-                      <li><b>Address:</b> {{hotel.address}}</li>
-                      <li><b>Phone:</b> {{hotel.phone}}</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
             </mat-tab>
 
             <mat-tab>
@@ -135,12 +119,54 @@
                         <i class="fa fa-refresh" aria-hidden="true"></i>
                         &nbsp; Update Account
                       </button>
+                      <button type="button" class="btn btn-danger ms-2">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        &nbsp; Delete Account
+                      </button>
                       <button data-bs-toggle="modal" data-bs-target="#changePassword" type="button" class="btn btn-dark ms-2">
                         <i class="fa fa-key" aria-hidden="true"></i>
                         &nbsp; Change Password
                       </button>
                     </div>
                   </form>
+                </div>
+              </div>
+            </mat-tab>
+
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon msr-2">timeline</mat-icon>
+                Your History
+              </ng-template>
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="project_widget">
+                  <div class="header">
+                    <h2><strong>About</strong></h2>
+                  </div>
+                  <div class="body">
+                    <div class="row">
+                      <div class="col-md-3 col-6 b-r">
+                        <strong>Name</strong>
+                        <br>
+                        <p class="text-muted">{{user.name}}</p>
+                      </div>
+                      <div class="col-md-3 col-6 b-r">
+                        <strong>Surname</strong>
+                        <br>
+                        <p class="text-muted">{{user.surname}}</p>
+                      </div>
+                      <div class="col-md-3 col-6 b-r">
+                        <strong>Email</strong>
+                        <br>
+                        <p class="text-muted">{{user.email}}</p>
+                      </div>
+                      <div class="col-md-3 col-6 b-r">
+                        <strong>Username</strong>
+                        <br>
+                        <p class="text-muted">{{user.username}}</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </mat-tab>

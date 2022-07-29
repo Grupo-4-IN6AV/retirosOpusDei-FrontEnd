@@ -65,7 +65,7 @@ export const ROUTES: RouteInfo[] = [
     title: 'Type Rooms',
     moduleName: 'admin',
     iconType: 'material-icons-two-tone',
-    icon: 'airline_seat_individual_suite',
+    icon: 'king_bed',
     class: '',
     groupTitle: false,
     badge: '',

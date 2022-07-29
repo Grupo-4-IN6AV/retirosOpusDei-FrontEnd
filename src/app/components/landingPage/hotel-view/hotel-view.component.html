@@ -2,7 +2,7 @@
   <div class="container">
     <div class="pane1 clearfix">
       <div class="tabs2-wrapper">
-        
+
         <ul class="tabs clearfix" data-tabgroup="second-tab-group">
           <li (click)="viewBlockRoom()" *ngIf="viewBlock" class="active">
             <a>
@@ -20,8 +20,7 @@
           <div class="d-flex align-items-center" style="padding-bottom: 10px;">
             <div *ngIf="roomsHotel" class="row me-5 ms-5 " style="min-width: 25rem;">
               <div class="form">
-                <i class="fa fa-search ms-2"></i>
-                <input [(ngModel)]="searchHotel" type="text" class="form-control form-input" placeholder="Search Hotel...">
+                <span class="btn-icon-end"><i class="fas fa-search"></i> </span>                <input type="text" class="form-control form-input" placeholder="Search Room...">
               </div>
             </div>
             <div *ngIf="roomsHotel" class="ms-5">
@@ -32,7 +31,7 @@
             </div>
           </div>
         </ul>
-        
+
       </div>
     </div>
 
@@ -131,7 +130,7 @@
                   </div>
                   <div class="room-wide-right">
                     <div class="txt9">
-                      <a href="details.html">RESERVE ROOM</a>
+                      <a (click)="pedirLogin()">RESERVE ROOM</a>
                     </div>
                   </div>
                 </div>

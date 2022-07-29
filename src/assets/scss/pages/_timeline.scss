@@ -16,10 +16,10 @@
   clear: both;
 }
 
-/* -------------------------------- 
-      
-      Main components 
-      
+/* --------------------------------
+
+      Main components
+
       -------------------------------- */
 header {
   height: 200px;
@@ -132,7 +132,7 @@ header h1 {
 }
 
 .cd-timeline-img.cd-picture {
-  background: #75ce66;
+  background: #1976ED;
 }
 
 .cd-timeline-img.cd-movie {
@@ -257,13 +257,13 @@ header h1 {
 .cd-timeline-content .cd-read-more {
   float: right;
   padding: 0.8em 1em;
-  background: #acb7c0;
+  background: #1975ED;
   color: #ffffff;
   border-radius: 0.25em;
 }
 
 .no-touch .cd-timeline-content .cd-read-more:hover {
-  background-color: #bac4cb;
+  background-color: #1975eddc;
 }
 
 .cd-timeline-content .cd-date {

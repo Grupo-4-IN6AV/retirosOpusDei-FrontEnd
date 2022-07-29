@@ -1,0 +1,12 @@
+
+.cd-timeline-img img{
+  display: block;
+  width: 100%;
+  position: relative;
+  left: 0;
+  top: 0;
+  margin-left: 0;
+  margin-top: 0;
+  border-radius: 50%;
+  height: 100%;
+}

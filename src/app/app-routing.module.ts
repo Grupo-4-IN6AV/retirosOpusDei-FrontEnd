@@ -36,6 +36,9 @@ import { HotelAdminHotelComponent } from './components/hotelAdmin/hotel-admin-ho
 import { AdminHotelGuard } from './guards/admin-hotel.guard'
 import { AdminGuard } from './guards/admin.guard'
 import { UserGuard } from './guards/user.guard'
+import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
+import { UserCalendarComponent } from './components/user/user-calendar/user-calendar.component';
+import { HistoryComponent } from './components/user/history/history.component';
 
 const routes: Routes =
 [
@@ -79,12 +82,10 @@ const routes: Routes =
   {
     path: 'user', canActivate:[UserGuard], component:LayoutUserComponent, children:
     [
-      {path: 'home', component: HomeUserComponent},
-      {path: 'profile', component: ProfileAdminHotelComponent},
-      {path: 'hotel', component: HotelUserComponent},
-      {path: 'service', component: ServicesAdminHotelComponent},
-      {path: 'room', component: RoomsAdminHotelComponent},
-      {path: 'typeRoom', component: TypesRoomsAdminHotelComponent},
+      {path: 'home', component: HotelUserComponent},
+      {path: 'profile', component: UserProfileComponent},
+      {path: 'calendar', component: UserCalendarComponent},
+      {path: 'history', component: HistoryComponent},
     ]
   },
   { path: '**', component: NotFoundPageComponent}
