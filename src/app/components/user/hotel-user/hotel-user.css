@@ -281,6 +281,7 @@ h5 {
 }
 .evet-card > .card {
   background: white;
+  box-shadow: none;
 }
 body{
   background-color: #eee;
