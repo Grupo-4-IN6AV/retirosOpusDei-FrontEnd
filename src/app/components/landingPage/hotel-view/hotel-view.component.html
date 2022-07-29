@@ -17,19 +17,24 @@
           <li (click)="viewListRoom()" *ngIf="!viewList"><a><i class="fas fa-th-list"></i></a></li>
           <li (click)="viewListRoom()" *ngIf="viewList" class="active"><a><i class="fas fa-th-list"></i></a></li>
 
-          <div class="d-flex align-items-center" style="padding-bottom: 10px;">
-            <div *ngIf="roomsHotel" class="row me-5 ms-5 " style="min-width: 25rem;">
-              <div class="form">
-                <span class="btn-icon-end"><i class="fas fa-search"></i> </span>                <input type="text" class="form-control form-input" placeholder="Search Room...">
+          <li class="ms-5">
+              <div class="form" style="display: flex;">
+                <label for="search-input" style="position:absolute; margin-top: 15px; margin-left: 10px; margin-right: 10px;">
+                  <i class="material-icons search-icon">search</i>
+                </label>
+                <input [(ngModel)]="searchRoom" placeholder="Search.." type="text" class="form-control form-input"
+                  aria-label="Search box" />
               </div>
-            </div>
+          </li>
+
+          <li>
             <div *ngIf="roomsHotel" class="ms-5">
               <button routerLink="/hotels" type="button" class="ms-3 btn btn-event btn-dark">
                 Return Hotels
                 <span class="btn-icon-end"><i class="fas fa-building"></i> </span>
               </button>
             </div>
-          </div>
+          </li>
         </ul>
 
       </div>
@@ -39,13 +44,16 @@
       <div *ngIf="viewBlock">
         <div class="row">
           <!--FOR-->
-          <div *ngFor="let room of roomsHotel" class="col-lg-4">
+          <div *ngFor="let room of roomsHotel | searchRoomView: searchRoom " class="col-lg-4">
             <div class="room-wrapper">
               <div class="room-inner">
                 <div class="room">
                   <figure>
-                    <img style="min-height: 15rem; object-fit: cover" *ngIf="room.image!==undefined" crossorigin="anonymous" src="{{uriRoom+room.image}}">
-                    <img style="min-height: 15rem; object-fit: cover" *ngIf="room.image===undefined" src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG90ZWwlMjByb29tfGVufDB8fDB8fA%3D%3D&w=1000&q=80" alt="" class="img-fluid">
+                    <img style="min-height: 15rem; object-fit: cover" *ngIf="room.image!==undefined"
+                      crossorigin="anonymous" src="{{uriRoom+room.image}}">
+                    <img style="min-height: 15rem; object-fit: cover" *ngIf="room.image===undefined"
+                      src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG90ZWwlMjByb29tfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+                      alt="" class="img-fluid">
                     <figcaption>
                       <div style="color:white" class="txt1">{{room.name}}</div>
                     </figcaption>
@@ -54,38 +62,46 @@
                     <div class="txt1">{{room.typeRoom.name}}
                     </div>
                     <div class="principal-price">
-                    <div class="details-room">
-                      <div class="txt3">
-                        {{room.description}}
+                      <div class="details-room">
+                        <div class="txt3">
+                          {{room.description}}
+                        </div>
+                      </div>
+                      <div class="room-wide-price">
+                        <div class="txt3">Q.{{room.price.toFixed(2)}}</div>
+                        <div class="txt4">PER NIGHT</div>
                       </div>
                     </div>
-                    <div class="room-wide-price">
-                      <div class="txt3">Q.{{room.price.toFixed(2)}}</div>
-                      <div class="txt4">PER NIGHT</div>
-                    </div>
-                    </div>
                     <div class="txt4">
-                      <a style="cursor: pointer;" [routerLink]="['/viewRoomDetails/' + room._id]" >See Room Details<i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                      <a style="cursor: pointer;" [routerLink]="['/viewRoomDetails/' + room._id]">See Room Details<i
+                          class="fa fa-caret-right" aria-hidden="true"></i></a>
                     </div>
                   </div>
                   <div class="select-txt">
-                    <a style="cursor: pointer;" (click)="pedirLogin()"><span>SELECT THIS ROOM<i class="fa fa-angle-right"
-                          aria-hidden="true"></i></span></a>
+                    <a style="cursor: pointer;" (click)="pedirLogin()"><span>SELECT THIS ROOM<i
+                          class="fa fa-angle-right" aria-hidden="true"></i></span></a>
                   </div>
                 </div>
               </div>
             </div>
+
           </div>
 
+        </div>
+        <div rowspan="9" *ngIf="notFound === true">
+          <h1 colspan="9" class="text-center">Not Rooms Found</h1>
         </div>
       </div>
       <div>
         <div *ngIf="viewList" class="room-wide-wrapper">
-          <div  *ngFor="let room of roomsHotel" class="room-wide-inner">
+          <div *ngFor="let room of roomsHotel | searchRoomView: searchRoom" class="room-wide-inner">
             <div class="room-wide clearfix">
               <figure>
-                <img class="img-fluid" style="object-fit: cover" *ngIf="room.image!==undefined" crossorigin="anonymous" src="{{uriRoom+room.image}}">
-                <img *ngIf="room.image==undefined"  src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG90ZWwlMjByb29tfGVufDB8fDB8fA%3D%3D&w=1000&q=80" alt="" class="img-fluid">
+                <img class="img-fluid" style="object-fit: cover" *ngIf="room.image!==undefined" crossorigin="anonymous"
+                  src="{{uriRoom+room.image}}">
+                <img *ngIf="room.image==undefined"
+                  src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG90ZWwlMjByb29tfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+                  alt="" class="img-fluid">
               </figure>
               <div class="caption">
                 <div class="room-wide-columns clearfix">
@@ -135,6 +151,9 @@
                   </div>
                 </div>
               </div>
+              <div rowspan="9" *ngIf="notFound === true">
+                <h1 colspan="9" class="text-center">Not Rooms Found</h1>
+              </div>
             </div>
           </div>
         </div>
@@ -142,4 +161,3 @@
     </div>
   </div>
 </div>
-

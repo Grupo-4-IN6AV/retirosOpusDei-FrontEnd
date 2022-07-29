@@ -17,6 +17,9 @@ export class HotelViewComponent implements OnInit {
   rooms: any;
   uriRoom: any;
 
+  searchRoom: any;
+  notFound: boolean = false;
+
   constructor
   (
     public activatedRoute: ActivatedRoute,

@@ -18,6 +18,9 @@ export class ViewRoomDetailsComponent implements OnInit
   room: any;
   uri: any;
   services: any;
+  searchRoom: any;
+
+  notFound: any;
 
   constructor
   (

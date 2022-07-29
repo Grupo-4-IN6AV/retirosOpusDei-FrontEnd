@@ -227,7 +227,6 @@ export class RoomsAdminHotelComponent implements OnInit {
     })
   }
 
-
   getHotel()
   {
     this.hotelRest.getHotelManager().subscribe({
