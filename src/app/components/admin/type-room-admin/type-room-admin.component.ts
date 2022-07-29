@@ -99,7 +99,7 @@ export class TypeRoomAdminComponent implements OnInit {
           confirmButtonColor: '#28B463'
         });
         this.getTypeRooms();
-        if(this.showTableTypeRoom==true)
+        if(this.showTableTypeRoom)
         {
           this.showButtonActions(this.typeRoomUpdate._id,false)
         }
@@ -188,7 +188,10 @@ export class TypeRoomAdminComponent implements OnInit {
               timer: 2000
             });
             this.getTypeRooms();
-            this.showButtonActions(id,false)
+            if(this.showTableTypeRoom)
+            {
+              this.showButtonActions(id,false)
+            }
           },
           error: (err) => Swal.fire({
             title: err.error.message,

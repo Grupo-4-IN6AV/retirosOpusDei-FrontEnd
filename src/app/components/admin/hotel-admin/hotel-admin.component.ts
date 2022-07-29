@@ -111,8 +111,11 @@ export class HotelAdminComponent implements OnInit {
           title: res.message,
           confirmButtonColor: '#28B463'
         });
-        this.showButtonActions(this.hotelUpdate._id,false)
         this.getHotels();
+        if(this.showTableHotels)
+        {
+          this.showButtonActions(this.hotelUpdate._id,false)
+        }
       },
       error: (err)=>
       {
@@ -145,8 +148,11 @@ export class HotelAdminComponent implements OnInit {
               showConfirmButton: false,
               timer: 2000
             });
-            this.showButtonActions(id,false)
             this.getHotels();
+            if(this.showTableHotels)
+            {
+              this.showButtonActions(id,false)
+            }
           },
           error: (err) => Swal.fire({
             title: err.error.message,

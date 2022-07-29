@@ -113,7 +113,10 @@ export class AdminUserComponent implements OnInit {
           confirmButtonColor: '#28B463'
         });
         this.getUsers();
-        this.showButtonActions(this.userUpdate._id,false)
+        if(this.showTableUsers)
+        {
+          this.showButtonActions(this.userUpdate._id,false)
+        }
       },
       error: (err) => {
         Swal.fire({
@@ -145,7 +148,10 @@ export class AdminUserComponent implements OnInit {
               timer: 2000
             });
             this.getUsers();
-            this.showButtonActions(id,false)
+            if(this.showTableUsers)
+            {
+              this.showButtonActions(id,false)
+            }
           },
           error: (err) => Swal.fire({
             title: err.error.message,

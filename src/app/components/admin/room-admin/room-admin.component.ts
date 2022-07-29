@@ -219,9 +219,9 @@ export class RoomAdminComponent implements OnInit
               timer: 2000
             });
             this.getRooms();
-            if(this.showTableRooms==true)
+            if(this.showTableRooms)
             {
-              this.showButtonActions(this.roomUpdate._id,false)
+              this.showButtonActions(id,false)
             }
           },
           error: (err) => Swal.fire({
@@ -251,7 +251,7 @@ export class RoomAdminComponent implements OnInit
           confirmButtonColor: '#28B463'
         });
         this.getRooms();
-        if(this.showTableRooms==true)
+        if(this.showTableRooms)
         {
           this.showButtonActions(this.roomUpdate._id,false)
         }

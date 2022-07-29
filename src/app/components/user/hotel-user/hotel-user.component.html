@@ -1,32 +1,57 @@
 <section class="content">
-  <h1 style="margin-top: 4rem">
+  <h1 *ngIf="!roomsHotel && !eventsHotel" style="margin-top: 4rem">
     &nbsp;<i class="fa fa-building" aria-hidden="true"> </i>
     Hotels
   </h1>
+  <h1 *ngIf="roomsHotel" style="margin-top: 4rem">
+    &nbsp;<i class="fa fa-bed" aria-hidden="true"> </i>
+    Rooms
+  </h1>
+  <h1 *ngIf="eventsHotel" style="margin-top: 4rem">
+    &nbsp;<i class="fa fa-calendar" aria-hidden="true"> </i>
+    Events
+  </h1>
   <hr />
-  <div class="row d-flex justify-content-center align-items-center">
+
+  <div *ngIf="!roomsHotel && !eventsHotel" class="row d-flex justify-content-center align-items-center">
     <div class="form">
       <i class="fa fa-search ms-2"></i>
       <input [(ngModel)]="searchHotel" type="text" class="form-control form-input" placeholder="Search Hotel...">
     </div>
   </div>
+  <div *ngIf="roomsHotel" class="row d-flex justify-content-center align-items-center">
+    <div class="form">
+      <i class="fa fa-search ms-2"></i>
+      <input [(ngModel)]="searchRoom" type="text" class="form-control form-input" placeholder="Search Room...">
+    </div>
+  </div>
+  <div *ngIf="eventsHotel" class="row d-flex justify-content-center align-items-center">
+    <div class="form">
+      <i class="fa fa-search ms-2"></i>
+      <input [(ngModel)]="searchEvent" type="text" class="form-control form-input" placeholder="Search Event...">
+    </div>
+  </div>
   <hr />
 
-  <div class="row mt-5" style="width: 100%; display: flex; justify-content: center;">
-    <div *ngFor="let hotel of hotels | searchHotelBarPipe:searchHotel" class="col-sm-9 col-md-9 col-lg-9 mb-4">
-      <div style="background-color: white; min-height: 14rem;"
-        class="hotel-card rounded-lg overflow-hidden d-block d-lg-flex">
+  <div *ngIf="!roomsHotel && !eventsHotel" class="row mt-5"
+    style="width: 100%; display: flex; justify-content: center;">
+    <div class="col-sm-9 col-md-9 col-lg-9 mb-4">
+      <div *ngFor="let hotel of hotels | searchHotelBarPipe:searchHotel" style="background-color: white;"
+        class="hotel-card rounded-lg  mb-4 overflow-hidden d-block d-lg-flex">
         <div class="hotel-card_images">
           <div id="bootstrapCarousel" class="carousel slide h-100" data-bs-ride="carousel">
             <div class="carousel-inner h-100">
               <div class="carousel-item h-100 active">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Hotel_pic.jpg" class="d-block w-100" alt="Hotel Image">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Hotel_pic.jpg" class="d-block w-100"
+                  alt="Hotel Image">
               </div>
               <div class="carousel-item h-100">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Hotel_pic.jpg" class="d-block w-100" alt="Hotel Image">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Hotel_pic.jpg" class="d-block w-100"
+                  alt="Hotel Image">
               </div>
               <div class="carousel-item h-100">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Hotel_pic.jpg" class="d-block w-100" alt="Hotel Image">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Hotel_pic.jpg" class="d-block w-100"
+                  alt="Hotel Image">
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#bootstrapCarousel"
@@ -40,15 +65,15 @@
             </a>
           </div>
         </div>
-        <div class="hotel-card_info p-4">
+        <div class="hotel-card_info p-4" style="height: 0.4rem;">
           <div class="d-flex align-items-center mb-2">
             <h5 class="mb-0 mr-2" style="color: black;">{{hotel.name}}&nbsp;</h5>
             <div>
-              <i class="fa fa-star text-warning"></i>
-              <i class="fa fa-star text-warning"></i>
-              <i class="fa fa-star text-warning"></i>
-              <i class="fa fa-star text-warning"></i>
-              <i class="fa fa-star text-warning"></i>
+              <i style="color:#1976ED"class="fa fa-star text-warning"></i>
+              <i style="color:#1976ED" class="fa fa-star text-warning"></i>
+              <i style="color:#1976ED"class="fa fa-star text-warning"></i>
+              <i style="color:#1976ED" class="fa fa-star text-warning"></i>
+              <i style="color:#1976ED" class="fa fa-star text-warning"></i>
             </div>
           </div>
           <div class="d-flex justify-content-between align-items-end">
@@ -60,8 +85,7 @@
               <p>Services</p>
               <div class="amnities d-flex mb-3">
                 <i *ngFor="let service of services[hotels.indexOf(hotel)]" class="me-2 fa {{service.icon}}"
-                  src="images/icons/desk-bell.svg" data-toggle="tooltip" data-placement="top" title="Desk bell"
-                  alt="Desk bell"></i>
+                  data-toggle="tooltip" data-placement="top" title="Desk bell" alt="Desk bell"></i>
               </div>
               <ul class="hotel-checklist pl-0 mb-0" style="columns: 3;">
                 <li *ngFor="let service of services[hotels.indexOf(hotel)]"><i
@@ -70,11 +94,261 @@
             </div>
             <div class="hotel-card_pricing text-center">
               <h3>Q.{{prices[hotels.indexOf(hotel)].toFixed(2)}}</h3>
-              <button class="btn btn-sample">Check Rooms</button>
+              <div class="d-flex justify-content-center" style="flex-direction: column;">
+                <button (click)="getRooms(hotel._id); getServicesHotel(hotel._id)"
+                  class="btn btn-sample mb-1">Rooms</button>
+                <button (click)="getEvents(hotel._id);" class="btn btn-sample">Events</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <div *ngIf="roomsHotel" class="d-flex justify-content-center">
+    <button (click)="returnHotels()" type="button" class="ms-3 btn btn-event btn-dark">
+      Return Hotels
+      <span class="btn-icon-end"><i class="fas fa-building"></i> </span>
+    </button>
+  </div>
+
+  <div *ngIf="roomsHotel" class="container mt-2 mb-5">
+    <div *ngFor="let room of roomsHotel | searchRoomBarPipe:searchRoom" class="d-flex justify-content-center row">
+      <div class="col-md-10">
+        <div class="row p-2 bg-white border rounded mt-2">
+          <div class="col-md-3 mt-1 img-hover-zoom">
+            <img style="height: 100%; object-fit:cover" *ngIf="room.image!==undefined" crossorigin="anonymous"
+              class="img-fluid img-responsive rounded product-image" src="{{uriRoom+room.image}}">
+          </div>
+          <div class="col-md-6 mt-1">
+            <h5 style="color:black">{{room.name}}</h5>
+            <div class="d-flex flex-row">
+              <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                  class="fa fa-star"></i></div><span>310</span>
+            </div>
+            <div *ngFor="let service of servicesHotel">
+              <div class="mt-1 mb-1 spec-1">
+                <span class="fa {{service.icon}}"></span>&nbsp;<span>{{service.name}}</span>
+              </div>
+            </div>
+
+            <p style="color: black;" class="text-justify text-truncate para mb-0">
+              <b>Type Room:</b>&nbsp;{{room.typeRoom.name}}
+              <br>
+            </p>
+            <p style="color: black;" class="mt-1">{{room.description}}</p>
+          </div>
+          <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+            <div class="d-flex flex-row align-items-center">
+              <h4 style="color:#1976ED">&nbsp;Q.{{room.price.toFixed(2)}}</h4>
+            </div>
+            <h6 class="text-success">Free shipping</h6>
+            <div class="d-flex flex-column mt-4">
+              <button (click)="reserveRoom(room._id)" data-bs-toggle="modal" data-bs-target="#reservationRoom" class="btn btn-sample btn-sm mt-2" type="button">
+                Reserve Room
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="eventsHotel" class="d-flex justify-content-center">
+    <button (click)="returnHotels()" type="button" class="ms-3 btn btn-event btn-dark">
+      Return Hotels
+      <span class="btn-icon-end"><i class="fas fa-building"></i> </span>
+    </button>
+  </div>
+
+  <div *ngIf="eventsHotel" class="container p-5">
+    <div class="row">
+      <div *ngFor="let event of eventsHotel" class="col-md-12">
+        <div class="card-group evet-card text-light mb-2">
+          <div class="card mb-0">
+            <div class="card-body py-1">
+              <div class="row">
+                <div class="col-7 col-sm-9">
+                  <div class="d-flex flex-column">
+                    <h3 style="color:black" class="card-title text-uppercase mt-0">
+                      <strong>{{event.name}}</strong>
+                    </h3>
+                    <div class="card-text" style="color:black">
+                      {{event.description}}
+                    </div>
+                    <ul class="list-inline mt-auto">
+                      <li class="list-inline-item"> <strong>Hotel :</strong></li>
+                      <li class="list-inline-item"><i class="fas fa-building"></i> {{event.hotel.name}}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-0">
+            <div class="card-body py-1">
+              <div class="row h-100">
+                <div class="col-5 col-sm-4">
+                  <h6 class="mt-2" style="color: black;">
+                    Information Event
+                  </h6>
+                  <ul class="list-group my-0 pl-1">
+                    <li class="list-inline-item"><i class="far fa-clock"></i> 2:30-4:00 PM</li>
+                    <li class="list-inline-item"><i class="fas fa-calendar-check"></i> Friday</li>
+                    <li class="list-inline-item"><i class="fas fa-map-marker-alt"></i> New-Delhi</li>
+                    <li class="list-inline-item"><i class="fas fa-location-arrow"></i> Room 4019</li>
+                    <li class="list-inline-item"><i class="fas fa-stopwatch"></i> 120 min</li>
+                  </ul>
+                </div>
+                <div class="col-7 col-sm-8 bg-white text-dark">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="room" class="modal fade" id="reservationRoom" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-lg modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="text-right p-2 bg-white">
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="p-1 mt-2 px-3 bg-white">
+          <div class="d-flex flex-row align-items-center">
+            <h5 style="color:black;">{{room.name}}&nbsp;</h5>
+            <span class="ratings ml-2">
+              <i style="color:#1976ED" class="fa fa-star"></i>
+              <i style="color:#1976ED" class="fa fa-star"></i>
+              <i style="color:#1976ED" class="fa fa-star"></i>
+              <i style="color:#1976ED" class="fa fa-star"></i>
+            </span>
+          </div>
+          <div class="mt-0 d-flex justify-content-between">
+            <span style="color: black;">{{room.description}}</span>
+          </div>
+        </div>
+        <div class="px-5 p-2 listing">
+          <div class="p-2 listing-child mt-1 d-flex flex-row">
+            <img src="{{uriReservation}}" crossorigin="anonymous" width="150" class="rounded">
+            <div class="d-flex flex-column ml-2">
+              <h5 style="color:black" class="ms-2">{{room.name}}</h5>
+              <div class="d-flex flex-row room-spec">
+                <span *ngFor="let service of servicesHotel">
+                  <i class="fa {{service.icon}} text-muted ms-2">
+                  </i> {{service.name}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-3 bg-white border-bottom">
+            <div class="info">
+              <span><i class="fa fa-info-circle text-muted"></i> <small class="text-muted">Non Refundable</small></span>
+              <span><i class="fa fa-car text-muted"></i> <small class="spec-text-color">Free Parking</small></span>
+            </div>
+            <div class="d-flex justify-content-between mt-3">
+              <div class="dropdown">
+                <a class="more dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                  aria-expanded="false">
+                  More info
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </div>
+              <div class="d-flex flex-row align-items-center spec">
+                <span class="text-muted"><i class="fa fa-moon-o"></i> 2</span>
+                <span class="text-muted"><i class="fa fa-user"></i> 2</span>
+                <span class="text-primary font-weight-bold">USD 522</span>
+                <div class="form-check ml-2">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-3 bg-white border-bottom">
+            <div class="info">
+              <span><i class="fa fa-check text-muted"></i> <small class="spec-text-color">Free
+                  Cancellation</small></span>
+              <span><i class="fa fa-car text-muted"></i> <small class="spec-text-color">Free Parking</small></span>
+            </div>
+            <div class="d-flex justify-content-between mt-3">
+              <div class="dropdown">
+                <a class="more dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                  aria-expanded="false">
+                  More info
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </div>
+              <div class="d-flex flex-row align-items-center spec">
+                <span class="text-muted"><i class="fa fa-moon-o"></i> 2</span>
+                <span class="text-muted"><i class="fa fa-user"></i> 2</span>
+                <span class="text-primary font-weight-bold">USD 522</span>
+                <div class="form-check ml-2">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white p-2 px-3 border-bottom">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="check-in">
+                  <span>Check-in</span>
+                  <div class="d-flex flex-row align-items-center">
+                    <h1 class="date-o">24</h1>
+                    <div class="d-flex flex-column ml-2 date">
+                      <span>July 20</span>
+                      <span>Friday</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex flex-column align-items-center">
+                  <i class="fa fa-moon-o"></i>
+                  <small>2</small>
+                </div>
+                <div class="check-out">
+                  <span>Check-out</span>
+                  <div class="d-flex flex-row align-items-center">
+                    <h1 class="date-o">25</h1>
+                    <div class="d-flex flex-column ml-2 date">
+                      <span>July 20</span>
+                      <span>Friday</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="text-right d-flex flex-column mt-4">
+                <span class="text-primary">Change Date</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="complete p-3 mt-2">
+          <div class="text-left">
+            <span class="d-block">Cancellation Policy</span>
+            <span class="text-success">Until 23 Dec 23:00 GMT 100% Money Back</span>
+          </div>
+          <div class="text-center mt-4 mb-4">
+            <button class="btn btn-danger booking">Complete Booking</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </section>

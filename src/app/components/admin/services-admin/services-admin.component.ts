@@ -144,7 +144,10 @@ export class ServicesAdminComponent implements OnInit
           confirmButtonColor: '#28B463'
         });
         this.getServices();
-        this.showButtonActions(this.serviceUpdate._id,false)
+        if(this.showTableServices)
+        {
+          this.showButtonActions(this.serviceUpdate._id,false)
+        }
       },
       error: (err)=>
       {
@@ -178,7 +181,10 @@ export class ServicesAdminComponent implements OnInit
               timer: 2000
             });
             this.getServices();
-            this.showButtonActions(id,false)
+            if(this.showTableServices)
+            {
+              this.showButtonActions(id,false)
+            }
           },
           error: (err) => Swal.fire({
             title: err.error.message,

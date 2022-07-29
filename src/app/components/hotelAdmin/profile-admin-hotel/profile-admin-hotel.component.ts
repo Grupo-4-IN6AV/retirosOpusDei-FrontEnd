@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SidebarComponent } from 'src/app/layout/sidebar/sidebar.component';
 import { CredentialsRestService } from 'src/app/services/credentialsRest/credentials-rest.service';
+import { HotelRestService } from 'src/app/services/hotelRest/hotel-rest.service';
 import { UserRestService } from 'src/app/services/userRest/user-rest.service';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
@@ -18,6 +19,7 @@ export class ProfileAdminHotelComponent implements OnInit {
   (
     private userRest: UserRestService,
     private credentialRest: CredentialsRestService,
+    private hotelRest: HotelRestService
   )
   {
   }
@@ -35,9 +37,12 @@ export class ProfileAdminHotelComponent implements OnInit {
   newPassword:any;
   reset:any;
 
+  hotel:any;
+
   ngOnInit(): void
   {
-    this.userLogin()
+    this.userLogin();
+    this.getHotel();
   }
 
   cleanForm()
@@ -148,6 +153,16 @@ export class ProfileAdminHotelComponent implements OnInit {
           this.password = this.reset;
           this.newPassword = this.reset;
         },
+      })
+    }
+
+    getHotel()
+    {
+      this.hotelRest.getHotelManager().subscribe({
+        next: (res: any) => {
+          this.hotel = res.hotel;
+        },
+        error: (err) => {alert(err.error.message)}
       })
     }
 }

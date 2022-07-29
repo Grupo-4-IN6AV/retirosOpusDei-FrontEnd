@@ -116,10 +116,4 @@ export class HotelComponent implements OnInit {
     this.viewList = false;
   }
 
-  getRoomsHotel(id:string)
-  {
-
-  }
-
-
 }

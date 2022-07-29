@@ -61,6 +61,11 @@ export class EventRestService
     return this.http.delete(environment.baseURI + 'event/deleteEventHotel/' + id, { headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())});
   }
 
+  getEventsHotelID(id:string)
+  {
+    return this.http.get(environment.baseURI + 'event/getEventsHotelID/' + id, { headers: this.httpOptions.set('Authorization', this.credentialReset.getToken()) });
+  }
+
   //CARGA DE IMAGEN//
   requestFiles(
     eventID: string,

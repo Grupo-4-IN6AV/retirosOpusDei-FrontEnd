@@ -257,6 +257,10 @@ export class EventsAdminComponent implements OnInit {
               timer: 2000
             });
             this.getEvents();
+            if(this.showTableEvents)
+            {
+              this.showButtonActions(id,false)
+            }
           },
           error: (err) => Swal.fire({
             title: err.error.message,
