@@ -71,8 +71,10 @@
                   <div *ngIf="hotelView" class="modalHeader clearfix">
                     <div class="modal-about contact-header">
                       <div class="contact-details-img">
-                        <img src="../../../../assets/images/user/usrbig2.jpg" alt="avatar" />
-                      </div>
+                        <img *ngIf="!hotelImage" src="../../../../assets/images/user/usrbig2.jpg" alt="avatar" />
+                        <img style="object-fit: cover;" *ngIf="hotelImage" src="{{uriHotel}}" crossorigin="anonymous"
+                          alt="avatar" />
+                        </div>
                       <div class="contact-details-heading">
                         <div class="contact-details-name mb-2">
                           {{ hotelView.name }}
@@ -342,7 +344,10 @@
                     {{ hotels.indexOf(hotel) + 1 }}
                   </td>
                   <td (click)="getHotel(hotel._id)" class="table-img">
-                    <img src="assets/images/user/user8.jpg" alt="" />
+                    <img *ngIf="hotel.image===undefined" style="object-fit: cover;" src="assets/images/user/user8.jpg"
+                      crossorigin="anonymous" alt="" />
+                    <img *ngIf="hotel.image!==undefined" style="object-fit: cover;" src="{{uriHotels+hotel.image}}"
+                      crossorigin="anonymous" alt="" />
                   </td>
                   <td (click)="getHotel(hotel._id)" data-bs-toggle="modal" data-bs-target="#viewHotel">{{ hotel.name }}</td>
                   <td (click)="getHotel(hotel._id)" data-bs-toggle="modal" data-bs-target="#viewHotel">{{ hotel.description }}</td>

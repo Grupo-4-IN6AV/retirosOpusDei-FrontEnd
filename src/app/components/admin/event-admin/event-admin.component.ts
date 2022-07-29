@@ -36,7 +36,6 @@ export class EventsAdminComponent implements OnInit {
   eventUpdate: any;
   eventDeleted: any;
   notFound: boolean = false
-  viewModal: boolean = false
 
   //MOSTRAR FECHAS//
   newDates: any;
@@ -49,8 +48,7 @@ export class EventsAdminComponent implements OnInit {
   actualDate:any;
   available:any;
   availableEvent:any;
-
-
+  setDateUpdate:any;
 
   //show Calendar//
   showCalendarEvents : boolean = false;
@@ -68,8 +66,6 @@ export class EventsAdminComponent implements OnInit {
     initialView: 'dayGridMonth',
     events:[],
   };
-
-
 
   ngOnInit(): void
   {
@@ -274,6 +270,51 @@ export class EventsAdminComponent implements OnInit {
       {
         Swal.fire('Event Not Deleted','', 'info')
       }
+    })
+  }
+
+
+  updateEvent()
+  {
+    if(this.eventUpdate.date == null || undefined)
+    {
+      this.setDateUpdate = ''
+    }
+    else
+    {
+      this.setDateUpdate = this.eventUpdate.date;
+    }
+    let params =
+    {
+       name: this.eventUpdate.name,
+       description: this.eventUpdate.description,
+       date: this.setDateUpdate,
+       startHour: this.eventUpdate.startHour,
+       endHour: this.eventUpdate.endHour,
+       hotel: this.eventUpdate.hotel,
+    }
+    this.eventRest.updateEvent(this.eventUpdate._id, params).subscribe({
+      next: (res:any)=>
+      {
+        Swal.fire({
+          icon:'success',
+          title: res.message,
+          confirmButtonColor: '#28B463'
+        });
+        this.getEvents();
+        if(this.showTableEvents)
+        {
+          this.showButtonActions(this.eventUpdate._id,false)
+        }
+      },
+      error: (err)=>
+      {
+        Swal.fire({
+          icon: 'error',
+          title: err.error.message || err.error,
+          confirmButtonColor: '#E74C3C'
+        });
+      },
     })
   }
 
