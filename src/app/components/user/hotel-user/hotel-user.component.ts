@@ -28,6 +28,7 @@ export class HotelUserComponent implements OnInit {
   dates:any;
   room:any;
   uriReservation:any;
+  actualDate : any;
 
   constructor
   (
@@ -45,6 +46,7 @@ export class HotelUserComponent implements OnInit {
     this.getHotels();
     this.getServices();
     this.getPricesHotels();
+    this.actualDate = new Date();
   }
 
   getHotels()

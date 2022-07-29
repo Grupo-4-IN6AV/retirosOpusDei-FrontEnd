@@ -69,9 +69,9 @@
           <div class="d-flex align-items-center mb-2">
             <h5 class="mb-0 mr-2" style="color: black;">{{hotel.name}}&nbsp;</h5>
             <div>
-              <i style="color:#1976ED"class="fa fa-star text-warning"></i>
               <i style="color:#1976ED" class="fa fa-star text-warning"></i>
-              <i style="color:#1976ED"class="fa fa-star text-warning"></i>
+              <i style="color:#1976ED" class="fa fa-star text-warning"></i>
+              <i style="color:#1976ED" class="fa fa-star text-warning"></i>
               <i style="color:#1976ED" class="fa fa-star text-warning"></i>
               <i style="color:#1976ED" class="fa fa-star text-warning"></i>
             </div>
@@ -145,7 +145,8 @@
             </div>
             <h6 class="text-success">Free shipping</h6>
             <div class="d-flex flex-column mt-4">
-              <button (click)="reserveRoom(room._id)" data-bs-toggle="modal" data-bs-target="#reservationRoom" class="btn btn-sample btn-sm mt-2" type="button">
+              <button (click)="reserveRoom(room._id)" data-bs-toggle="modal" data-bs-target="#reservationRoom"
+                class="btn btn-sample btn-sm mt-2" type="button">
                 Reserve Room
               </button>
             </div>
@@ -211,9 +212,9 @@
     </div>
   </div>
 
-  <div *ngIf="room" class="modal fade" id="reservationRoom" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="reservationRoom" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-lg modal-dialog modal-dialog-centered">
-      <div class="modal-content">
+      <div *ngIf="room" class="modal-content">
         <div class="text-right p-2 bg-white">
           <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -238,6 +239,7 @@
             <img src="{{uriReservation}}" crossorigin="anonymous" width="150" class="rounded">
             <div class="d-flex flex-column ml-2">
               <h5 style="color:black" class="ms-2">{{room.name}}</h5>
+              <p>&nbsp; Additional Services</p>
               <div class="d-flex flex-row room-spec">
                 <span *ngFor="let service of servicesHotel">
                   <i class="fa {{service.icon}} text-muted ms-2">
@@ -247,25 +249,61 @@
           </div>
           <div class="p-3 bg-white border-bottom">
             <div class="info">
-              <span><i class="fa fa-info-circle text-muted"></i> <small class="text-muted">Non Refundable</small></span>
-              <span><i class="fa fa-car text-muted"></i> <small class="spec-text-color">Free Parking</small></span>
+              <h6 style="color:black"><i class="fa fa-calendar"></i> Select Your Dates</h6>
             </div>
             <div class="d-flex justify-content-between mt-3">
-              <div class="dropdown">
-                <a class="more dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                  aria-expanded="false">
-                  More info
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </div>
-              <div class="d-flex flex-row align-items-center spec">
-                <span class="text-muted"><i class="fa fa-moon-o"></i> 2</span>
-                <span class="text-muted"><i class="fa fa-user"></i> 2</span>
-                <span class="text-primary font-weight-bold">USD 522</span>
+              <form>
+                <div class="text-inside">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Entry Date</mat-label>
+                    <input [min]="actualDate" name="date" matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div class="text-inside">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Exit Date</mat-label>
+                    <input [min]="actualDate" name="date" matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                </div>
+              </form>
+              <div style="color:black" class="d-flex flex-row align-items-center spec">
+                <div class="invoice-box" style="margin-top: -2rem;">
+                  <table>
+                    <tr class="heading">
+                      <td>Item</td>
+
+                      <td>Price</td>
+                    </tr>
+
+                    <tr class="item">
+                      <td>Website design</td>
+
+                      <td>$300.00</td>
+                    </tr>
+
+                    <tr class="item">
+                      <td>Hosting (3 months)</td>
+
+                      <td>$75.00</td>
+                    </tr>
+
+                    <tr class="item last">
+                      <td>Domain name (1 year)</td>
+
+                      <td>$10.00</td>
+                    </tr>
+
+                    <tr class="total">
+                      <td></td>
+
+                      <td>Total: $385.00</td>
+                    </tr>
+                  </table>
+                </div>
                 <div class="form-check ml-2">
                   <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
                 </div>
@@ -279,25 +317,6 @@
               <span><i class="fa fa-car text-muted"></i> <small class="spec-text-color">Free Parking</small></span>
             </div>
             <div class="d-flex justify-content-between mt-3">
-              <div class="dropdown">
-                <a class="more dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                  aria-expanded="false">
-                  More info
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </div>
-              <div class="d-flex flex-row align-items-center spec">
-                <span class="text-muted"><i class="fa fa-moon-o"></i> 2</span>
-                <span class="text-muted"><i class="fa fa-user"></i> 2</span>
-                <span class="text-primary font-weight-bold">USD 522</span>
-                <div class="form-check ml-2">
-                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                </div>
-              </div>
             </div>
           </div>
         </div>
