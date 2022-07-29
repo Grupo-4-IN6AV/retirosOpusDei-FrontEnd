@@ -3,3 +3,66 @@
 @import url('../../../../assets/css/hotels/estilos.css');
 @import url('../../../../assets/css/hotels/responsive.css');
 @import url('../../../../assets/css/hotels/soap-icon.css');
+
+
+.form {
+
+    position: relative;
+  }
+  
+  .form .fa-search {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #9ca3af;
+  }
+  
+  .form span {
+    position: absolute;
+    right: 17px;
+    top: 13px;
+    padding: 2px;
+    border-left: 1px solid #d1d5db;
+  }
+  
+  .left-pan {
+    padding-left: 7px;
+  }
+  
+  .left-pan i {
+    padding-left: 10px;
+  }
+  
+  .form-input {
+    height: 55px;
+    text-indent: 33px;
+    border-radius: 10px;
+  }
+  
+  .form-input:focus {
+  
+    box-shadow: none;
+    border: none;
+  }
+
+  .tabs2-wrapper .tabs {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    line-height: 0;
+    font-size: 0;
+    vertical-align: top;
+    align-items: center;
+    align-content: center;
+  }
+
+  .btn-dark{
+    background-color: #222;
+  }
+
+  .btn-dark:hover{
+    background-color: #000;
+    color: #fff;
+    font-weight: 500;
+  }

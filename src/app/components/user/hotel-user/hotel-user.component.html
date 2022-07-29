@@ -36,7 +36,8 @@
   <div *ngIf="!roomsHotel && !eventsHotel" class="row mt-5"
     style="width: 100%; display: flex; justify-content: center;">
     <div class="col-sm-9 col-md-9 col-lg-9 mb-4">
-      <div *ngFor="let hotel of hotels | searchHotelBarPipe:searchHotel" style="background-color: white;"
+      <div *ngFor="let hotel of hotels | searchHotelBarPipe:searchHotel" style="    
+      background-color: white; min-height: 16rem; max-height: 16rem;"
         class="hotel-card rounded-lg  mb-4 overflow-hidden d-block d-lg-flex">
         <div class="hotel-card_images">
           <div id="bootstrapCarousel" class="carousel slide h-100" data-bs-ride="carousel">
@@ -107,7 +108,7 @@
   </div>
 
   <div *ngIf="roomsHotel" class="d-flex justify-content-center">
-    <button (click)="returnHotels()" type="button" class="ms-3 btn btn-event btn-dark">
+    <button (click)="returnHotels()" type="button" class="ms-3 btn btn-dark">
       Return Hotels
       <span class="btn-icon-end"><i class="fas fa-building"></i> </span>
     </button>

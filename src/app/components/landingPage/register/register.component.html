@@ -45,7 +45,7 @@
         <br>
         <br>
         <h1 class="font-weight-bold mb-4 letras">Sign Up</h1>
-        <form (ngSubmit)="register()" class="mb-5">
+        <form (ngSubmit)="register()" #registerForm="ngForm" class="mb-5">
           <div class="mb-4">
             <label for="exampleInputEmail1" class="form-label font-weight-bold">Name</label>
             <span *ngIf="!name.valid && name.touched" class="requiredField">
@@ -87,7 +87,9 @@
           <p class=" letras d-inline-block mb-0">I agree all statements in </p> <a routerLink="/register"
           class="text-light font-weight-bold text-decoration-none"><strong> Terms of service</strong> </a>
         </div>
-          <button type="submit" class="btn btn-primary w-100">Register</button>
+        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+          <button [disabled]="!registerForm.form.valid" type="submit" class="btn1 btn-lg">Register</button>
+        </div>
         </form>
       </div>
     </div>

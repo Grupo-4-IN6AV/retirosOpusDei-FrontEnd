@@ -1,73 +1,83 @@
-<div tyle="background-color: #FAFAFA; box-shadow: none; border: none;" class="card-wrapper">
-  <div class="card" style="background-color: #FFFFFF; box-shadow: none; border: none;">
-    <!-- card left -->
-    <div class="product-imgs">
-      <div class="img-display">
-        <div class="img-showcase">
-          <img *ngIf="room.image === undefined"  src="../../../../assets/images/not-image.jpeg" style="max-height: 20rem;" crossorigin="anonymous" alt="shoe image">
-          <img *ngIf="room.image === undefined"  src="../../../../assets/images/not-image.jpeg" style="max-height: 20rem;" crossorigin="anonymous" alt="shoe image">
-          <img *ngIf="room.image === undefined"  src="../../../../assets/images/not-image.jpeg" style="max-height: 20rem;" crossorigin="anonymous" alt="shoe image">
-          <img *ngIf="room.image === undefined"  src="../../../../assets/images/not-image.jpeg" style="max-height: 20rem;" crossorigin="anonymous" alt="shoe image">
-          <img *ngIf="room.image !== undefined"  src="{{uri}}" crossorigin="anonymous" alt="shoe image">
-          <img *ngIf="room.image !== undefined"  src="{{uri}}" crossorigin="anonymous" alt="shoe image">
-          <img *ngIf="room.image !== undefined"  src="{{uri}}" crossorigin="anonymous" alt="shoe image">
-          <img *ngIf="room.image !== undefined"  src="{{uri}}" crossorigin="anonymous" alt="shoe image">
-        </div>
-      </div>
-      <div class="img-select">
-        <div class="img-item">
-          <a data-id="1">
-            <img *ngIf="room.image === undefined"  src="../../../../assets/images/not-image.jpeg" crossorigin="anonymous" alt="shoe image">
+<div class="mt-5">
+  <div style="display: flex; justify-content: center; align-items:  center; padding-top: 50px; margin-bottom: -80px;">
+    <button  type="button" class="btn btn-event btn-dark" style="background: red;" >
+      Return Hotels
+      <span class="btn-icon-end"><i class="fas fa-building"></i> </span>
+    </button>
+  </div>
+  
+  <div tyle="background-color: #FAFAFA; box-shadow: none; border: none;" class="card-wrapper">
+    <div class="card" style="background-color: #FFFFFF; box-shadow: none; border: none;">
+      <!-- card left -->
+      <div class="product-imgs">
+        <div class="img-display">
+          <div class="img-showcase">
+            <img *ngIf="room.image === undefined"  src="../../../../assets/images/not-image.jpeg" style="max-height: 20rem;" crossorigin="anonymous" alt="shoe image">
+            <img *ngIf="room.image === undefined"  src="../../../../assets/images/not-image.jpeg" style="max-height: 20rem;" crossorigin="anonymous" alt="shoe image">
+            <img *ngIf="room.image === undefined"  src="../../../../assets/images/not-image.jpeg" style="max-height: 20rem;" crossorigin="anonymous" alt="shoe image">
+            <img *ngIf="room.image === undefined"  src="../../../../assets/images/not-image.jpeg" style="max-height: 20rem;" crossorigin="anonymous" alt="shoe image">
             <img *ngIf="room.image !== undefined"  src="{{uri}}" crossorigin="anonymous" alt="shoe image">
-          </a>
-        </div>
-        <div class="img-item">
-          <a data-id="2">
-            <img *ngIf="room.image === undefined"  src="../../../../assets/images/not-image.jpeg" crossorigin="anonymous" alt="shoe image">
             <img *ngIf="room.image !== undefined"  src="{{uri}}" crossorigin="anonymous" alt="shoe image">
-          </a>
-        </div>
-        <div class="img-item">
-          <a data-id="3">
-            <img *ngIf="room.image === undefined"  src="../../../../assets/images/not-image.jpeg" crossorigin="anonymous" alt="shoe image">
             <img *ngIf="room.image !== undefined"  src="{{uri}}" crossorigin="anonymous" alt="shoe image">
-          </a>
+            <img *ngIf="room.image !== undefined"  src="{{uri}}" crossorigin="anonymous" alt="shoe image">
+          </div>
         </div>
-        <div class="img-item">
-          <a data-id="4">
-            <img *ngIf="room.image === undefined"  src="../../../../assets/images/not-image.jpeg" crossorigin="anonymous" alt="shoe image">
-            <img *ngIf="room.image !== undefined" src="{{uri}}" crossorigin="anonymous" alt="shoe image">
-          </a>
+        <div class="img-select">
+          <div class="img-item">
+            <a data-id="1">
+              <img *ngIf="room.image === undefined"  src="../../../../assets/images/not-image.jpeg" crossorigin="anonymous" alt="shoe image">
+              <img *ngIf="room.image !== undefined"  src="{{uri}}" crossorigin="anonymous" alt="shoe image">
+            </a>
+          </div>
+          <div class="img-item">
+            <a data-id="2">
+              <img *ngIf="room.image === undefined"  src="../../../../assets/images/not-image.jpeg" crossorigin="anonymous" alt="shoe image">
+              <img *ngIf="room.image !== undefined"  src="{{uri}}" crossorigin="anonymous" alt="shoe image">
+            </a>
+          </div>
+          <div class="img-item">
+            <a data-id="3">
+              <img *ngIf="room.image === undefined"  src="../../../../assets/images/not-image.jpeg" crossorigin="anonymous" alt="shoe image">
+              <img *ngIf="room.image !== undefined"  src="{{uri}}" crossorigin="anonymous" alt="shoe image">
+            </a>
+          </div>
+          <div class="img-item">
+            <a data-id="4">
+              <img *ngIf="room.image === undefined"  src="../../../../assets/images/not-image.jpeg" crossorigin="anonymous" alt="shoe image">
+              <img *ngIf="room.image !== undefined" src="{{uri}}" crossorigin="anonymous" alt="shoe image">
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- card right -->
-    <div class="product-content">
-      <h1 class="product-title">{{room.name}}</h1>
-
-      <div class="product-price">
-        <p class="new-price">Price Night: <span>Q.{{room.price.toFixed(2)}}</span></p>
-      </div>
-
-      <div id="hotel-amenities">
-        <h2>Services of Hotel</h2>
-        <p>The rooms have the different services that this hotel has, which may or may not be included for an additional
-          cost at the time of your reservation, in addition, some services are exclusive to some rooms and you may
-          receive a discount for your reservation.</p>
-        <ul class="amenities clearfix style1">
-          <li *ngFor="let service of services" class="col-md-4 col-sm-6 mt-2">
-            <div class="icon-box style1"><i class="fa {{service.icon}}"></i>{{service.name}}</div>
-          </li>
-        </ul>
-        <br />
-      </div>
-
-      <div class="purchase-info">
-        <button class="btn" style="background-color:#1976ED; width:auto ;">
-          Add to Cart <i class="fas fa-shopping-cart"></i>
-        </button>
-
+      <!-- card right -->
+      <div class="product-content">
+        <h1 class="product-title">{{room.name}}</h1>
+  
+        <div class="product-price">
+          <p class="new-price">Price Night: <span>Q.{{room.price.toFixed(2)}}</span></p>
+        </div>
+  
+        <div id="hotel-amenities">
+          <h2>Services of Hotel</h2>
+          <p>The rooms have the different services that this hotel has, which may or may not be included for an additional
+            cost at the time of your reservation, in addition, some services are exclusive to some rooms and you may
+            receive a discount for your reservation.</p>
+          <ul class="amenities clearfix style1">
+            <li *ngFor="let service of services" class="col-md-4 col-sm-6 mt-2">
+              <div class="icon-box style1"><i class="fa {{service.icon}}"></i>{{service.name}}</div>
+            </li>
+          </ul>
+          <br />
+        </div>
+  
+        <div class="purchase-info">
+          <button class="btn" style="background-color:#1976ED; width:auto ;">
+            Add to Cart <i class="fas fa-shopping-cart"></i>
+          </button>
+  
+        </div>
       </div>
     </div>
   </div>
+  
 </div>

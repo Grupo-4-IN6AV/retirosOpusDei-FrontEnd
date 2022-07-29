@@ -2,6 +2,7 @@
   <div class="container">
     <div class="pane1 clearfix">
       <div class="tabs2-wrapper">
+        
         <ul class="tabs clearfix" data-tabgroup="second-tab-group">
           <li (click)="viewBlockRoom()" *ngIf="viewBlock" class="active">
             <a>
@@ -15,31 +16,24 @@
           </li>
           <li (click)="viewListRoom()" *ngIf="!viewList"><a><i class="fas fa-th-list"></i></a></li>
           <li (click)="viewListRoom()" *ngIf="viewList" class="active"><a><i class="fas fa-th-list"></i></a></li>
+
+          <div class="d-flex align-items-center" style="padding-bottom: 10px;">
+            <div *ngIf="roomsHotel" class="row me-5 ms-5 " style="min-width: 25rem;">
+              <div class="form">
+                <i class="fa fa-search ms-2"></i>
+                <input [(ngModel)]="searchHotel" type="text" class="form-control form-input" placeholder="Search Hotel...">
+              </div>
+            </div>
+            <div *ngIf="roomsHotel" class="ms-5">
+              <button routerLink="/hotels" type="button" class="ms-3 btn btn-event btn-dark">
+                Return Hotels
+                <span class="btn-icon-end"><i class="fas fa-building"></i> </span>
+              </button>
+            </div>
+          </div>
         </ul>
+        
       </div>
-
-      <div class="sorting dropdown">
-        <a class="dropdown-toggle" href="#" role="button" id="dropdownSorting" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          Defaul Sorting
-        </a>
-        <div class="dropdown-menu" aria-labelledby="dropdownSorting">
-          <a class="dropdown-item" href="#">Price</a>
-          <a class="dropdown-item" href="#">Popular</a>
-        </div>
-      </div>
-
-      <div class="sortby dropdown">
-        <a class="dropdown-toggle" href="#" role="button" id="dropdownSortBy" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          Sort by popular
-        </a>
-        <div class="dropdown-menu" aria-labelledby="dropdownSortBy">
-          <a class="dropdown-item" href="#">Price</a>
-          <a class="dropdown-item" href="#">Popular</a>
-        </div>
-      </div>
-
     </div>
 
     <div id="second-tab-group" class="tabgroup">
