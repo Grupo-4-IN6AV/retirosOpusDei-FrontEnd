@@ -164,7 +164,10 @@ export class ServicesAdminHotelComponent implements OnInit {
           confirmButtonColor: '#28B463'
         });
         this.getServicesHotel();
-        this.showButtonActions(this.serviceUpdate._id,false)
+        if(this.showTableServices)
+        {
+          this.showButtonActions(this.serviceUpdate._id,false)
+        }
       },
       error: (err)=>
       {
@@ -198,7 +201,10 @@ export class ServicesAdminHotelComponent implements OnInit {
               timer: 2000
             });
             this.getServicesHotel();
-            this.showButtonActions(id,false)
+            if(this.showTableServices)
+            {
+              this.showButtonActions(id,false)
+            }
           },
           error: (err) => Swal.fire({
             title: err.error.message,
@@ -223,7 +229,6 @@ export class ServicesAdminHotelComponent implements OnInit {
       service.checked = true
     }
   }
-
 
   showButtonActions(serviceID:any, check:any)
   {

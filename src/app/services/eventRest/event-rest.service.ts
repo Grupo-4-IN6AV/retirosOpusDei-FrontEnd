@@ -35,6 +35,11 @@ export class EventRestService
     return this.http.get(environment.baseURI + 'event/getEvent/' + id, { headers: this.httpOptions.set('Authorization', this.credentialReset.getToken()) });
   }
 
+  updateEvent(id:string, params:{})
+  {
+    return this.http.put(environment.baseURI + 'event/updateEvent/' + id, params,{ headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())});
+  }
+
   searchEvent(params : {})
   {
     return this.http.post(environment.baseURI + 'event/getEventsName', params, { headers: this.httpOptions.set('Authorization', this.credentialReset.getToken()) });

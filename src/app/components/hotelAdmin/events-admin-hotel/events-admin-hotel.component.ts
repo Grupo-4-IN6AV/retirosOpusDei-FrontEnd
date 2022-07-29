@@ -288,6 +288,10 @@ export class EventsAdminHotelComponent implements OnInit
               timer: 2000
             });
             this.getEventsHotel();
+            if(this.showTableEvents)
+            {
+              this.showButtonActions(id,false)
+            }
           },
           error: (err) => Swal.fire({
             title: err.error.message,

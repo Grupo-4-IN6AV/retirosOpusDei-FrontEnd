@@ -124,8 +124,8 @@
               <div *ngIf="serviceView" class="modalHeader clearfix">
                 <div class="modal-about contact-header">
                   <div class="contact-details-img">
-                    <img src="../../../../assets/images/user/usrbig2.jpg" alt="avatar" />
-                  </div>
+                    <i *ngIf="serviceView.icon" class="fa {{serviceView.icon}} fa-3x"></i>
+                    <i  *ngIf="!serviceView.icon" class="fa fa-question fa-3x"></i>                  </div>
                   <div class="contact-details-heading">
                     <div class="contact-details-name mb-2">
                       {{ serviceView.name }}

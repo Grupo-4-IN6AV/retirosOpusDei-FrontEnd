@@ -6,6 +6,7 @@ import { HotelRestService } from 'src/app/services/hotelRest/hotel-rest.service'
 import { UserRestService } from 'src/app/services/userRest/user-rest.service';
 import { HotelModel } from 'src/app/models/hotel.model'
 import Swal from 'sweetalert2';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-hotel-admin',
@@ -36,6 +37,10 @@ export class HotelAdminComponent implements OnInit {
   users: any;
   hotelDeleted:any;
 
+  uriHotels: any;
+  uriHotel: any;
+  hotelImage: any;
+
   constructor(
     public dialog: MatDialog,
     private modalService: NgbModal,
@@ -58,6 +63,7 @@ export class HotelAdminComponent implements OnInit {
       next: (res: any) =>
       {
         this.hotels = res.hotels
+        this.uriHotels = environment.baseURI+'hotel/getImageHotel/'
       },
       error: (err) => console.log(err)
     })
@@ -96,6 +102,8 @@ export class HotelAdminComponent implements OnInit {
         this.hotelView = res.hotel;
         this.hotelUpdate = res.hotel;
         this.hotelDeleted = res.hotel
+        this.hotelImage = res.hotel.image
+        this.uriHotel = environment.baseURI+'hotel/getImageHotel/'+this.hotelImage
       },
       error: (err) => {alert(err.error.message)}
     })
