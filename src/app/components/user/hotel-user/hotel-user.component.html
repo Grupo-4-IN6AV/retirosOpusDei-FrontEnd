@@ -3,7 +3,7 @@
     &nbsp;<i class="fa fa-building" aria-hidden="true"> </i>
     Hotels
   </h1>
-  <h1 *ngIf="roomsHotel" style="margin-top: 4rem">
+  <h1 *ngIf="roomsHotel && !showBillFinish" style="margin-top: 4rem">
     &nbsp;<i class="fa fa-bed" aria-hidden="true"> </i>
     Rooms
   </h1>
@@ -19,7 +19,7 @@
       <input [(ngModel)]="searchHotel" type="text" class="form-control form-input" placeholder="Search Hotel...">
     </div>
   </div>
-  <div *ngIf="roomsHotel" class="row d-flex justify-content-center align-items-center">
+  <div *ngIf="roomsHotel && !showBillFinish" class="row d-flex justify-content-center align-items-center">
     <div class="form">
       <i class="fa fa-search ms-2"></i>
       <input [(ngModel)]="searchRoom" type="text" class="form-control form-input" placeholder="Search Room...">
@@ -114,7 +114,7 @@
     </button>
   </div>
 
-  <div *ngIf="roomsHotel" class="container mt-2 mb-5">
+  <div *ngIf="roomsHotel && !showBillFinish" class="container mt-2 mb-5">
     <div *ngFor="let room of roomsHotel | searchRoomBarPipe:searchRoom" class="d-flex justify-content-center row">
       <div class="col-md-10">
         <div class="row p-2 bg-white border rounded mt-2">
@@ -182,15 +182,15 @@
               </div>
 
               <div class="mt-1 mb-1 spec-1">
-                <span class="fa fa-clock"></span>&nbsp;<span>{{event.date}}</span>
+                <span class="fa fa-clock"></span>&nbsp;<span>{{datesEvents[eventsHotel.indexOf(event)]}}</span>
               </div>
 
               <div class="mt-1 mb-1 spec-1">
-                <span class="fa fa-clock"></span>&nbsp;<span>{{event.startHour}}</span>
+                <span class="fa fa-clock"></span>&nbsp;<span>{{event.startHour}} hrs.</span>
               </div>
 
               <div class="mt-1 mb-1 spec-1">
-                <span class="fa fa-clock"></span>&nbsp;<span>{{event.endHour}}</span>
+                <span class="fa fa-clock"></span>&nbsp;<span>{{event.endHour}} hrs.</span>
               </div>
 
             </div>
@@ -347,6 +347,115 @@
         <div class="text-center mt-4 mb-4">
           <button (click)="saveReservation()" type="submit" class="btn btn-sample booking" data-bs-dismiss="modal">Check
             Reservation</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showBillFinish===true" class="mt-4">
+    <div class="row clearfix">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+          <div class="body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="white-box">
+                  <h3>
+                    <b>INVOICE</b>
+                    <span class="float-end">#{{showBill.numberBill}}</span>
+                  </h3>
+                  <hr>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="float-start">
+                        <address>
+                          <p class="font-bold">BILL TO :</p>
+                          <p class="text-muted">
+                            {{showBill.user.name}} {{showBill.user.surname}},
+                            <br> Tel. {{showBill.user.phone}}
+                            <br> Email. {{showBill.user.email}},
+                          </p>
+                        </address>
+                      </div>
+                      <div class="float-end text-end">
+                        <address>
+                          <p class="addr-font-h3 font-bold">BILL FROM :</p>
+                          <p class="font-bold addr-font-h4">{{showBill.hotel.name}}</p>
+                          <p class="text-muted m-l-30">
+                            <br> {{showBill.hotel.address}},
+                            <br> Tel. {{showBill.hotel.phone}},
+                            <br> Email. {{showBill.hotel.email}}
+                          </p>
+                          <p class="m-t-30">
+                            <b>Invoice Date :</b>
+                            <i class="fa fa-calendar"></i> {{splitDateBill}}
+                          </p>
+                          <p>
+                            <b>Status :</b>
+                            <span class="label label-success">Success</span>
+                          </p>
+                        </address>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="table-responsive m-t-40">
+                        <table class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th class="text-center">#</th>
+                              <th class="text-center">Service</th>
+                              <th class="text-center">Price</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let service of showServicesBill">
+                              <td class="text-center">{{showServicesBill.indexOf(service)+1}}</td>
+                              <td class="text-center">{{service.name}}</td>
+                              <td class="text-center">Q.{{service.price.toFixed(2)}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <table class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th class="text-center">Room</th>
+                              <th class="text-center">Entry Date</th>
+                              <th class="text-center">Exit Date</th>
+                              <th class="text-center">Total Days</th>
+                              <th class="text-center">Total Nights</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="text-center">{{showBill.room.room.name}}</td>
+                              <td class="text-center">{{splitDateEntry}}</td>
+                              <td class="text-center">{{splitDateExit}}</td>
+                              <td class="text-center">{{showBill.totalDays}}</td>
+                              <td class="text-center">{{showBill.totalNights}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="float-end m-t-30 text-end">
+                        <p>Sub - Total amount: Q.{{showBill.subTotal.toFixed(2)}}</p>
+                        <p>IVA (12%) : Q.{{showBill.IVA.toFixed(2)}} </p>
+                        <hr>
+                        <h3>
+                          <b>Total :</b>Q.{{showBill.total.toFixed(2)}}</h3>
+                      </div>
+                      <div class="clearfix"></div>
+                      <hr>
+                      <div class="text-end">
+                        <button (click)="imprimir()" mat-raised-button color="primary"><i class="fas fa-print msr-2"></i>Print</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

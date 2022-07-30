@@ -70,4 +70,9 @@ export class ReservationRestService {
     return this.http.get(environment.baseURI + 'reservation/getReservationsExtra', { headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())});
   }
 
+  getBill(id:string)
+  {
+    return this.http.get(environment.baseURI + 'reservation/getBill/' + id, { headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())});
+  }
+
 }
