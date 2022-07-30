@@ -196,7 +196,8 @@
                     Information Event
                   </h6>
                   <ul class="list-group my-0 pl-1">
-                    <li class="list-inline-item"><i class="far fa-clock"></i> {{event.startHour}} to {{event.endHour}}</li>
+                    <li class="list-inline-item"><i class="far fa-clock"></i> {{event.startHour}} to {{event.endHour}}
+                    </li>
                     <li class="list-inline-item"><i class="fas fa-calendar-check"></i>{{event.date}}</li>
                     <li class="list-inline-item"><i class="fas fa-calendar-check"></i>{{event.day}}</li>
                     <li class="list-inline-item"><i class="fas fa-location-arrow"></i> Room 4019</li>
@@ -253,11 +254,12 @@
               <h6 style="color:black"><i class="fa fa-calendar"></i> Select Your Dates</h6>
             </div>
             <div class="d-flex justify-content-between mt-3" style="flex-wrap: wrap;">
-              <form (ngSubmit)="saveReservation()"  #add="ngForm">
+              <form (ngSubmit)="saveReservation()" #add="ngForm">
                 <div class="text-inside">
                   <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>Entry Date</mat-label>
-                    <input [(ngModel)]="entryDate" style="color:#121212" [min]="actualDate" name="date" matInput [matDatepicker]="picker">
+                    <input [(ngModel)]="entryDate" style="color:#121212" [min]="actualDate" name="date" matInput
+                      [matDatepicker]="picker">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                   </mat-form-field>
@@ -265,7 +267,8 @@
                 <div class="text-inside">
                   <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>Exit Date</mat-label>
-                    <input  [(ngModel)]="exitDate" style="color:#121212" [min]="actualDate" name="date2" matInput [matDatepicker]="picker2">
+                    <input [(ngModel)]="exitDate" style="color:#121212" [min]="actualDate" name="date2" matInput
+                      [matDatepicker]="picker2">
                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2></mat-datepicker>
                   </mat-form-field>
@@ -273,7 +276,8 @@
                 <div class="text-inside">
                   <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>Total Persons</mat-label>
-                    <input style="color: #121212;" min="1" autocomplete="off" [(ngModel)]="totalPersons" type="number" name="persons" matInput />
+                    <input style="color: #121212;" min="1" autocomplete="off" [(ngModel)]="totalPersons" type="number"
+                      name="persons" matInput />
                   </mat-form-field>
                 </div>
               </form>
@@ -290,7 +294,8 @@
                     <tr class="item last">
                       <td>Total Nights</td>
                       <td *ngIf="!exitDate || !entryDate">0</td>
-                      <td *ngIf="exitDate && entryDate">{{calculateNights(exitDate.getTime() , entryDate.getTime())}}</td>
+                      <td *ngIf="exitDate && entryDate">{{calculateNights(exitDate.getTime() , entryDate.getTime())}}
+                      </td>
                     </tr>
                     <tr class="total">
                       <td></td>
@@ -317,7 +322,9 @@
           <div class="p-3 bg-white border-bottom">
             <div class="info">
               <h5 style="color:#121212">&nbsp; Add Additional Services</h5>
-              <mat-checkbox (click)="addServices(service.price,check);pushingServices(check,service._id)" #check="matCheckbox" *ngFor="let service of servicesHotel" class="example-margin" color="primary">
+              <mat-checkbox *ngFor="let service of servicesHotel"
+                (click)="addServices(service.price,check);pushingServices(check,service._id)" #check="matCheckbox"
+                class="example-margin" color="primary">
                 <i class="fas {{service.icon}}"></i>&nbsp;{{service.name}}
               </mat-checkbox>
             </div>
@@ -330,7 +337,7 @@
             <div class="container">
               <div class="d-flex justify-content-center align-items-center">
                 <div *ngIf="entryDate" class="check-in me-4">
-                  <span  *ngIf="entryDate" style="color:black">Entry Date</span>
+                  <span *ngIf="entryDate" style="color:black">Entry Date</span>
                   <div class="d-flex flex-row align-items-center">
                     <h1 *ngIf="entryDate" class="date-o" style="color:#1976ED">{{calculateDayEntry(entryDate)}}</h1>
                     <div class="d-flex flex-column ml-2 date">
@@ -339,7 +346,7 @@
                   </div>
                 </div>
                 <div *ngIf="exitDate" class="check-out ms-4">
-                  <span  *ngIf="exitDate" style="color:black">Exit Date</span>
+                  <span *ngIf="exitDate" style="color:black">Exit Date</span>
                   <div class="d-flex flex-row align-items-center">
                     <h1 *ngIf="exitDate" style="color: #1976ed;" class="date-o">{{calculateDayExit(exitDate)}}</h1>
                     <div class="d-flex flex-column ml-2 date">
@@ -351,9 +358,10 @@
             </div>
           </div>
         </div>
-          <div class="text-center mt-4 mb-4">
-            <button (click)="saveReservation()" type="submit" class="btn btn-sample booking" data-bs-dismiss="modal">Check Reservation</button>
-          </div>
+        <div class="text-center mt-4 mb-4">
+          <button (click)="saveReservation()" type="submit" class="btn btn-sample booking" data-bs-dismiss="modal">Check
+            Reservation</button>
+        </div>
       </div>
     </div>
   </div>

@@ -38,7 +38,7 @@ export class HotelUserComponent implements OnInit {
   exitDate: any;
   totalPersons: any;
   pricesServices: number = 0;
-  pushServices:any;
+  pushServices:any = [];
   //Fechas//
   setDateEntry : any;
   setDateExit: any;
@@ -67,6 +67,7 @@ export class HotelUserComponent implements OnInit {
   addServices(prices:any , checked:any,)
   {
     let check =! checked.checked
+
     if(check === false)
     {
       this.pricesServices = this.pricesServices - prices;
@@ -79,16 +80,16 @@ export class HotelUserComponent implements OnInit {
 
   pushingServices(checked:any, dataService:any)
   {
-    var array = this.pushServices;
+    var array = this.pushServices
     let check =! checked.checked
-    if(check === false)
-    {
-    }
+
     if(check === true)
     {
-      array.push(dataService)
+      array = this.pushServices.push(dataService);
+    } else if(check === false) {
+      const indice = this.pushServices.indexOf(dataService);
+      array = this.pushServices.splice(indice,1);
     }
-    this.pushServices = array;
   }
 
   returnTotal()

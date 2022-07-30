@@ -39,6 +39,7 @@ import { UserGuard } from './guards/user.guard'
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 import { UserCalendarComponent } from './components/user/user-calendar/user-calendar.component';
 import { HistoryComponent } from './components/user/history/history.component';
+import { ReservationsComponent } from './components/user/reservations/reservations.component';
 
 const routes: Routes =
 [
@@ -86,6 +87,7 @@ const routes: Routes =
       {path: 'profile', component: UserProfileComponent},
       {path: 'calendar', component: UserCalendarComponent},
       {path: 'history', component: HistoryComponent},
+      {path: 'reservations', component: ReservationsComponent},
     ]
   },
   { path: '**', component: NotFoundPageComponent}
