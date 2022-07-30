@@ -3,6 +3,7 @@ export class EventModel {
       public id: string,
       public name: string,
       public description: string,
+      public typeEvent: string,
       public startHour: string,
       public endHour: string,
       public hotel: string,

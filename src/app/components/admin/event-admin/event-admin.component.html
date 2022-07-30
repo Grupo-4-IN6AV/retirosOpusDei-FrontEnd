@@ -88,6 +88,12 @@
             </div>
             <div class="text-inside">
               <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Type Event</mat-label>
+                <input autocomplete="off" [(ngModel)]="event.typeEvent" name="typeEvent" matInput />
+              </mat-form-field>
+            </div>
+            <div class="text-inside">
+              <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>Date</mat-label>
                 <input [(ngModel)]="addDate" [min]="actualDate" name="date" matInput [matDatepicker]="picker">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -159,6 +165,12 @@
             </div>
             <div class="text-inside">
               <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Type Event</mat-label>
+                <input autocomplete="off" [(ngModel)]="eventUpdate.typeEvent" name="typeEvent" matInput />
+              </mat-form-field>
+            </div>
+            <div class="text-inside">
+              <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>Date</mat-label>
                 <input [(ngModel)]="eventUpdate.date" [min]="actualDate" name="date" matInput [matDatepicker]="picker">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -211,7 +223,7 @@
                     <div class="contact-details-img">
                       <img *ngIf="!eventView.image" src="../../../../assets/images/user/usrbig2.jpg" alt="avatar" />
                       <img style="object-fit: cover;" *ngIf="eventView.image" src="{{uri}}" crossorigin="anonymous"
-                      alt="avatar" />
+                        alt="avatar" />
                     </div>
                     <div class="contact-details-heading">
                       <div class="contact-details-name mb-2">
@@ -248,6 +260,14 @@
 
                 <div class="box">
                   <p>{{ eventView.description }}</p>
+                </div>
+
+                <div class="box">
+                  <h3>Type Event:</h3>
+                </div>
+
+                <div class="box">
+                  <p>{{ eventView.typeEvent }}</p>
                 </div>
 
                 <div class="box">
@@ -338,6 +358,7 @@
                   <th>Photo</th>
                   <th>Name</th>
                   <th>Description</th>
+                  <th>Type Event</th>
                   <th>Date</th>
                   <th>Start Hour</th>
                   <th>End Hour</th>
@@ -365,6 +386,8 @@
                   </td>
                   <td (click)="getEvent(event._id)" data-bs-toggle="modal" data-bs-target="#viewEvent">{{
                     event.description }}</td>
+                  <td (click)="getEvent(event._id)" data-bs-toggle="modal" data-bs-target="#viewEvent">{{
+                    event.typeEvent }}</td>
                   <td (click)="getEvent(event._id)" data-bs-toggle="modal" data-bs-target="#viewEvent">
                     {{newDates[events.indexOf(event)]}}</td>
                   <td (click)="getEvent(event._id)" data-bs-toggle="modal" data-bs-target="#viewEvent">{{

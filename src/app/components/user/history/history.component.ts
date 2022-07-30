@@ -101,7 +101,6 @@ export class HistoryComponent implements OnInit {
         this.entryDates = arrayStartDates;
         this.days = arrayDays;
         this.months = arrayMonths
-        console.log(this.months)
       },
       error: (err) => console.log(err)
     })
@@ -113,11 +112,12 @@ export class HistoryComponent implements OnInit {
       next: (res: any) =>
       {
         this.viewReservation = res.reservation;
-
+        let splitEntry = this.viewReservation.entryDate.split('T')
+        this.entryDate = splitEntry[0]
+        let splitExit = this.viewReservation.exitDate.split('T')
+        this.exitDate = splitExit[0]
       },
       error: (err) => {alert(err.error.message)}
     })
   }
-
-
 }

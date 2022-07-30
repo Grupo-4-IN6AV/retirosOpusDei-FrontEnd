@@ -1,0 +1,72 @@
+<section class="content">
+  <h1 style="margin-top: 4rem">
+    &nbsp;<i class="fa-solid fa-book-atlas"></i>
+    Reservations
+  </h1>
+  <hr />
+
+  <div class="btn-group me-3 mt-5 mb-5 d-flex justify-content-center">
+    <div class="btn-group me-5" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+      <button type="button" class="ms-3 btn btn-event btn-secondary"
+      id="dropdownBasic1" ngbDropdownToggle>
+      Search For Hotel
+      <span class="btn-icon-end"><i class="fas fa-building"></i></span>
+      </button>
+      <div class="dropdown-menu" ngbDropdownMenu>
+        <button *ngFor="let hotel of hotels" (click)="getReservationHotel(hotel._id,hotel.name)" ngbDropdownItem>{{hotel.name}}</button>
+      </div>
+    </div>
+    <button  (click)="getReservations()" type="button" class="btn btn-secondary btn-event" style="max-width:20%">
+      All Reservations
+      <span class="btn-icon-end"><i class="fas fa-book"></i></span>
+    </button>
+    <button routerLink="/admin/home" type="button" class="ms-3 btn btn-event btn-dark ms-5" style="max-width:18%">
+      Back Home
+      <span class="btn-icon-end"><i class="fas fa-home"></i> </span>
+    </button>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="header">
+            <h2 *ngIf="!hotelName">
+              <strong>All</strong> Reservations</h2>
+              <h2 *ngIf="hotelName">
+              <strong>Reservations of</strong> {{hotelName}}</h2>
+          </div>
+          <div class="body table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Hotel</th>
+                  <th>User</th>
+                  <th>Entry Date</th>
+                  <th>Exit Date</th>
+                  <th>Total Days</th>
+                  <th>Total Nights</th>
+                  <th>Total Money</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let reservation of reservations">
+                  <th scope="row">{{ reservations.indexOf(reservation) + 1 }}</th>
+                  <td>{{reservation.hotel.name}}</td>
+                  <td>{{reservation.user.name}} {{reservation.user.surname}}</td>
+                  <td>{{entryDates[reservations.indexOf(reservation)]}}</td>
+                  <td>{{exitDates[reservations.indexOf(reservation)]}}</td>
+                  <td>{{reservation.totalDays}}</td>
+                  <td>{{reservation.totalNights}}</td>
+                  <td>Q.{{reservation.total.toFixed(2)}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

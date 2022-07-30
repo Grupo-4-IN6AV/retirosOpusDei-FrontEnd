@@ -39,7 +39,8 @@ import { UserGuard } from './guards/user.guard'
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 import { UserCalendarComponent } from './components/user/user-calendar/user-calendar.component';
 import { HistoryComponent } from './components/user/history/history.component';
-import { ReservationsComponent } from './components/user/reservations/reservations.component';
+import { ReservationsReportComponent } from './components/admin/reservations-report/reservations-report.component';
+import { ReservationsReportComponentHotel } from './components/hotelAdmin/reservations-report/reservations-report.component';
 
 const routes: Routes =
 [
@@ -66,6 +67,7 @@ const routes: Routes =
       {path: 'service', component: ServicesAdminComponent},
       {path: 'room', component: RoomAdminComponent},
       {path: 'typeRoom', component: TypeRoomAdminComponent},
+      {path: 'reservations', component: ReservationsReportComponent},
     ]
   },
   {
@@ -78,6 +80,7 @@ const routes: Routes =
       {path: 'service', component: ServicesAdminHotelComponent},
       {path: 'room', component: RoomsAdminHotelComponent},
       {path: 'typeRoom', component: TypesRoomsAdminHotelComponent},
+      {path: 'reservations', component: ReservationsReportComponentHotel}
     ]
   },
   {
@@ -87,7 +90,6 @@ const routes: Routes =
       {path: 'profile', component: UserProfileComponent},
       {path: 'calendar', component: UserCalendarComponent},
       {path: 'history', component: HistoryComponent},
-      {path: 'reservations', component: ReservationsComponent},
     ]
   },
   { path: '**', component: NotFoundPageComponent}

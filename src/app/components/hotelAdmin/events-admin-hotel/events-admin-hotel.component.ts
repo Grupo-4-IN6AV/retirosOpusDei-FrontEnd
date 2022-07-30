@@ -73,7 +73,7 @@ export class EventsAdminHotelComponent implements OnInit
 
   )
   {
-    this.event = new EventModel('','','','','','');
+    this.event = new EventModel('','','','','','','');
   }
 
   calendarOptions: CalendarOptions = {
@@ -101,6 +101,7 @@ export class EventsAdminHotelComponent implements OnInit
     let data =
     {
        name: this.event.name,
+       typeEvent: this.event.typeEvent,
        description: this.event.description,
        date: this.setDate,
        startHour: this.event.startHour,
@@ -232,6 +233,7 @@ export class EventsAdminHotelComponent implements OnInit
     let params =
     {
        name: this.eventUpdate.name,
+       typeEvent: this.eventUpdate.typeEvent,
        description: this.eventUpdate.description,
        date: this.setDateUpdate,
        startHour: this.eventUpdate.startHour,

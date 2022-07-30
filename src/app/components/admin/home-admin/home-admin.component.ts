@@ -66,6 +66,7 @@ export class HomeAdminComponent implements OnInit
   totalClients: any;
   totalRooms: any;
   totalReservations: any;
+  reservations:any
 
   hotels: any;
   totalHotels:any
@@ -76,7 +77,69 @@ export class HomeAdminComponent implements OnInit
     this.getHotels();
     this.getRooms();
     this.getReservations();
+    this.graficBar();
   }
+
+  graficBar()
+  {
+    this.hotelRest.getHotels().subscribe({
+      next: (res: any) =>
+      {
+        this.hotels = res.hotels;
+        const setDataSetsXAxis = []
+        const setDataNumber = [];
+        for (var key=0; key < this.hotels.length; key ++)
+        {
+          var data =  this.hotels[key];
+          setDataSetsXAxis.push(data.name)
+          setDataNumber.push(data.visits)
+        }
+        this.bar_chart =
+        {
+          grid: {
+            top: '6',
+            right: '0',
+            bottom: '17',
+            left: '25',
+          },
+          xAxis: {
+            data: setDataSetsXAxis,
+
+            axisLabel: {
+              fontSize: 10,
+              color: '#9aa0ac',
+            },
+          },
+          tooltip: {
+            show: true,
+            showContent: true,
+            alwaysShowContent: false,
+            triggerOn: 'mousemove',
+            trigger: 'axis',
+          },
+          yAxis: {
+            axisLabel: {
+              fontSize: 10,
+              color: '#9aa0ac',
+            },
+          },
+          series: [
+            {
+              name: 'sales',
+              type: 'bar',
+              data: setDataNumber,
+            },
+          ],
+          color: ['#F4D03F',],
+        };
+
+      },
+      error: (err) => {console.log(err)}
+    })
+
+  }
+
+  bar_chart: EChartsOption
 
   getUsers()
   {
@@ -97,14 +160,50 @@ export class HomeAdminComponent implements OnInit
         this.totalAdminsHotels = arrayAdmins.length;
         this.totalClients = arrayClients.length
         //DATA A LA GRAFICA//
-        this.donut_chart.series[0].data.push(
+        let data = [
           {
             value: this.totalAdminsHotels, name:'ADMIN HOTELS'
           },
           {
             value: this.totalClients, name:'CLIENTS'
           }
-          )
+        ]
+          this.donut_chart = {
+            tooltip:
+            {
+              trigger: 'item',
+              formatter: '{a} <br/>{b} : {c} ({d}%)',
+            },
+            legend:
+            {
+              show: true,
+              data: ['Admins Hotels', 'Clients'],
+              textStyle:
+              {
+                color: '#9aa0ac',
+                padding: [5, 10],
+              },
+            },
+            toolbox:
+            {
+              show: true,
+            },
+            series:
+            [
+              {
+                name: 'Role',
+                type: 'pie',
+                radius: ['40%', '70%'],
+                itemStyle: {
+                  borderRadius: 0,
+                  borderColor: '#fff',
+                  borderWidth: 2,
+                },
+                data:data,
+              },
+            ],
+            color: ['#0D6EFD', '#FFC107'],
+          };
       },
       error: (err) => console.log(err)
     })
@@ -144,43 +243,8 @@ export class HomeAdminComponent implements OnInit
     })
   }
 
-  donut_chart: EChartsOption =
-  {
-    tooltip:
-    {
-      trigger: 'item',
-      formatter: '{a} <br/>{b} : {c} ({d}%)',
-    },
-    legend:
-    {
-      show: true,
-      data: ['Admins Hotels', 'Clients'],
-      textStyle:
-      {
-        color: '#9aa0ac',
-        padding: [5, 10],
-      },
-    },
-    toolbox:
-    {
-      show: true,
-    },
-    series:
-    [
-      {
-        name: 'Role',
-        type: 'pie',
-        radius: ['40%', '70%'],
-        itemStyle: {
-          borderRadius: 0,
-          borderColor: '#fff',
-          borderWidth: 2,
-        },
-        data:[],
-      },
-    ],
-    color: ['#0D6EFD', '#FFC107'],
-  };
+  donut_chart: EChartsOption
+
 
   @ViewChild('chart') chart: ChartComponent;
   // sparkline chart start

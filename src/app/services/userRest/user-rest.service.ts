@@ -98,6 +98,11 @@ export class UserRestService
     return this.http.put(environment.baseURI + 'user/changePassword/' + id, params, { headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())})
   }
 
+  deleteAccount(id:string)
+  {
+    return this.http.delete(environment.baseURI + 'user/deleteUser/' + id, { headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())})
+  }
+
   requestFiles(
     userID: string,
     files: Array<File>,

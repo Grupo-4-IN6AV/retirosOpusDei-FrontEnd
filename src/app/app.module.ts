@@ -118,7 +118,7 @@ import { UserProfileComponent } from './components/user/user-profile/user-profil
 import { UserCalendarComponent } from './components/user/user-calendar/user-calendar.component';
 import { HistoryComponent } from './components/user/history/history.component';
 import { SearchRoomViewPipe } from './pipes/searchRoomView/search-room-view.pipe';
-import { ReservationsComponent } from './components/user/reservations/reservations.component'
+import { ReservationsReportComponentHotel } from './components/hotelAdmin/reservations-report/reservations-report.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -190,7 +190,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         UserCalendarComponent,
         HistoryComponent,
         SearchRoomViewPipe,
-        ReservationsComponent
+        ReservationsReportComponentHotel,
     ],
     imports: [
         SwiperModule,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SidebarComponent } from 'src/app/layout/sidebar/sidebar.component';
 import { CredentialsRestService } from 'src/app/services/credentialsRest/credentials-rest.service';
 import { HotelRestService } from 'src/app/services/hotelRest/hotel-rest.service';
@@ -16,6 +17,7 @@ export class UserProfileComponent implements OnInit {
   (
     private userRest: UserRestService,
     private credentialRest: CredentialsRestService,
+    public router: Router
   )
   {
   }
@@ -150,5 +152,43 @@ export class UserProfileComponent implements OnInit {
         },
       })
     }
+
+
+  deleteUser(id: string)
+  {
+    Swal.fire({
+      title: 'Do you want to delete your Account?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      denyButtonText: `Don't delete`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.userRest.deleteAccount(id).subscribe({
+          next: (res: any) => {
+            Swal.fire({
+              title: res.message,
+              icon: 'success',
+              position: 'center',
+              showConfirmButton: false,
+              timer: 2000
+            });
+            localStorage.clear()
+            this.router.navigate(['/']);
+          },
+          error: (err) => Swal.fire({
+            title: err.error.message,
+            icon: 'error',
+            position: 'center',
+            timer: 3000
+          })
+        })
+      } else if (result.isDenied)
+      {
+        Swal.fire('Account Not Deleted','', 'info')
+      }
+    })
+  }
 
 }

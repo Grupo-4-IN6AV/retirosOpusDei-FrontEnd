@@ -419,6 +419,7 @@ th
 .btn-event.btn-secondary,
 .btn-event.btn-dark,
 .btn-event.btn-success
+.btn-event.btn-sample
 {
     padding: .625rem 1rem;
     font-size: .813rem;
@@ -558,6 +559,10 @@ th
 .colorUpdate
 {
     background-color: #F0AD4E;
+}
+
+#dropdownBasic1::after {
+  content: none;
 }
 
 .form{
