@@ -164,49 +164,36 @@
     </button>
   </div>
 
-  <div *ngIf="eventsHotel" class="container p-5">
-    <div class="row">
-      <div *ngFor="let event of eventsHotel" class="col-md-12">
-        <div class="card-group evet-card text-light mb-2">
-          <div class="card mb-0">
-            <div class="card-body py-1">
-              <div class="row">
-                <div class="col-7 col-sm-9">
-                  <div class="d-flex flex-column">
-                    <h3 style="color:black" class="card-title text-uppercase mt-0">
-                      <strong>{{event.name}}</strong>
-                    </h3>
-                    <div class="card-text" style="color:black">
-                      {{event.description}}
-                    </div>
-                    <ul class="list-inline mt-auto">
-                      <li class="list-inline-item"> <strong>Hotel :</strong></li>
-                      <li class="list-inline-item"><i class="fas fa-building"></i> {{event.hotel.name}}</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
+  <div *ngIf="eventsHotel" class="container mt-2 mb-5"
+    style="display: flex; flex-wrap: wrap; align-content: center; justify-content: center; align-items: center;">
+    <div *ngFor="let event of eventsHotel" class="d-flex justify-content-center row" style="max-width: 500px;">
+      <div class="col-md-10">
+        <div class="row p-2 bg-white border rounded mt-2">
+          <div class="col-md-3 mt-1 img-hover-zoom" style="width: 45%;">
+            <img style="height: 100%; object-fit:cover;" crossorigin="anonymous"
+              class="img-fluid img-responsive rounded product-image"
+              src="https://th.bing.com/th/id/OIP.UsxFP3BbvEc-5jWsB8d9pQHaFA?pid=ImgDet&rs=1">
           </div>
-          <div class="card mb-0">
-            <div class="card-body py-1">
-              <div class="row h-100">
-                <div class="col-5 col-sm-4">
-                  <h6 class="mt-2" style="color: black;">
-                    Information Event
-                  </h6>
-                  <ul class="list-group my-0 pl-1">
-                    <li class="list-inline-item"><i class="far fa-clock"></i> {{event.startHour}} to {{event.endHour}}
-                    </li>
-                    <li class="list-inline-item"><i class="fas fa-calendar-check"></i>{{event.date}}</li>
-                    <li class="list-inline-item"><i class="fas fa-calendar-check"></i>{{event.day}}</li>
-                    <li class="list-inline-item"><i class="fas fa-location-arrow"></i> Room 4019</li>
-                    <li class="list-inline-item"><i class="fas fa-stopwatch"></i> 120 min</li>
-                  </ul>
-                </div>
-                <div class="col-7 col-sm-8 bg-white text-dark">
-                </div>
+          <div class="col-md-6 mt-1">
+            <h5 style="color:black;">{{event.name}}</h5>
+            <p style="color: black;" class="mt-1">{{event.description}}</p>
+            <div>
+              <div class="mt-1 mb-1 spec-1">
+                <p style="color: black;" class="mt-1"><i class="fa-solid fa-hotel"></i>&nbsp; {{event.hotel.name}}</p>
               </div>
+
+              <div class="mt-1 mb-1 spec-1">
+                <span class="fa fa-clock"></span>&nbsp;<span>{{event.date}}</span>
+              </div>
+
+              <div class="mt-1 mb-1 spec-1">
+                <span class="fa fa-clock"></span>&nbsp;<span>{{event.startHour}}</span>
+              </div>
+
+              <div class="mt-1 mb-1 spec-1">
+                <span class="fa fa-clock"></span>&nbsp;<span>{{event.endHour}}</span>
+              </div>
+
             </div>
           </div>
         </div>
