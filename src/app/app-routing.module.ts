@@ -41,6 +41,7 @@ import { UserCalendarComponent } from './components/user/user-calendar/user-cale
 import { HistoryComponent } from './components/user/history/history.component';
 import { ReservationsReportComponent } from './components/admin/reservations-report/reservations-report.component';
 import { ReservationsReportComponentHotel } from './components/hotelAdmin/reservations-report/reservations-report.component';
+import { ReservationsComponent } from './components/user/reservations/reservations.component';
 
 const routes: Routes =
 [
@@ -89,6 +90,7 @@ const routes: Routes =
       {path: 'home', component: HotelUserComponent},
       {path: 'profile', component: UserProfileComponent},
       {path: 'calendar', component: UserCalendarComponent},
+      {path: 'reservations', component: ReservationsComponent},
       {path: 'history', component: HistoryComponent},
     ]
   },

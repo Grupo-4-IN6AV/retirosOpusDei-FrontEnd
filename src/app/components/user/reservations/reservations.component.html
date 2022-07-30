@@ -1,0 +1,196 @@
+<section class="content">
+    <h1 style="margin-top: 4rem">
+        &nbsp;<i class="fa-solid fa-book-atlas"></i>
+        Reservations
+    </h1>
+    <hr />
+
+    <div class="text-center mt-2 mb-2">
+        <button routerLink="/user/home" type="button" class="ms-3 btn btn-event btn-dark">
+            Back Hotels
+            <span class="btn-icon-end"><i class="fas fa-home"></i> </span>
+        </button>
+        <button routerLink="/user/calendar" type="button" class="ms-3 btn btn-event btn-secondary">
+            View Calendar
+            <span class="btn-icon-end"><i class="fas fa-calendar"></i> </span>
+        </button>
+    </div>
+    <hr />
+
+
+    <div>
+        <div class="container">
+            <div class="products-container">
+                <div *ngFor="let reservation of reservations" class="product" data-name="p-1">
+                    <h5 class="card-title">Hotel {{reservation.hotel.name}} | Room {{reservation.room.room.name}} </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{newDateEntry[reservations.indexOf(reservation)]}} -
+                        {{newDateExit[reservations.indexOf(reservation)]}}</h6>
+                    <button class="btn btn-danger" (click)="deleteReservation(reservation._id)"> <i class="fa fa-trash"
+                            aria-hidden="true"></i>
+                        Cancelar
+                    </button>
+                    <button (click)="getReservation(reservation._id)" data-bs-toggle="modal" data-bs-target="#viewEvent"
+                        class=" btn btn-secondary ms-2"> <i class="fa fa-eye" aria-hidden="true"></i>
+                        View
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="updateEvent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modal-basic-title">
+                        <i class="fas fa-pencil" aria-hidden="true"></i>
+                        &nbsp;Update Reservation
+                    </h3>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form (ngSubmit)="updateEvent()" *ngIf="reservationUpdate">
+                        <div class="text-inside">
+                            <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Name</mat-label>
+                                <input autocomplete="off" [(ngModel)]="reservationUpdate.name" name="name" matInput />
+                            </mat-form-field>
+                        </div>
+                        <div class="text-inside">
+                            <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Description</mat-label>
+                                <input autocomplete="off" [(ngModel)]="reservationUpdate.description" name="description"
+                                    matInput />
+                            </mat-form-field>
+                        </div>
+                        <div class="text-inside">
+                            <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Date</mat-label>
+                                <input [(ngModel)]="reservationUpdate.date" [min]="actualDate" name="date" matInput
+                                    [matDatepicker]="picker">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="text-inside">
+                            <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Hotel</mat-label>
+                                <input autocomplete="off" [(ngModel)]="reservationUpdate.hotel.name" disabled name="hotel"
+                                    matInput />
+                            </mat-form-field>
+                        </div>
+                        <hr />
+                        <div class="modal-footer justify-content-center">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                                <i class="fa fa-times-circle" aria-hidden="true"></i> Discard Update
+                            </button>
+                            <button type="submit" class="btn btn-success" data-bs-dismiss="modal">
+                                <i class="fa fa-floppy-o" aria-hidden="true"></i> Update Event
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="viewEvent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="addContainer">
+                    <div class="contact-details">
+                        <div class="modalHeader">
+                            <div class="editRowModal">
+                                <div *ngIf="reservationView" class="modalHeader clearfix">
+                                    <div class="modal-about contact-header">
+                                        <div class="contact-details-img">
+                                            <img src="../../../../assets/images/user/usrbig2.jpg" alt="avatar" />
+                                        </div>
+                                        <div class="contact-details-heading">
+                                            <div class="contact-details-name mb-2">
+                                                Hotel {{reservationView.hotel.name}}
+                                            </div>
+                                            <div *ngIf="reservationView.state==='On Going'" class="badge col-green">
+                                                On Going
+                                            </div>
+                                            <div *ngIf="reservationView.state !== 'On Going'" class="badge col-red">
+                                                Finalized
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button mat-icon-button data-bs-dismiss="modal" aria-label="Close dialog">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </div>
+                        <hr />
+                        <div *ngIf="reservationView" class="descripcion">
+                            <div class="count-container">
+                                <div class="box">
+                                    <h3>Room:</h3>
+                                </div>
+
+                                <div class="box">
+                                    <p>{{ reservationView.room.room.name }}</p>
+                                </div>
+
+                                <div class="box">
+                                    <h3>Entry Date:</h3>
+                                </div>
+
+                                <div class="box">
+                                    <p>{{ onlyOneDateEntry }}</p>
+                                </div>
+
+                                <div class="box">
+                                    <h3>Exit Date:</h3>
+                                </div>
+
+                                <div class="box">
+                                    <p>{{ onlyOneDateExit }}</p>
+                                </div>
+
+                                <div class="count-container" *ngFor="let service of reservationServices; let indice = index">
+                                    <div class="box">
+                                        <h3>Service {{indice+1}} :</h3>
+                                    </div>
+    
+                                    <div class="box">
+                                        <p>{{ service.name }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="box">
+                                    <h3>Total Days:</h3>
+                                </div>
+
+                                <div class="box">
+                                    <p>{{ reservationView.totalDays }}</p>
+                                </div>
+
+                                <div class="box">
+                                    <h3>Total Nights:</h3>
+                                </div>
+
+                                <div class="box">
+                                    <p>{{ reservationView.totalNights }}</p>
+                                </div>
+
+                                <div class="box">
+                                    <h3>Total Price:</h3>
+                                </div>
+
+                                <div class="box">
+                                    <p>{{ reservationView.total }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
