@@ -47,6 +47,10 @@ export class HotelUserComponent implements OnInit {
   showServicesBill:any;
   showBillFinish:boolean=false
 
+  splitDateBill:any;
+  splitDateEntry:any;
+  splitDateExit:any;
+
   constructor
   (
     public serviceRest: ServicesRestService,
@@ -111,6 +115,11 @@ export class HotelUserComponent implements OnInit {
     let calculate = exit - entry;
     this.totalNights = (calculate/(1000*60*60*24))
     return this.totalNights
+  }
+
+  cerrarFactura()
+  {
+    this.showBillFinish = this.reset
   }
 
   calculateDayEntry(entry:any)
@@ -318,6 +327,7 @@ export class HotelUserComponent implements OnInit {
   {
     this.roomsHotel = this.reset
     this.eventsHotel = this.reset
+    this.showBillFinish = this.reset
   }
 
   reserveRoom(id:string)
@@ -373,6 +383,12 @@ export class HotelUserComponent implements OnInit {
               next: (res: any) =>
               {
                 this.showBill = res.bill
+                let date = this.showBill.date.split('T')
+                this.splitDateBill = date[0];
+                let dateOne = this.showBill.entryDate.split('T')
+                this.splitDateEntry = dateOne[0]
+                let dateTwo = this.showBill.exitDate.split('T')
+                this.splitDateExit = dateTwo[0]
                 this.showServicesBill = res.services
                 this.showBillFinish = true
               },
@@ -398,6 +414,11 @@ export class HotelUserComponent implements OnInit {
         confirmButtonColor: '#E74C3C'
       });}
     })
+  }
+
+  imprimir()
+  {
+    window.print()
   }
 
 
