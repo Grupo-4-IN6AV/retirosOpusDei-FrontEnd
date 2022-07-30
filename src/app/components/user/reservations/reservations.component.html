@@ -13,7 +13,7 @@
         <button routerLink="/user/calendar" type="button" class="ms-3 btn btn-event btn-secondary">
             View Calendar
             <span class="btn-icon-end"><i class="fas fa-calendar"></i> </span>
-          </button>
+        </button>
     </div>
     <hr />
 
@@ -23,17 +23,18 @@
             <div class="products-container">
                 <div *ngFor="let reservation of reservations" class="product" data-name="p-1">
                     <h5 class="card-title">Hotel {{reservation.hotel.name}} | Room {{reservation.room.room.name}} </h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{reservation.entryDate}} - {{reservation.exitDate}}</h6>
-                    <button (click)="getEvent(event._id)" class="btn btn-success m-3" data-bs-toggle="modal"
+                    <h6 class="card-subtitle mb-2 text-muted">{{newDateEntry[reservations.indexOf(reservation)]}} -
+                        {{newDateExit[reservations.indexOf(reservation)]}}</h6>
+                    <button (click)="getReservation(reservation._id)" class="btn btn-success m-3" data-bs-toggle="modal"
                         data-bs-target="#updateEvent" class="btn btn-warning m-2">
                         <i class="fa fa-pencil" aria-hidden="true">
                         </i> Update
                     </button>
-                    <button class="btn btn-danger" (click)="deleteEvent(event._id)"> <i class="fa fa-trash"
+                    <button class="btn btn-danger" (click)="deleteReservation(reservation._id)"> <i class="fa fa-trash"
                             aria-hidden="true"></i>
                         Delete
                     </button>
-                    <button (click)="getEvent(event._id)" data-bs-toggle="modal" data-bs-target="#viewEvent"
+                    <button (click)="getReservation(reservation._id)" data-bs-toggle="modal" data-bs-target="#viewEvent"
                         class=" btn btn-secondary ms-2"> <i class="fa fa-eye" aria-hidden="true"></i>
                         View
                     </button>
@@ -58,20 +59,20 @@
                         <div class="text-inside">
                             <mat-form-field class="example-full-width" appearance="outline">
                                 <mat-label>Name</mat-label>
-                                <input autocomplete="off" [(ngModel)]="eventUpdate.name" name="name" matInput />
+                                <input autocomplete="off" [(ngModel)]="reservationUpdate.name" name="name" matInput />
                             </mat-form-field>
                         </div>
                         <div class="text-inside">
                             <mat-form-field class="example-full-width" appearance="outline">
                                 <mat-label>Description</mat-label>
-                                <input autocomplete="off" [(ngModel)]="eventUpdate.description" name="description"
+                                <input autocomplete="off" [(ngModel)]="reservationUpdate.description" name="description"
                                     matInput />
                             </mat-form-field>
                         </div>
                         <div class="text-inside">
                             <mat-form-field class="example-full-width" appearance="outline">
                                 <mat-label>Date</mat-label>
-                                <input [(ngModel)]="eventUpdate.date" [min]="actualDate" name="date" matInput
+                                <input [(ngModel)]="reservationUpdate.date" [min]="actualDate" name="date" matInput
                                     [matDatepicker]="picker">
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
@@ -79,22 +80,8 @@
                         </div>
                         <div class="text-inside">
                             <mat-form-field class="example-full-width" appearance="outline">
-                                <mat-label>Start Hour</mat-label>
-                                <input autocomplete="off" type="time" [(ngModel)]="eventUpdate.startHour"
-                                    name="startHour" matInput />
-                            </mat-form-field>
-                        </div>
-                        <div class="text-inside">
-                            <mat-form-field class="example-full-width" appearance="outline">
-                                <mat-label>End Hour</mat-label>
-                                <input autocomplete="off" type="time" [(ngModel)]="eventUpdate.endHour" name="endHour"
-                                    matInput />
-                            </mat-form-field>
-                        </div>
-                        <div class="text-inside">
-                            <mat-form-field class="example-full-width" appearance="outline">
                                 <mat-label>Hotel</mat-label>
-                                <input autocomplete="off" [(ngModel)]="eventUpdate.hotel.name" disabled name="hotel"
+                                <input autocomplete="off" [(ngModel)]="reservationUpdate.hotel.name" disabled name="hotel"
                                     matInput />
                             </mat-form-field>
                         </div>
@@ -128,13 +115,13 @@
                                         </div>
                                         <div class="contact-details-heading">
                                             <div class="contact-details-name mb-2">
-                                                {{ eventView.name }}
+                                                Hotel {{reservationView.hotel.name}}
                                             </div>
-                                            <div *ngIf="availableEvent === false" class="badge col-red">
+                                            <div *ngIf="reservationView.state==='On Going'" class="badge col-green">
+                                                On Going
+                                            </div>
+                                            <div *ngIf="reservationView.state !== 'On Going'" class="badge col-red">
                                                 Finalized
-                                            </div>
-                                            <div *ngIf="availableEvent === true" class="badge col-green">
-                                                OnGoing
                                             </div>
                                         </div>
                                     </div>
@@ -148,51 +135,61 @@
                         <div *ngIf="reservationView" class="descripcion">
                             <div class="count-container">
                                 <div class="box">
-                                    <h3>Name:</h3>
+                                    <h3>Room:</h3>
                                 </div>
 
                                 <div class="box">
-                                    <p>{{ eventView.name }}</p>
+                                    <p>{{ reservationView.room.room.name }}</p>
                                 </div>
 
                                 <div class="box">
-                                    <h3>Description:</h3>
+                                    <h3>Entry Date:</h3>
                                 </div>
 
                                 <div class="box">
-                                    <p>{{ eventView.description }}</p>
+                                    <p>{{ onlyOneDateEntry }}</p>
                                 </div>
 
                                 <div class="box">
-                                    <h3>Date:</h3>
+                                    <h3>Exit Date:</h3>
                                 </div>
 
                                 <div class="box">
-                                    <p>{{ newDate }}</p>
+                                    <p>{{ onlyOneDateExit }}</p>
+                                </div>
+
+                                <div class="count-container" *ngFor="let service of reservationServices; let indice = index">
+                                    <div class="box">
+                                        <h3>Service {{indice+1}} :</h3>
+                                    </div>
+    
+                                    <div class="box">
+                                        <p>{{ service.name }}</p>
+                                    </div>
                                 </div>
 
                                 <div class="box">
-                                    <h3>Start Hour:</h3>
+                                    <h3>Total Days:</h3>
                                 </div>
 
                                 <div class="box">
-                                    <p>{{ startHour }}</p>
+                                    <p>{{ reservationView.totalDays }}</p>
                                 </div>
 
                                 <div class="box">
-                                    <h3>End Hour:</h3>
+                                    <h3>Total Nights:</h3>
                                 </div>
 
                                 <div class="box">
-                                    <p>{{ endHour }}</p>
+                                    <p>{{ reservationView.totalNights }}</p>
                                 </div>
 
                                 <div class="box">
-                                    <h3>Hotel</h3>
+                                    <h3>Total Price:</h3>
                                 </div>
 
                                 <div class="box">
-                                    <p>{{ eventView.hotel.name }}</p>
+                                    <p>{{ reservationView.total }}</p>
                                 </div>
                             </div>
                         </div>

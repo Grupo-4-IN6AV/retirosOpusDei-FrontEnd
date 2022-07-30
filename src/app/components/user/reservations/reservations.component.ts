@@ -12,117 +12,141 @@ import Swal from 'sweetalert2';
 })
 export class ReservationsComponent implements OnInit {
 
- //Variables de TypeScript//
- reservation: ReservationModel;
+  //Variables de TypeScript//
+  reservation: ReservationModel;
 
- reservations: any;
- reservationView: any;
- reservationUpdate: any;
- reservationDeleted: any;
- notFound: boolean = false
+  reservations: any;
+  reservationView: any;
+  reservationUpdate: any;
+  reservationServices:any;
+  reservationDeleted: any;
+  notFound: boolean = false
 
- OnlyOneDate: any;
- actualUserId: any;
- newDate: any;
+  OnlyOneDate: any;
+  actualUserId: any;
+  newDateEntry: any;
+  newDateExit: any;
 
- constructor
- (
-   public hotelRest : HotelRestService,
-   public eventRest : EventRestService,
-   public reservationRest: ReservationRestService
- )
- {
-   this.reservation = new ReservationModel('','','','',0);
- }
+  actualDate: any;
 
- ngOnInit(): void
- {
+  onlyOneDateEntry: any;
+  onlyOneDateExit: any;
 
-   this.getReservations();
- }
+  constructor
+    (
+      public hotelRest: HotelRestService,
+      public eventRest: EventRestService,
+      public reservationRest: ReservationRestService
+    ) {
+    this.reservation = new ReservationModel('', '', '', '', 0);
+  }
 
- getReservations()
- {
-   this.reservationRest.getReservationsUser().subscribe({
-     next: (res: any) =>
-     {
-       this.reservations = res.reservations
-       var arrayDate = [];
-        for(let date of res.reservations){
-          const newDate = date.date.split('T');
-          arrayDate.push(newDate[0])
+  ngOnInit(): void {
+    this.actualDate = new Date();
+    this.getReservations();
+  }
+
+  getReservations() {
+    this.reservationRest.getReservationsUser().subscribe({
+      next: (res: any) => {
+        this.reservations = res.reservations
+        var arrayDateEntry = [];
+        var arrayDateExit = [];
+        for (let date of res.reservations) {
+          const newDateEntry = date.entryDate.split('T');
+          const newDateExit = date.exitDate.split('T');
+          arrayDateEntry.push(newDateEntry[0]);
+          arrayDateExit.push(newDateExit[0]);
         }
-        this.newDate = arrayDate;
-     },
-     error: (err) => console.log(err)
-   })
- }
+        this.newDateEntry = arrayDateEntry;
+        this.newDateExit = arrayDateExit;
+      },
+      error: (err) => console.log(err)
+    })
+  }
 
- deleteEvent(id:string)
- {
-   Swal.fire({
-     title: 'Do you want to delete this Event?',
-     showDenyButton: true,
-     showCancelButton: true,
-     confirmButtonText: 'Delete',
-     denyButtonText: `Don't delete`,
-   }).then((result) => {
-     /* Read more about isConfirmed, isDenied below */
-     if (result.isConfirmed) {
-       this.eventRest.deleteEvent(id).subscribe({
-         next: (res: any) => {
-           Swal.fire({
-             title: res.message,
-             icon: 'success',
-             position: 'center',
-             showConfirmButton: false,
-             timer: 2000
-           });
-         },
-         error: (err) => Swal.fire({
-           title: err.error.message,
-           icon: 'error',
-           position: 'center',
-           timer: 3000
-         })
-       })
-     } else if (result.isDenied)
-     {
-       Swal.fire('Event Not Deleted','', 'info')
-     }
-   })
- }
+  getReservation(id: string) {
+    this.reservationRest.getReservation(id).subscribe({
+      next: (res: any) => {
+        this.reservationView = res.reservation;
+        this.reservationUpdate = res.reservation;
+        this.reservationDeleted = res.reservation;
+        this.reservationServices = res.services;
+        let splitEntry = res.reservation.entryDate.split('T');
+        let splitExit = res.reservation.exitDate.split('T');
+        this.onlyOneDateEntry = splitEntry[0];
+        this.onlyOneDateExit = splitEntry[0];
+      },
+      error: (err) => {
+        Swal.fire({
+          icon: 'error',
+          title: err.error.message || err.error,
+          confirmButtonColor: '#E74C3C'
+        });
+      }
+    })
+  }
+
+  deleteReservation(id: string) {
+    Swal.fire({
+      title: 'Do you want to delete this Reservation?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      denyButtonText: `Don't delete`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.reservationRest.deleteReservation(id).subscribe({
+          next: (res: any) => {
+            Swal.fire({
+              title: res.message  ,
+              icon: 'success',
+              position: 'center',
+              showConfirmButton: false,
+              timer: 2000
+            });
+          },
+          error: (err) => Swal.fire({
+            title: err.error.message || err.error,
+            icon: 'error',
+            position: 'center',
+            timer: 3000
+          })
+        })
+      } else if (result.isDenied) {
+        Swal.fire('Reservation Not Deleted', '', 'info')
+      }
+    })
+  }
 
 
- updateEvent()
- {
-   let params =
-   {
+  updateReservations() {
+    let params =
+    {
       name: this.reservationUpdate.name,
       description: this.reservationUpdate.description,
       date: this.reservationUpdate.name,
       startHour: this.reservationUpdate.startHour,
       endHour: this.reservationUpdate.endHour,
       hotel: this.reservationUpdate.hotel,
-   }
-   this.eventRest.updateEvent(this.reservationUpdate._id, params).subscribe({
-     next: (res:any)=>
-     {
-       Swal.fire({
-         icon:'success',
-         title: res.message,
-         confirmButtonColor: '#28B463'
-       });
-     },
-     error: (err)=>
-     {
-       Swal.fire({
-         icon: 'error',
-         title: err.error.message || err.error,
-         confirmButtonColor: '#E74C3C'
-       });
-     },
-   })
- }
+    }
+    this.eventRest.updateEvent(this.reservationUpdate._id, params).subscribe({
+      next: (res: any) => {
+        Swal.fire({
+          icon: 'success',
+          title: res.message,
+          confirmButtonColor: '#28B463'
+        });
+      },
+      error: (err) => {
+        Swal.fire({
+          icon: 'error',
+          title: err.error.message || err.error,
+          confirmButtonColor: '#E74C3C'
+        });
+      },
+    })
+  }
 
 }

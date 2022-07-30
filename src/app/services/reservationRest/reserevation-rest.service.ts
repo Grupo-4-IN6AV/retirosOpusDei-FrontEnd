@@ -55,4 +55,9 @@ export class ReservationRestService {
     return this.http.get(environment.baseURI + 'reservation/getReservation/' + id, { headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())});
   }
 
+  deleteReservation(id:string)
+  {
+    return this.http.delete(environment.baseURI + 'reservation/deleteReservation/' + id, { headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())});
+  }
+
 }
