@@ -42,6 +42,10 @@ export class HotelUserComponent implements OnInit {
   //Fechas//
   setDateEntry : any;
   setDateExit: any;
+  showBill:any;
+  datesEvents: any;
+  showServicesBill:any;
+  showBillFinish:boolean=false
 
   constructor
   (
@@ -296,9 +300,15 @@ export class HotelUserComponent implements OnInit {
     this.eventRest.getEventsHotelID(id).subscribe({
       next: (res:any)=>
       {
-        var arrayDates:[]
+
         this.eventsHotel = res.events
-        let splitDate
+        var arrayDates = [];
+        for (let dates of this.eventsHotel)
+        {
+          let configDate = dates.date.split('T');
+          arrayDates.push(configDate[0]);
+        }
+        this.datesEvents = arrayDates;
       },
       error: (err) => console.log(err)
     })
@@ -357,7 +367,18 @@ export class HotelUserComponent implements OnInit {
 
 
         this.reservationRest.addServicesReservation(res.addReservation._id, params).subscribe({
-          next: (res: any) =>{console.log(res)},
+          next: (res: any) =>
+          {
+            this.reservationRest.getBill(res.addBill._id).subscribe({
+              next: (res: any) =>
+              {
+                this.showBill = res.bill
+                this.showServicesBill = res.services
+                this.showBillFinish = true
+              },
+              error: (err) =>{console.log(err)}
+            })
+          },
           error: (err) =>{console.log(err)}
         })
 
