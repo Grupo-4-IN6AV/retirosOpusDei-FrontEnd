@@ -7,8 +7,8 @@
 
   <div *ngIf="!showTableEvents" class="row d-flex justify-content-center align-items-center">
     <div class="form">
-        <i class="fa fa-search ms-2"></i>
-        <input [(ngModel)]="searchEvent" type="text" class="form-control form-input" placeholder="Search Event...">
+      <i class="fa fa-search ms-2"></i>
+      <input [(ngModel)]="searchEvent" type="text" class="form-control form-input" placeholder="Search Event...">
     </div>
   </div>
 
@@ -25,7 +25,7 @@
       Return Cards
       <span class="btn-icon-end"><i class="fas fa-arrow-left"></i> </span>
     </button>
-    <button  (click)="showCalendar()" type="button" class="ms-3 btn btn-event btn-secondary">
+    <button (click)="showCalendar()" type="button" class="ms-3 btn btn-event btn-secondary">
       View Calendar
       <span class="btn-icon-end"><i class="fas fa-calendar"></i> </span>
     </button>
@@ -44,8 +44,8 @@
           <h5 class="card-title">{{event.name}}</h5>
           <h6 class="card-subtitle mb-2 text-muted">{{newDates[events.indexOf(event)]}}</h6>
           <p class="card-text">{{ event.hotel.name }}</p>
-          <button (click)="getEvent(event._id)" class="btn btn-success m-3" data-bs-toggle="modal" data-bs-target="#updateEvent"
-            class="btn btn-warning m-2">
+          <button (click)="getEvent(event._id)" class="btn btn-success m-3" data-bs-toggle="modal"
+            data-bs-target="#updateEvent" class="btn btn-warning m-2">
             <i class="fa fa-pencil" aria-hidden="true">
             </i> Update
           </button>
@@ -168,15 +168,13 @@
             <div class="text-inside">
               <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>Start Hour</mat-label>
-                <input autocomplete="off" type="time" [(ngModel)]="eventUpdate.startHour" name="startHour"
-                  matInput />
+                <input autocomplete="off" type="time" [(ngModel)]="eventUpdate.startHour" name="startHour" matInput />
               </mat-form-field>
             </div>
             <div class="text-inside">
               <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>End Hour</mat-label>
-                <input autocomplete="off" type="time" [(ngModel)]="eventUpdate.endHour" name="endHour"
-                  matInput />
+                <input autocomplete="off" type="time" [(ngModel)]="eventUpdate.endHour" name="endHour" matInput />
               </mat-form-field>
             </div>
             <div class="text-inside">
@@ -211,7 +209,9 @@
                 <div *ngIf="eventView" class="modalHeader clearfix">
                   <div class="modal-about contact-header">
                     <div class="contact-details-img">
-                      <img src="../../../../assets/images/user/usrbig2.jpg" alt="avatar" />
+                      <img *ngIf="!eventView.image" src="../../../../assets/images/user/usrbig2.jpg" alt="avatar" />
+                      <img style="object-fit: cover;" *ngIf="eventView.image" src="{{uri}}" crossorigin="anonymous"
+                      alt="avatar" />
                     </div>
                     <div class="contact-details-heading">
                       <div class="contact-details-name mb-2">
@@ -319,7 +319,7 @@
                 </li>
                 <li *ngIf="buttonActions">
                   <div class="icon-button-demo m-l-10">
-                    <button data-bs-toggle="modal" data-bs-target="#updateHotel" mat-mini-fab class="colorUpdate">
+                    <button data-bs-toggle="modal" data-bs-target="#updateEvent" mat-mini-fab class="colorUpdate">
                       <mat-icon class="col-white">edit
                       </mat-icon>
                     </button>
@@ -356,7 +356,10 @@
                     {{ events.indexOf(event) + 1 }}
                   </td>
                   <td (click)="getEvent(event._id)" class="table-img">
-                    <img src="assets/images/user/user8.jpg" alt="" />
+                    <img *ngIf="event.image===undefined" style="object-fit: cover;" src="assets/images/user/user8.jpg"
+                      crossorigin="anonymous" alt="" />
+                    <img *ngIf="event.image!==undefined" style="object-fit: cover;" src="{{uriEvent+event.image}}"
+                      crossorigin="anonymous" alt="" />
                   </td>
                   <td (click)="getEvent(event._id)" data-bs-toggle="modal" data-bs-target="#viewEvent">{{ event.name }}
                   </td>
@@ -368,14 +371,14 @@
                     event.startHour }}</td>
                   <td (click)="getEvent(event._id)" data-bs-toggle="modal" data-bs-target="#viewEvent">{{ event.endHour
                     }}</td>
-                    <td *ngIf="available[events.indexOf(event)] === false"
-                     (click)="getEvent(event._id)" data-bs-toggle="modal" data-bs-target="#viewEvent">
-                     <span class="label bg-red m-b-10">Finalized</span>
-                    </td>
-                    <td *ngIf="available[events.indexOf(event)] === true"
-                     (click)="getEvent(event._id)" data-bs-toggle="modal" data-bs-target="#viewEvent">
-                     <span class="label bg-green m-b-10">OnGoing</span>
-                    </td>
+                  <td *ngIf="available[events.indexOf(event)] === false" (click)="getEvent(event._id)"
+                    data-bs-toggle="modal" data-bs-target="#viewEvent">
+                    <span class="label bg-red m-b-10">Finalized</span>
+                  </td>
+                  <td *ngIf="available[events.indexOf(event)] === true" (click)="getEvent(event._id)"
+                    data-bs-toggle="modal" data-bs-target="#viewEvent">
+                    <span class="label bg-green m-b-10">OnGoing</span>
+                  </td>
                 </tr>
                 <tr rowspan="9" *ngIf="notFound === true">
                   <td colspan="9" class="text-center">Not Events Found</td>

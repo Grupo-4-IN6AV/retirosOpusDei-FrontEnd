@@ -202,7 +202,7 @@
               <div class="text-inside">
                 <mat-form-field class="example-full-width" appearance="outline">
                   <mat-label>Role</mat-label>
-                  <mat-select [(ngModel)]="user.role" name="role">
+                  <mat-select disabled [(ngModel)]="user.role" name="role">
                     <mat-option value="ADMIN HOTEL">ADMIN HOTEL</mat-option>
                     <mat-option value="CLIENT">CLIENT</mat-option>
                   </mat-select>
@@ -273,7 +273,7 @@
             <div class="text-inside">
               <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>Role</mat-label>
-                <mat-select [(ngModel)]="userUpdate.role" name="role">
+                <mat-select disabled [(ngModel)]="userUpdate.role" name="role">
                   <mat-option value="ADMIN HOTEL">ADMIN HOTEL</mat-option>
                   <mat-option value="CLIENT">CLIENT</mat-option>
                 </mat-select>

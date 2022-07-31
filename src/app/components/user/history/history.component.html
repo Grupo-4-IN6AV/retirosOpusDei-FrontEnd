@@ -31,7 +31,7 @@
                 <i class="fas fa bed"></i>
                 <strong>Date Exit :</strong> {{exitDates[reservations.indexOf(reservation)]}}
               </h6>
-              <a style="cursor: pointer;" class="cd-read-more"><i class="fas fa-eye"></i> View Details</a>
+              <a data-bs-toggle="modal" data-bs-target="#viewReservation" (click)="getReservation(reservation._id)" style="cursor: pointer;" class="cd-read-more"><i class="fas fa-eye"></i> View Details</a>
               <span class="cd-date">{{months[reservations.indexOf(reservation)]}}
                 {{days[reservations.indexOf(reservation)]}}</span>
             </div>
@@ -41,5 +41,80 @@
     </div>
   </div>
 
+
+  <div class="modal fade" id="viewReservation" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="addContainer">
+          <div class="contact-details">
+            <div class="modalHeader">
+              <div class="editRowModal">
+                <div *ngIf="viewReservation" class="modalHeader clearfix">
+                  <div class="modal-about contact-header">
+                    <div class="contact-details-img">
+
+                      </div>
+                    <div class="contact-details-heading">
+                      <div class="contact-details-name mb-2">
+                        {{ viewReservation.hotel.name }} | {{viewReservation.room.room.name}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button mat-icon-button data-bs-dismiss="modal" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
+            <hr />
+            <div *ngIf="viewReservation" class="descripcion">
+              <div class="count-container">
+                <div class="box">
+                  <h3>Entry Date:</h3>
+                </div>
+
+                <div class="box">
+                  <p>{{ entryDate }}</p>
+                </div>
+
+                <div class="box">
+                  <h3>End Date:</h3>
+                </div>
+
+                <div class="box">
+                  <p>{{ exitDate }}</p>
+                </div>
+
+                <div class="box">
+                  <h3>Total Days:</h3>
+                </div>
+
+                <div class="box">
+                  <p>{{viewReservation.totalDays}}</p>
+                </div>
+
+                <div class="box">
+                  <h3>Total Nights:</h3>
+                </div>
+
+                <div class="box">
+                  <p>{{viewReservation.totalNights}}</p>
+                </div>
+
+                <div class="box">
+                  <h3>Total Price:</h3>
+                </div>
+
+                <div class="box">
+                  <p>Q.{{viewReservation.total.toFixed(2)}}</p>
+                </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 </section>

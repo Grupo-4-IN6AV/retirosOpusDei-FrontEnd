@@ -3,6 +3,7 @@ import { HotelRestService } from 'src/app/services/hotelRest/hotel-rest.service'
 import { RoomModel } from 'src/app/models/room.model'
 import { TypeRoomRestService } from 'src/app/services/typeRoomRest/type-room-rest.service';
 import { RoomRestService } from 'src/app/services/roomRest/room-rest.service';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -32,6 +33,9 @@ export class RoomAdminComponent implements OnInit
   controloClick : number = 0
   notFound: boolean = false;
   newDates:any;
+
+  uriRoom: any;
+  uri: any;
 
   constructor
   (
@@ -66,6 +70,7 @@ export class RoomAdminComponent implements OnInit
       next: (res: any) =>
       {
         this.rooms = res.rooms;
+        this.uriRoom = environment.baseURI+'room/getImageRoom/'
         var arrayPrices = [];
         var arrayDates = [];
         for(var key=0; key<this.rooms.length; key++)
@@ -153,6 +158,7 @@ export class RoomAdminComponent implements OnInit
         this.roomView = res.room;
         this.roomUpdate = res.room;
         this.roomDeleted = res.room;
+        this.uri = environment.baseURI + 'room/getImageRoom/' + res.room.image;
         let split = this.roomView.dateAvailable.split('T');
         this.newDateRoom = split[0]
       },

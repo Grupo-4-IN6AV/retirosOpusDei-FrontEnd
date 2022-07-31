@@ -15,6 +15,10 @@ export class HistoryComponent implements OnInit {
   months: any;
   days: any;
   uriHotel : any;
+  viewReservation: any;
+  uriReservation: any;
+  entryDate:any;
+  exitDate:any;
 
   constructor
     (
@@ -26,7 +30,7 @@ export class HistoryComponent implements OnInit {
   }
 
   getReservations() {
-    this.reservationRest.getReservationsUser().subscribe({
+    this.reservationRest.getHistory().subscribe({
       next: (res: any) => {
         this.reservations = res.reservations;
         var arrayStartDates = [];
@@ -100,6 +104,18 @@ export class HistoryComponent implements OnInit {
         console.log(this.months)
       },
       error: (err) => console.log(err)
+    })
+  }
+
+  getReservation(id:string)
+  {
+    this.reservationRest.getReservation(id).subscribe({
+      next: (res: any) =>
+      {
+        this.viewReservation = res.reservation;
+
+      },
+      error: (err) => {alert(err.error.message)}
     })
   }
 

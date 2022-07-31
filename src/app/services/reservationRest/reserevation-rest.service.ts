@@ -40,4 +40,19 @@ export class ReservationRestService {
     return this.http.post(environment.baseURI + 'reservation/addServiceReservation/' + id, params, { headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())});
   }
 
+  getReservations()
+  {
+    return this.http.get(environment.baseURI + 'reservation/getReservations', { headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())});
+  }
+
+  getHistory()
+  {
+    return this.http.get(environment.baseURI + 'reservation/getHistory', { headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())});
+  }
+
+  getReservation(id:string)
+  {
+    return this.http.get(environment.baseURI + 'reservation/getReservation/' + id, { headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())});
+  }
+
 }

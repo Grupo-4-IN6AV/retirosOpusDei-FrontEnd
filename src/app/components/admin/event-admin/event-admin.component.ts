@@ -3,6 +3,7 @@ import { EventModel } from '../../../models/event.modal';
 import { HotelRestService } from '../../../services/hotelRest/hotel-rest.service';
 import { EventRestService } from '../../../services/eventRest/event-rest.service';
 import Swal from 'sweetalert2';
+import { environment } from 'src/environments/environment';
 import timeGridPlugin from '@fullcalendar/timegrid'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
@@ -49,6 +50,9 @@ export class EventsAdminComponent implements OnInit {
   available:any;
   availableEvent:any;
   setDateUpdate:any;
+
+  uriEvent:any;
+  uri:any;
 
   //show Calendar//
   showCalendarEvents : boolean = false;
@@ -131,6 +135,7 @@ export class EventsAdminComponent implements OnInit {
       next: (res: any) =>
       {
         this.events = res.events
+        this.uriEvent = environment.baseURI+'event/getImageEvent/'
         var color;
         var arrayDates = [];
         var calendarArray = [];
@@ -178,9 +183,12 @@ export class EventsAdminComponent implements OnInit {
     this.eventRest.getEvent(id).subscribe({
       next: (res: any) =>
       {
+
         this.eventView = res.event;
         this.eventUpdate = res.event;
         this. eventDeleted = res.event;
+        this.uri = environment.baseURI + 'event/getImageEvent/' + res.event.image;
+
         let date = res.event.date;
         let splitDate = date.split('T');
         this.newDate = splitDate[0];

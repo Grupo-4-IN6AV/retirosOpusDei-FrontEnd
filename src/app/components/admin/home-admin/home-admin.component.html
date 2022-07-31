@@ -40,21 +40,21 @@
       <div class="col-lg-3 col-md-3 col-sm-12">
         <div class="card card-statistic-2">
           <div class="clearfix">
-            <div class="card-icon shadow-primary float-start bg-orange">
+            <div class="card-icon shadow-primary float-start bg-blue">
               <i class="fas fa-bed"></i>
             </div>
             <div class="float-end m-4">
               <div>
-                <h5 class="float-end">Rooms Available</h5>
+                <h5 class="float-end">Total Rooms</h5>
               </div>
               <div class="card-body float-end">
-                287
+                {{totalRooms}}
               </div>
             </div>
           </div>
           <div class="card-content m-3">
             <div class="progress skill-progress m-b-20 w-100">
-              <div class="progress-bar l-bg-orange width-per-45" role="progressbar" aria-valuenow="45" aria-valuemin="0"
+              <div class="progress-bar l-bg-blue width-per-45" role="progressbar" aria-valuenow="45" aria-valuemin="0"
                 aria-valuemax="100"></div>
             </div>
           </div>
@@ -87,14 +87,14 @@
         <div class="card card-statistic-2">
           <div class="clearfix">
             <div class="card-icon shadow-primary float-start bg-green">
-              <i class="fas fa-users"></i>
+              <i class="fa fa-calendar-check-o"></i>
             </div>
             <div class="float-end m-4">
               <div>
-                <h5 class="float-end">Total Hotels</h5>
+                <h5 class="float-end">Total Reservations</h5>
               </div>
               <div class="card-body float-end">
-                {{totalHotels}}
+                {{totalReservations}}
               </div>
             </div>
           </div>
@@ -113,15 +113,8 @@
         <div class="card">
           <div class="header">
             <h2>
-              Hotel Survay</h2>
-            <button mat-button [matMenuTriggerFor]="menu" class="header-dropdown">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item>Action</button>
-              <button mat-menu-item>Another action</button>
-              <button mat-menu-item>Something else here</button>
-            </mat-menu>
+              Count Users
+            </h2>
           </div>
           <div class="body">
             <apx-chart [series]="areaChartOptions.series" [chart]="areaChartOptions.chart"

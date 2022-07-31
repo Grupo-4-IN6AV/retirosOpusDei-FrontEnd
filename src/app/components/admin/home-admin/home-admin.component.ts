@@ -18,6 +18,8 @@ import {
 import { EChartsOption } from 'echarts';
 import { UserRestService } from 'src/app/services/userRest/user-rest.service';
 import { HotelRestService } from 'src/app/services/hotelRest/hotel-rest.service';
+import { RoomRestService } from 'src/app/services/roomRest/room-rest.service';
+import { ReservationRestService } from 'src/app/services/reservationRest/reserevation-rest.service';
 
 export type SparklineChartOptions = {
   series: ApexAxisChartSeries;
@@ -62,6 +64,8 @@ export class HomeAdminComponent implements OnInit
   totalUsers: any;
   totalAdminsHotels: any;
   totalClients: any;
+  totalRooms: any;
+  totalReservations: any;
 
   hotels: any;
   totalHotels:any
@@ -70,6 +74,8 @@ export class HomeAdminComponent implements OnInit
   {
     this.getUsers();
     this.getHotels();
+    this.getRooms();
+    this.getReservations();
   }
 
   getUsers()
@@ -104,6 +110,17 @@ export class HomeAdminComponent implements OnInit
     })
   }
 
+  getReservations()
+  {
+    this.reservationRest.getReservations().subscribe({
+      next: (res: any) =>
+      {
+        this.totalReservations = res.reservations.length
+      },
+      error: (err) => console.log(err)
+    })
+  }
+
   getHotels()
   {
     this.hotelRest.getHotels().subscribe({
@@ -116,6 +133,16 @@ export class HomeAdminComponent implements OnInit
     })
   }
 
+  getRooms()
+  {
+    this.roomRest.getRooms().subscribe({
+      next: (res: any) =>
+      {
+        this.totalRooms = res.rooms.length
+      },
+      error: (err) => console.log(err)
+    })
+  }
 
   donut_chart: EChartsOption =
   {
@@ -249,7 +276,9 @@ export class HomeAdminComponent implements OnInit
   constructor
   (
     private hotelRest: HotelRestService,
-    private userRest: UserRestService
+    private userRest: UserRestService,
+    private roomRest: RoomRestService,
+    private reservationRest: ReservationRestService
   )
   {
 
