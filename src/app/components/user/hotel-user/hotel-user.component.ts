@@ -212,18 +212,6 @@ export class HotelUserComponent implements OnInit {
     })
   }
 
-
-  getStateRooms(id:string)
-  {
-    this.roomRest.getStateRooms(id).subscribe({
-      next: (res: any) =>
-      {
-        this.hotels = res.hotels
-      },
-      error: (err) => console.log(err)
-    })
-  }
-
   getServices()
   {
     this.serviceRest.getServicesHotelArray().subscribe({
