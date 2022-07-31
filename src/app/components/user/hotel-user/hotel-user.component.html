@@ -217,7 +217,7 @@
     <div class="modal-lg modal-dialog modal-dialog-centered">
       <div *ngIf="room" class="modal-content">
         <div class="text-right p-2 bg-white">
-          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <button style="width:2rem" type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -298,6 +298,15 @@
                       <td *ngIf="exitDate && entryDate">Total: Q.{{(totalNights*room.price).toFixed(2)}}</td>
                     </tr>
                   </table>
+                  <table>
+                    <tr rowspan="2" class="heading text-center">
+                      <td colspan="2">Your Services</td>
+                    </tr>
+                    <tr class="item">
+                      <td>Total Services</td>
+                      <td>Q.{{returnTotal().toFixed(2)}}</td>
+                    </tr>
+                  </table>
                 </div>
                 <div class="form-check ml-2">
                   <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
@@ -307,8 +316,10 @@
           </div>
           <div class="p-3 bg-white border-bottom">
             <div class="info">
-
-
+              <h5 style="color:#121212">&nbsp; Add Additional Services</h5>
+              <mat-checkbox (click)="addServices(service.price,check);pushingServices(check,service._id)" #check="matCheckbox" *ngFor="let service of servicesHotel" class="example-margin" color="primary">
+                <i class="fas {{service.icon}}"></i>&nbsp;{{service.name}}
+              </mat-checkbox>
             </div>
             <div class="d-flex justify-content-between mt-3">
             </div>
@@ -318,7 +329,7 @@
           <div class="row">
             <div class="container">
               <div class="d-flex justify-content-center align-items-center">
-                <div  *ngIf="entryDate" class="check-in me-4">
+                <div *ngIf="entryDate" class="check-in me-4">
                   <span  *ngIf="entryDate" style="color:black">Entry Date</span>
                   <div class="d-flex flex-row align-items-center">
                     <h1 *ngIf="entryDate" class="date-o" style="color:#1976ED">{{calculateDayEntry(entryDate)}}</h1>

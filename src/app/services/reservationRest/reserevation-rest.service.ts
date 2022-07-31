@@ -35,4 +35,9 @@ export class ReservationRestService {
     return this.http.get(environment.baseURI + 'reservation/getReservationsManager', { headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())});
   }
 
+  addServicesReservation(id:string, params:{})
+  {
+    return this.http.post(environment.baseURI + 'reservation/addServiceReservation/' + id, params, { headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())});
+  }
+
 }

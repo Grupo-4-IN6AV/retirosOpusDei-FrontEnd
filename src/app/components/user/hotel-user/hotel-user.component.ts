@@ -37,7 +37,8 @@ export class HotelUserComponent implements OnInit {
   entryDate: any;
   exitDate: any;
   totalPersons: any;
-
+  pricesServices: number = 0;
+  pushServices:any;
   //Fechas//
   setDateEntry : any;
   setDateExit: any;
@@ -61,6 +62,38 @@ export class HotelUserComponent implements OnInit {
     this.getServices();
     this.getPricesHotels();
     this.actualDate = new Date();
+  }
+
+  addServices(prices:any , checked:any,)
+  {
+    let check =! checked.checked
+    if(check === false)
+    {
+      this.pricesServices = this.pricesServices - prices;
+    }
+    if(check === true)
+    {
+      this.pricesServices = parseInt(this.pricesServices + prices);
+    }
+  }
+
+  pushingServices(checked:any, dataService:any)
+  {
+    var array = this.pushServices;
+    let check =! checked.checked
+    if(check === false)
+    {
+    }
+    if(check === true)
+    {
+      array.push(dataService)
+    }
+    this.pushServices = array;
+  }
+
+  returnTotal()
+  {
+    return this.pricesServices
   }
 
   calculateNights(exit:number, entry:number)
@@ -319,12 +352,21 @@ export class HotelUserComponent implements OnInit {
     this.reservationRest.saveReservation(params).subscribe({
       next: (res: any) =>
       {
+        let params = { services: this.pushServices}
+
+
+        this.reservationRest.addServicesReservation(res.addReservation._id, params).subscribe({
+          next: (res: any) =>{console.log(res)},
+          error: (err) =>{console.log(err)}
+        })
+
         Swal.fire
-          ({
-            icon: 'success',
-            title: res.message,
-            confirmButtonColor: '#28B463'
-          });
+        ({
+          icon: 'success',
+          title: res.message,
+          confirmButtonColor: '#28B463'
+        });
+
       },
       error: (err) =>
       {
