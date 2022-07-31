@@ -71,6 +71,12 @@ export class EventRestService
     return this.http.get(environment.baseURI + 'event/getEventsHotelID/' + id, { headers: this.httpOptions.set('Authorization', this.credentialReset.getToken()) });
   }
 
+  updateEventHotel(id:string, params:{})
+  {
+    return this.http.put(environment.baseURI + 'event/updateEventHotel/' + id, params,{ headers: this.httpOptions.set('Authorization', this.credentialReset.getToken())});
+  }
+
+
   //CARGA DE IMAGEN//
   requestFiles(
     eventID: string,

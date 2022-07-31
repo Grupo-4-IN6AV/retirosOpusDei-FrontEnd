@@ -56,6 +56,7 @@ export class EventsAdminHotelComponent implements OnInit
   actualDate:any;
   available:any;
   availableEvent:any;
+  setDateUpdate:any;
 
   //carga de imagen//
   filesToUpload: any;
@@ -214,6 +215,51 @@ export class EventsAdminHotelComponent implements OnInit
         this.arrayStartHours = start;
       },
       error: (err) => console.log(err)
+    })
+  }
+
+
+  updateEvent()
+  {
+    if(this.eventUpdate.date == null || undefined)
+    {
+      this.setDateUpdate = ''
+    }
+    else
+    {
+      this.setDateUpdate = this.eventUpdate.date;
+    }
+    let params =
+    {
+       name: this.eventUpdate.name,
+       description: this.eventUpdate.description,
+       date: this.setDateUpdate,
+       startHour: this.eventUpdate.startHour,
+       endHour: this.eventUpdate.endHour,
+       hotel: this.eventUpdate.hotel,
+    }
+    this.eventRest.updateEventHotel(this.eventUpdate._id, params).subscribe({
+      next: (res:any)=>
+      {
+        Swal.fire({
+          icon:'success',
+          title: res.message,
+          confirmButtonColor: '#28B463'
+        });
+        this.getEventsHotel();
+        if(this.showTableEvents)
+        {
+          this.showButtonActions(this.eventUpdate._id,false)
+        }
+      },
+      error: (err)=>
+      {
+        Swal.fire({
+          icon: 'error',
+          title: err.error.message || err.error,
+          confirmButtonColor: '#E74C3C'
+        });
+      },
     })
   }
 
