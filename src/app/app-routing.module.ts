@@ -8,7 +8,6 @@ import { NotFoundPageComponent } from './components/not-found-page/not-found-pag
 import { NavbarComponent } from './components/landingPage/navbar/navbar.component';
 import { LandingPageComponent } from './components/landingPage/landing-page/landing-page.component';
 import { AboutUsComponent } from './components/landingPage/about-us/about-us.component';
-import { RegisterComponent } from './components/landingPage/register/register.component';
 import { ContactUsComponent } from './components/landingPage/contact-us/contact-us.component';
 import { HotelComponent } from './components/landingPage/hotel/hotel.component';
 import { HotelAdminComponent } from './components/admin/hotel-admin/hotel-admin.component';
@@ -42,6 +41,7 @@ import { HistoryComponent } from './components/user/history/history.component';
 import { ReservationsReportComponent } from './components/admin/reservations-report/reservations-report.component';
 import { ReservationsReportComponentHotel } from './components/hotelAdmin/reservations-report/reservations-report.component';
 import { ReservationsComponent } from './components/user/reservations/reservations.component';
+import { DevelopsComponent } from './components/landingPage/develops/develops.component';
 
 const routes: Routes =
 [
@@ -49,11 +49,10 @@ const routes: Routes =
     path: '', component:NavbarComponent,children:
     [
       {path: '', component: LandingPageComponent},
-      {path: 'aboutUs', component: AboutUsComponent},
+      {path: 'desarrolladores', component: DevelopsComponent},
       {path: 'contactUs', component: ContactUsComponent},
       {path: 'hotels', component: HotelComponent},
       {path: 'login', component: LoginComponent},
-      {path: 'register', component: RegisterComponent},
       {path: 'viewRoom/:id', component: HotelViewComponent},
       {path: 'viewRoomDetails/:id', component: ViewRoomDetailsComponent},
     ]

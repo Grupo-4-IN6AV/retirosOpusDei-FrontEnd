@@ -70,10 +70,8 @@ import { SidebarrightAdminComponent } from './components/admin/sidebarright-admi
 import { LayoutAdminComponent } from './components/admin/layout-admin/layout-admin.component';
 import { LoginComponent } from './components/landingPage/login/login.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
-import { NavbarComponent } from './components/landingPage/navbar/navbar.component';
 import { LandingPageComponent } from './components/landingPage/landing-page/landing-page.component';
 import { AboutUsComponent } from './components/landingPage/about-us/about-us.component';
-import { RegisterComponent } from './components/landingPage/register/register.component';
 import { ContactUsComponent } from './components/landingPage/contact-us/contact-us.component';
 import { HotelComponent } from './components/landingPage/hotel/hotel.component';
 import { SearchHotelPipe } from './pipes/searchHotelPipe/search-hotel.pipe';
@@ -121,6 +119,8 @@ import { HistoryComponent } from './components/user/history/history.component';
 import { SearchRoomViewPipe } from './pipes/searchRoomView/search-room-view.pipe';
 import { ReservationsReportComponentHotel } from './components/hotelAdmin/reservations-report/reservations-report.component';
 import { ReservationsComponent } from './components/user/reservations/reservations.component';
+import { NavbarComponent } from './components/landingPage/navbar/navbar.component';
+import { DevelopsComponent } from './components/landingPage/develops/develops.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -143,10 +143,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         LayoutAdminComponent,
         LoginComponent,
         NotFoundPageComponent,
-        NavbarComponent,
         LandingPageComponent,
         AboutUsComponent,
-        RegisterComponent,
         ContactUsComponent,
         HotelComponent,
         SearchHotelPipe,
@@ -193,7 +191,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         HistoryComponent,
         SearchRoomViewPipe,
         ReservationsReportComponentHotel,
-        ReservationsComponent
+        ReservationsComponent,
+        NavbarComponent,
+        DevelopsComponent
     ],
     imports: [
         SwiperModule,
@@ -203,10 +203,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         BrowserAnimationsModule,
         AppRoutingModule,
         HttpClientModule,
-        PerfectScrollbarModule,
         ClickOutsideModule,
         CoreModule,
-        SharedModule,
         MatTableModule,
         MatPaginatorModule,
         MatFormFieldModule,
