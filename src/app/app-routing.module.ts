@@ -59,7 +59,7 @@ const routes: Routes =
     ]
   },
   {
-    path: 'admin', canActivate:[AdminGuard], component:LayoutAdminComponent,children:
+    path: 'admin', component:LayoutAdminComponent,children:
     [
       {path: 'home', component: HomeAdminComponent},
       {path: 'user', component: AdminUserComponent},
