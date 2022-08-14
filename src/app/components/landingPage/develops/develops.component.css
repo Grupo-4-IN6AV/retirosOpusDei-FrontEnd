@@ -1,0 +1,134 @@
+@import url('../../landingPage/landing-page/landing-page.component.css');
+
+/* ABOUT US PAGE */
+/* CTA CSS */
+.cta-padding35 {
+    padding: 35px 0 35px;
+    background-color: #b40028;
+    color: #fff;
+}
+
+
+/* Site Heading */
+.site-heading h3 {
+    font-size: 40px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.border {
+    background: #e1e1e1;
+    height: 1px;
+    width: 25%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 45px;
+}
+
+.image-aboutus-banner {
+    background: #222;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 80%;
+    color: #fff;
+    padding-top: 8rem;
+    padding-bottom: 110px;
+}
+
+.image-aboutus-sm-banner {
+    background: darkgoldenrod;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    color: #fff;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.lg-text {
+    font-size: 52px;
+    font-weight: 600;
+    text-transform: none;
+    color: #fff;
+}
+
+.image-aboutus-para {
+    color: #fff;
+}
+
+a:hover {
+    color: #465cff;
+}
+
+h1 {
+    font-size: 35px;
+    line-height: 40px;
+    letter-spacing: 0px;
+    font-weight: 600;
+    color: #000;
+}
+
+h2 {
+    font-size: 30px;
+    line-height: 40px;
+    letter-spacing: 0px;
+    font-weight: 600;
+    color: #000;
+}
+
+h3 {
+    line-height: 26px;
+    font-size: 20px;
+    letter-spacing: 0px;
+    font-weight: 600;
+    font-style: normal;
+    color: #000;
+}
+
+h4 {
+    font-size: 19px;
+    letter-spacing: 0px;
+    font-weight: 600;
+    font-style: normal;
+    color: #000;
+}
+
+p {
+    font-weight: 400;
+    font-style: normal;
+    color: #494949;
+}
+
+
+
+
+/* Breadcum bar */
+.bread-bar {
+    background: #f9f9f9;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+    min-height: 40px;
+    height: auto;
+    position: relative;
+    z-index: 555;
+}
+
+
+
+.breadcrumb a {
+    color: #999;
+}
+
+.breadcrumb>.active {
+    color: #666;
+}
+
+.breadcrumb>li+li::before {
+    content: "\203A";
+    color: #999;
+    padding: 0 8px;
+}
+
+.card-effect:hover {
+    box-shadow: none;
+    transform: translateY(5px);
+}
