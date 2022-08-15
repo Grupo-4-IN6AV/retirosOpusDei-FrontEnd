@@ -133,9 +133,14 @@ form.sign-in-form {
   font-family: "Poppins", sans-serif;
 }
 
+.social-icon img{
+  max-height: 30px;
+  max-width: 30px;
+}
+
 .social-icon:hover {
-  color: #4481eb;
-  border-color: #4481eb;
+  color: orange;
+  border-color: orange;
   font-family: "Poppins", sans-serif;
 }
 
