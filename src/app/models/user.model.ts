@@ -9,11 +9,7 @@ export class UserModel {
       public phone: string,
       public email: string,
       public role: string,
-<<<<<<< Updated upstream
-      public identifier: string,
-=======
       public gender: string,
->>>>>>> Stashed changes
       public checked: boolean,
   ){}
 }

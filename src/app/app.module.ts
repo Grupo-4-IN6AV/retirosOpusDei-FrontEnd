@@ -118,12 +118,10 @@ import { HistoryComponent } from './components/user/history/history.component';
 import { SearchRoomViewPipe } from './pipes/searchRoomView/search-room-view.pipe';
 import { ReservationsReportComponentHotel } from './components/hotelAdmin/reservations-report/reservations-report.component';
 import { ReservationsComponent } from './components/user/reservations/reservations.component';
-<<<<<<< Updated upstream
 import { NavbarComponent } from './components/landingPage/navbar/navbar.component';
 import { DevelopsComponent } from './components/landingPage/develops/develops.component';
-=======
 import { SearchUserPipe } from './pipes/adminPipes/searchUser/search-user.pipe';
->>>>>>> Stashed changes
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -194,12 +192,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         SearchRoomViewPipe,
         ReservationsReportComponentHotel,
         ReservationsComponent,
-<<<<<<< Updated upstream
         NavbarComponent,
-        DevelopsComponent
-=======
+        DevelopsComponent,
         SearchUserPipe
->>>>>>> Stashed changes
     ],
     imports: [
         SwiperModule,
@@ -239,6 +234,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         MatIconModule,
         MatSelectModule,
         NgApexchartsModule,
+        SharedModule,
         FullCalendarModule, // register FullCalendar with you app
         NgxEchartsModule.forRoot({
           echarts: () => import('echarts'),
