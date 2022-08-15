@@ -63,7 +63,6 @@ import { ClickOutsideModule } from 'ng-click-outside';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminUserComponent } from './components/admin/admin-user/admin-user.component';
 import { HotelAdminComponent } from './components/admin/hotel-admin/hotel-admin.component';
-import { SearchUserPipePipe } from './pipes/searchUserPiper/search-user-pipe.pipe';
 import { HomeAdminComponent } from './components/admin/home-admin/home-admin.component';
 import { SidebarAdminComponent } from './components/admin/sidebar-admin/sidebar-admin.component';
 import { SidebarrightAdminComponent } from './components/admin/sidebarright-admin/sidebarright-admin.component';
@@ -119,8 +118,12 @@ import { HistoryComponent } from './components/user/history/history.component';
 import { SearchRoomViewPipe } from './pipes/searchRoomView/search-room-view.pipe';
 import { ReservationsReportComponentHotel } from './components/hotelAdmin/reservations-report/reservations-report.component';
 import { ReservationsComponent } from './components/user/reservations/reservations.component';
+<<<<<<< Updated upstream
 import { NavbarComponent } from './components/landingPage/navbar/navbar.component';
 import { DevelopsComponent } from './components/landingPage/develops/develops.component';
+=======
+import { SearchUserPipe } from './pipes/adminPipes/searchUser/search-user.pipe';
+>>>>>>> Stashed changes
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -137,7 +140,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         HomeAdminComponent,
         AdminUserComponent,
         HotelAdminComponent,
-        SearchUserPipePipe,
         SidebarAdminComponent,
         SidebarrightAdminComponent,
         LayoutAdminComponent,
@@ -192,8 +194,12 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         SearchRoomViewPipe,
         ReservationsReportComponentHotel,
         ReservationsComponent,
+<<<<<<< Updated upstream
         NavbarComponent,
         DevelopsComponent
+=======
+        SearchUserPipe
+>>>>>>> Stashed changes
     ],
     imports: [
         SwiperModule,

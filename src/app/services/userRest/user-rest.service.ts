@@ -35,6 +35,16 @@ export class UserRestService
     return this.http.post(environment.baseURI + 'user/saveUser', params, { headers: this.httpOptions });
   }
 
+  searchUser(params:{})
+  {
+    return this.http.post(environment.baseURI + 'user/searchUsers', params, { headers: this.httpOptions });
+  }
+
+  deleteUser(id:string)
+  {
+    return this.http.delete(environment.baseURI + 'user/deleteUser/' + id, { headers: this.httpOptions });
+  }
+
   updateUser(id:string, params:{})
   {
     return this.http.put(environment.baseURI + 'user/updateUser/' + id, params, { headers: this.httpOptions });
@@ -45,29 +55,45 @@ export class UserRestService
     return this.http.get(environment.baseURI + 'user/getUser/' + id, { headers: this.httpOptions });
   }
 
-  searchUser(params:{ })
+  //Control de Tablas//
+  getUsersNameUp()
   {
-    return this.http.post(environment.baseURI + 'user/searchUser/', params, { headers: this.httpOptions });
+    return this.http.get(environment.baseURI + 'user/getUsersNameUp', { headers: this.httpOptions });
   }
 
-  getUsersByUp()
+  getUsersNameDown()
   {
-    return this.http.get(environment.baseURI + 'user/getUsersByUp', { headers: this.httpOptions });
+    return this.http.get(environment.baseURI + 'user/getUsersNameDown', { headers: this.httpOptions });
   }
 
-  getUsersByDown()
+  getUsersSurnameUp()
   {
-    return this.http.get(environment.baseURI + 'user/getUsersByDown', { headers: this.httpOptions });
+    return this.http.get(environment.baseURI + 'user/getUsersSurnameUp', { headers: this.httpOptions });
   }
 
-  getUsersSurnameByUp()
+  getUsersSurnameDown()
   {
-    return this.http.get(environment.baseURI + 'user/getUsersSurnameByUp', { headers: this.httpOptions });
+    return this.http.get(environment.baseURI + 'user/getUsersSurnameDown', { headers: this.httpOptions });
   }
 
-  getUsersSurnameByDown()
+  getUsersUsernameUp()
   {
-    return this.http.get(environment.baseURI + 'user/getUsersSurnameByDown', { headers: this.httpOptions });
+    return this.http.get(environment.baseURI + 'user/getUsersUsernameUp', { headers: this.httpOptions });
+  }
+
+  getUsersUsernameDown()
+  {
+    return this.http.get(environment.baseURI + 'user/getUsersUsernameDown', { headers: this.httpOptions });
+  }
+
+  getUsersAgeUp()
+  {
+    return this.http.get(environment.baseURI + 'user/getUsersAgeUp', { headers: this.httpOptions });
+  }
+
+  getUsersAgeDown()
+  {
+    return this.http.get(environment.baseURI + 'user/getUsersAgeDown', { headers: this.httpOptions });
   }
 
   getUsersClient()
@@ -80,10 +106,6 @@ export class UserRestService
     return this.http.get(environment.baseURI + 'user/getUsersAdminHotel', { headers: this.httpOptions });
   }
 
-  deleteUser(id:string)
-  {
-    return this.http.delete(environment.baseURI + 'user/deleteUser/' + id, { headers: this.httpOptions });
-  }
 
 
   //FUNCIONES DEL CLIENTE - HOTEL-ADMIN//

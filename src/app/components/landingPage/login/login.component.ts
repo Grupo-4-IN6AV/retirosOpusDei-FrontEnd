@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit
   timer: any;
 
   constructor
+<<<<<<< Updated upstream
     (
       private router: Router,
       private userRest: CredentialsRestService,
@@ -25,6 +26,13 @@ export class LoginComponent implements OnInit
 
     this.user = new UserModel('', '', '', '', '', '', '', '', '',true);
     _ScriptsLogin.Carga(["app"]);
+=======
+  (
+    private router: Router,
+    private userRest: CredentialsRestService,
+  ) {
+    this.user = new UserModel('', '', 1, '', '', '', '', '', '', '', true);
+>>>>>>> Stashed changes
   }
 
   ngOnInit(): void {
