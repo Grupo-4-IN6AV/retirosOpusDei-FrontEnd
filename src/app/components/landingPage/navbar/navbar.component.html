@@ -1,47 +1,39 @@
-<!-- Nav Bar -->
-<header class="navBar">
-    <div class="boxNavbar">
-      <input type="checkbox" name="" id="check">
-  
-      <div class="logo-container">
-        <h3 class="logo" style="color: orange; margin-top: 10px;"><img src="../../../../assets/images/navbar/Logo.png" alt="logo" style="max-height: 30px; max-width: 30px; margin-top: -10px;"> Opus Dei</h3>
-      </div>
-  
-      <div class="nav-btn">
-        <div class="nav-links">
-          <ul ms-2 me-1>
-            <li  class="nav-link nav-link-active" style="--i: .6s">
-              <a routerLink="">Inicio</a>
-            </li>
-
-            <li class="nav-link nav-link-active" style="--i: 1s">
-              <a routerLink="/aboutUs">Ubicaciones</a>
-            </li>
-
-            <li  class="nav-link nav-link-active" style="--i: 1.35s">
-              <a routerLink="/contactUs">Actividades</a>
-            </li>
-
-            <li  class="nav-link nav-link-active" style="--i: 1.35s">
-                <a routerLink="/contactUs">Acerca De</a>
-              </li>
-
-            <li  class="nav-link nav-link-active" style="--i: 1.35s">
-              <a routerLink="/hotels">Contactanos</a>
-            </li>
-
-          </ul>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-mainbg">
+    <a class="navbar-brand-new navbar-logo" routerLink=""> <img src="../../../../assets/images/navbar/Logo.png"
+        alt="Logo" style="max-height: 30px; max-width:30px; margin-top: -5px;"> Opus Dei</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fa fa-bars text-white"></i>
+    </button>
+    <div class="collapse-new navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <div class="hori-selector">
+          <div class="left"></div>
+          <div class="right"></div>
         </div>
-        <div class="log-sign" style="--i: 1.8s">
-          <a (click)="changeNavBar('not')" routerLink="/login" class="btn transparent">Log in</a>
-        </div>
-      </div>
-  
-      <div class="hamburger-menu-container">
-        <div class="hamburger-menu">
-          <div></div>
-        </div>
-      </div>
+        <li routerLink="" class="nav-item">
+          <a  class="nav-link" href="javascript:void(0);">Inicio</a>
+        </li>
+        <li routerLink="/ubicaciones" class="nav-item">
+          <a  class="nav-link" href="javascript:void(0);">Ubicaciones</a>
+        </li>
+        <li routerLink="/actividades" class="nav-item active">
+          <a  class="nav-link" href="javascript:void(0);">Actividades</a>
+        </li>
+        <li routerLink="/contactanos" class="nav-item">
+          <a  class="nav-link" href="javascript:void(0);">Contactanos</a>
+        </li>
+        <li routerLink="/contactanos" class="nav-item">
+          <a  class="nav-link" href="javascript:void(0);">Opus Dei</a>
+        </li>
+        <li routerLink="/desarrolladores"x class="nav-item">
+          <a  class="nav-link" href="javascript:void(0);">Desarrolladores</a>
+        </li>
+        <button routerLink="/login" class="boton me-4 ms-3">Login</button>
+      </ul>
     </div>
-  </header>
-  <router-outlet></router-outlet>
+
+  </nav>
+</body>
+<router-outlet></router-outlet>

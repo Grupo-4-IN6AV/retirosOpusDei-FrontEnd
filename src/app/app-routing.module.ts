@@ -46,11 +46,11 @@ import { DevelopsComponent } from './components/landingPage/develops/develops.co
 const routes: Routes =
 [
   {
-    path: '', component:NavbarComponent,children:
+    path: '', component: NavbarComponent, children:
     [
       {path: '', component: LandingPageComponent},
       {path: 'desarrolladores', component: DevelopsComponent},
-      {path: 'contactUs', component: ContactUsComponent},
+      {path: 'contactanos', component: ContactUsComponent},
       {path: 'hotels', component: HotelComponent},
       {path: 'login', component: LoginComponent},
       {path: 'viewRoom/:id', component: HotelViewComponent},

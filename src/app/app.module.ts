@@ -193,7 +193,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         ReservationsReportComponentHotel,
         ReservationsComponent,
         NavbarComponent,
-        DevelopsComponent
+        DevelopsComponent,
     ],
     imports: [
         SwiperModule,
@@ -240,6 +240,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         MatTabsModule,
         MatExpansionModule,
         MatTooltipModule,
+        SharedModule,
       ],
     providers:[
     ],
