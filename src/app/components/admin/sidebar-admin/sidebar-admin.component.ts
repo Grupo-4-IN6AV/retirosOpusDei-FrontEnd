@@ -145,11 +145,15 @@ export class SidebarAdminComponent implements OnInit
 
   userLogin()
   {
+
     this.userRest.getUser(this.credentialRest.getIdentity()._id).subscribe({
-      next: (res: any) => {
+      next: (res: any) =>
+      {
         this.user = res.user;
       },
-      error: (err) => {alert(err.error.message)}
+      error: (err) => {
+        alert(err.error.message)
+      }
     })
   }
 

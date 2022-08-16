@@ -29,7 +29,8 @@ export class LoginComponent implements OnInit
 
   }
 
-  login() {
+  login()
+  {
     this.userRest.login(this.user).subscribe({
       next: (res: any) => {
         localStorage.setItem('identity', JSON.stringify(res.userExist));
@@ -45,7 +46,7 @@ export class LoginComponent implements OnInit
 
         const verificarAdmin = res.userExist.role;
         //VERIFICA A DONDE LLEVARME//
-        if (verificarAdmin == 'ADMIN') { this.router.navigate(['/admin/home']); }
+        if (verificarAdmin == 'ADMINISTRADOR') { this.router.navigate(['/admin/user']); }
 
         if (verificarAdmin == 'DOCTOR') { this.router.navigate(['/doctor/home']) }
 
