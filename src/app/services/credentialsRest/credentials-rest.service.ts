@@ -29,6 +29,7 @@ export class CredentialsRestService
 
   getToken(){
     let globalToken = localStorage.getItem('token');
+    localStorage.setItem('outService', 'false');
     let token;
     if(globalToken != undefined){
       token = globalToken;

@@ -20,8 +20,10 @@ export class LoginComponent implements OnInit
   (
     private router: Router,
     private userRest: CredentialsRestService,
+    private _ScriptsLogin: ScriptLoginService
   )
   {
+    _ScriptsLogin.Carga(["app"]);
     this.user = new UserModel('', '', 1, '', '', '', '', '', '', '', true);
   }
 

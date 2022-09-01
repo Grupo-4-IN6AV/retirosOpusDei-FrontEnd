@@ -242,6 +242,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         MatTabsModule,
         MatExpansionModule,
         MatTooltipModule,
+        SharedModule,
       ],
     providers:[
     ],

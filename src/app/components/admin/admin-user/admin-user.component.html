@@ -509,7 +509,23 @@
                     <button data-bs-toggle="modal" data-bs-target="#addUser" mat-mini-fab color="primary">
                       <mat-icon class="col-white">add</mat-icon>
                     </button>
+                    <button mat-button [matMenuTriggerFor]="menu" class="header-dropdown">
+                      <mat-icon>file_download</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                      <button (click)="exportExcel()" mat-menu-item>
+                        <i style="color:green" class="fa-solid fa-file-excel"></i>
+                        &nbsp;
+                        Excel
+                      </button>
+                      <button mat-menu-item>
+                        <i style="color:red" class="fa-solid fa-file-pdf"></i>
+                        &nbsp;
+                        PDF
+                      </button>
+                    </mat-menu>
                   </div>
+
                 </li>
               </ul>
             </div>

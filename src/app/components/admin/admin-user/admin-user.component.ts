@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { UserModel } from 'src/app/models/user.model';
 import { UserRestService } from 'src/app/services/userRest/user-rest.service';
+import { ExportExcelService } from 'src/app/services/exportData/exportExcel/export-excel.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -15,6 +16,7 @@ export class AdminUserComponent implements OnInit
   constructor
   (
     private userRest: UserRestService,
+    private excelService: ExportExcelService
   )
   {
     this.user = new UserModel('', '', 1, '', '', '', '', '', '', '', true);
@@ -61,6 +63,15 @@ export class AdminUserComponent implements OnInit
   usernameDown : any;
   ageUp : any;
   ageDown : any;
+
+  //Exportar Datos//
+  //Excel//
+
+  exportExcel()
+  {
+    this.excelService.downloadExcel(this.users)
+  }
+
 
 
   //METÓDOS DEL CRUD DE USERS//
