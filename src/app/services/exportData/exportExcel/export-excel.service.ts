@@ -1,11 +1,6 @@
-import { style } from '@angular/animations';
-import { ThisReceiver } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import { bottom, right } from '@popperjs/core';
-import { Console } from 'console';
 import { ImagePosition, Workbook } from 'exceljs';
 import * as fs from 'file-saver'
-import { type } from 'os';
 import { logoApp, notFoundImage } from '../../../../assets/images/base64/images'
 
 @Injectable({
@@ -145,7 +140,20 @@ export class ExportExcelService
       ]
       if(itemData.image)
       {
-        const idImage = this._getIdImage(itemData.image)
+        const imageID = this._workbook.addImage(
+          {
+            base64: itemData.imageBase64,
+            extension: 'png'
+          })
+
+        const positionIMG: ImagePosition =
+          {
+            tl: {col: 2.3, row: row.number -0.5},
+            ext: {width: 109, height: 110}
+          }
+        sheet.addImage(imageID, positionIMG);
+
+        row.height = 92
       }
       else
       {
