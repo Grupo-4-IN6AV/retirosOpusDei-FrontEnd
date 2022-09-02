@@ -484,15 +484,15 @@
                   <input [(ngModel)]="searchUser" placeholder="Buscar Usuario..." type="text" #filter class="browser-default search-field"
                     aria-label="Search box" />
                 </li>
-                <li>
+                <li *ngIf="buttonActions">
                   <div class="icon-button-demo m-l-10">
-                    <button  mat-mini-fab color="warn">
+                    <button (click)="deleteUser(userDelete._id)" mat-mini-fab color="warn">
                       <mat-icon class="col-white">delete
                       </mat-icon>
                     </button>
                   </div>
                 </li>
-                <li>
+                <li *ngIf="buttonActions">
                   <div class="icon-button-demo m-l-10">
                     <button data-bs-toggle="modal" data-bs-target="#updateUser" mat-mini-fab class="colorUpdate">
                       <mat-icon class="col-white">edit
@@ -567,7 +567,13 @@
               <tbody>
                 <tr *ngFor="let user of users | searchUser : searchUser">
                   <td>
-                    <mat-checkbox class="example-margin" color="primary"></mat-checkbox>
+                    <mat-checkbox
+                    *ngIf="user.checked==true || controloClick==0" #check="matCheckbox"
+                      (click)="showButtonActions(user._id, check); getUser(user._id)"
+                     class="example-margin" color="primary">
+                    </mat-checkbox>
+                    <mat-checkbox disabled="" *ngIf="user.checked==false" class="example-margin" color="primary">
+                    </mat-checkbox>
                     {{user.position}}
                   </td>
                   <td (click)="getUser(user._id)" class="table-img">

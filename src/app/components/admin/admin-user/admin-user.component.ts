@@ -55,6 +55,7 @@ export class AdminUserComponent implements OnInit
   controloClickUsername : number = 0
   controloClickAge : number = 0
 
+  //Control de Datos//
   nameUp : any;
   nameDown : any;
   surnameUp: any;
@@ -64,14 +65,16 @@ export class AdminUserComponent implements OnInit
   ageUp : any;
   ageDown : any;
 
-  //Exportar Datos//
-  //Excel//
+  //Botones de Acciones//
+  buttonActions: boolean = false;
+  controloClick : number = 0
 
+
+  //Exportar Datos a Excel//
   exportExcel()
   {
     this.excelService.downloadExcel(this.users)
   }
-
 
 
   //METÓDOS DEL CRUD DE USERS//
@@ -89,6 +92,10 @@ export class AdminUserComponent implements OnInit
         }
         if(this.showTableUsers === true)
         {
+            for(let user of this.users)
+            {
+              user.checked = true
+            }
             this.users = this.users.map((user, i) => ({id: i + 1, ...user}))
           .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
         }
@@ -131,6 +138,10 @@ export class AdminUserComponent implements OnInit
               timer: 2000
             });
             this.getUsers();
+            if(this.showTableUsers)
+            {
+              this.showButtonActions(this.userUpdate._id,false)
+            }
           },
           error: (err) => Swal.fire({
             title: err.error.message,
@@ -159,6 +170,10 @@ export class AdminUserComponent implements OnInit
           confirmButtonColor: '#28B463'
         });
         this.getUsers();
+        if(this.showTableUsers)
+        {
+          this.showButtonActions(this.userUpdate._id,false)
+        }
       },
       error: (err)=>
       {
@@ -531,10 +546,35 @@ export class AdminUserComponent implements OnInit
   showTable()
   {
     this.showTableUsers =! this.showTableUsers;
-    for(let user of this.users)
+  }
+
+  showButtonActions(userID:any, check:any)
+  {
+    this.controloClick += 1
+    let controlCheck =! check.checked
+    if(this.controloClick == 1)
     {
-      user.checked = true
+      for(let user of this.users)
+      {
+        if(userID != user._id)
+        {
+          user.checked =! controlCheck
+        }
+        else if(userID == user._id)
+        {
+          user.checked = controlCheck
+        }
+      }
     }
+    else if(this.controloClick == 2)
+    {
+      for(let user of this.users)
+      {
+        user.checked = true;
+      }
+      this.controloClick = 0;
+    }
+    this.buttonActions =! this.buttonActions;
   }
 
   cleanTable()
