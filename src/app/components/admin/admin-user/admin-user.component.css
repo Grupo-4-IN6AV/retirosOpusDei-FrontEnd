@@ -2,8 +2,7 @@ table {
   width: 100%;
 }
 
-.btn-label
-{
+.btn-label {
   position: relative;
   left: -12px;
   display: inline-block;
@@ -12,19 +11,16 @@ table {
   border-radius: 3px 0 0 3px;
 }
 
-.btn-labeled
-{
+.btn-labeled {
   padding-top: 0;
   padding-bottom: 0;
 }
 
-.btn
-{
+.btn {
   margin-bottom: 10px;
 }
 
-.spacing-buttons
-{
+.spacing-buttons {
   display: flex;
   flex-wrap: wrap;
   align-content: center;
@@ -33,30 +29,29 @@ table {
 }
 
 .btn-glyphicon {
-  padding:8px;
-  background:#ffffff;
-  margin-right:4px;
-}
-.icon-btn {
-  padding: 2px 15px 3px 2px;
-  border-radius:50px;
+  padding: 8px;
+  background: #ffffff;
+  margin-right: 4px;
 }
 
-.form{
+.icon-btn {
+  padding: 2px 15px 3px 2px;
+  border-radius: 50px;
+}
+
+.form {
 
   position: relative;
 }
 
-.form .fa-search
-{
+.form .fa-search {
   position: absolute;
-  top:20px;
+  top: 20px;
   left: 20px;
   color: #9ca3af;
 }
 
-.form span
-{
+.form span {
   position: absolute;
   right: 17px;
   top: 13px;
@@ -64,24 +59,21 @@ table {
   border-left: 1px solid #d1d5db;
 }
 
-.left-pan
-{
+.left-pan {
   padding-left: 7px;
 }
 
-.left-pan i
-{
- padding-left: 10px;
+.left-pan i {
+  padding-left: 10px;
 }
 
-.form-input
-{
+.form-input {
   height: 55px;
   text-indent: 33px;
   border-radius: 10px;
 }
 
-.form-input:focus{
+.form-input:focus {
 
   box-shadow: none;
   border-color: orange;
@@ -90,96 +82,127 @@ table {
 
 /* DETALLES */
 
-hr
-{
-	color: grey
+hr {
+  color: grey
 }
 
-.contenedor
-{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 4rem;
-    height: auto;
-    padding: 0 20px;
-    background-color: #003474;
-    border-radius: 4px;
+.contenedor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4rem;
+  height: auto;
+  padding: 0 20px;
+  background-color: #003474;
+  border-radius: 4px;
 }
 
-.contenedor-perfil
-{
-    display: flex;
-    width: 800px;
-    height: auto;
-    background-color: #003474;
-    border-radius: 2px;
+.contenedor-perfil {
+  display: flex;
+  width: 800px;
+  height: auto;
+  background-color: #003474;
+  border-radius: 2px;
 }
 
-.descripcion
-{
-   text-align: center;
+.descripcion {
+  text-align: center;
 }
 
-.encabezado, .descripcion
-{
-    padding: 20px;
-    text-align: center;
+.encabezado,
+.descripcion {
+  padding: 20px;
+  text-align: center;
 }
 
-.descripcion
-{
-    position: relative;
+.descripcion {
+  position: relative;
 }
 
-.descripcion .count-container
-{
-    -webkit-box-flex: 1;
-    -ms-flex: 1 7 42rem;
-    flex: 1 1 42rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    gap: 1rem;
+.descripcion .count-container {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 7 42rem;
+  flex: 1 1 42rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-.descripcion .count-container .box
-{
-    -webkit-box-flex: 1;
-    -ms-flex: 1 1 15rem;
-    flex: 1 1 15rem;
-    padding: auto 0.5rem;
-    border-radius: .5rem;
-    background: rgba(0,0,0,0.1);
+.descripcion .count-container .box {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 15rem;
+  flex: 1 1 15rem;
+  padding: auto 0.5rem;
+  border-radius: .5rem;
+  background: rgba(0, 0, 0, 0.1);
 }
 
-.descripcion .count-container .box h3
-{
-   text-align: center;
-    font-size: 1.2rem;
-    color: #000000;
+.descripcion .count-container .box h3 {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #000000;
 }
 
-.descripcion .count-container .box p
-{
-    font-size: 1.2rem;
-    color: #000000;
+.descripcion .count-container .box p {
+  font-size: 1.2rem;
+  color: #000000;
 }
 
-.box p
-{
-   padding-top: 15px;
+.box p {
+  padding-top: 15px;
 }
 
-.box h3
-{
-   padding-top: 15px;
+.box h3 {
+  padding-top: 15px;
 }
 
-.colorUpdate
-{
+.colorUpdate {
   background-color: #ffc107;
   border-color: #ffc107;
+}
+
+
+@media screen and (min-width:200px) and (max-width:844px) {
+  .materialTableHeader {
+    padding: 10px 20px;
+    align-items: center;
+    border-color: #e6e9ed;
+    background-color: #ebebee;
+    height: 70px;
+    min-width: 100vw;
+    max-width: 100vw;
+  }
+
+  .materialTableHeader .header-buttons-left {
+    position: relative;
+    list-style: none;
+    padding-top: 3px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+  }
+
+  .add {
+    display: flex;
+    align-content: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .icon-button-demo button {
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+
+  .materialTableHeader .header-buttons {
+    position: absolute;
+    right: 20px;
+    padding: 3px 8px 9px 9px;
+  }
+  
 }
