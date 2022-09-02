@@ -377,8 +377,10 @@
                 <div *ngIf="userView" class="modalHeader clearfix">
                   <div class="modal-about contact-header">
                     <div class="contact-details-img">
-                      <img src="../../../../assets/images/user/usrbig2.jpg" alt="avatar" />
-                      </div>
+                      <img *ngIf="!userImage" src="../../../../assets/images/user/usrbig2.jpg" alt="avatar" />
+                      <img style="object-fit: cover;" *ngIf="userImage" src="{{uri}}" crossorigin="anonymous"
+                        alt="avatar" />
+                    </div>
                     <div class="contact-details-heading">
                       <div class="contact-details-name mb-2">
                         {{ userView.name }} {{userView.surname}}
@@ -577,9 +579,9 @@
                     {{user.position}}
                   </td>
                   <td (click)="getUser(user._id)" class="table-img">
-                    <img *ngIf="user.image===undefined" style="object-fit: cover;" src="assets/images/user/user8.jpg"
+                    <img *ngIf="!user.image" style="object-fit: cover;" src="assets/images/user/user8.jpg"
                       crossorigin="anonymous" alt="" />
-                    <img *ngIf="user.image!==undefined" style="object-fit: cover;" crossorigin="anonymous" alt="" />
+                    <img *ngIf="user.image" src="{{uriUser+user.image}}" style="object-fit: cover;" crossorigin="anonymous" alt="" />
                   </td>
                   <td (click)="getUser(user._id)" data-bs-toggle="modal" data-bs-target="#viewUser">{{ user.name }}
                   </td>

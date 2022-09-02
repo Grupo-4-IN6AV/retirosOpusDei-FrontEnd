@@ -3,7 +3,7 @@ import { UserModel } from 'src/app/models/user.model';
 import { UserRestService } from 'src/app/services/userRest/user-rest.service';
 import { ExportExcelService } from 'src/app/services/exportData/exportExcel/export-excel.service';
 import Swal from 'sweetalert2';
-
+import { environment } from 'src/environments/environment'
 @Component({
   selector: 'app-admin-user',
   templateUrl: './admin-user.component.html',
@@ -66,9 +66,13 @@ export class AdminUserComponent implements OnInit
   ageDown : any;
 
   //Botones de Acciones//
-  buttonActions: boolean = false;
-  controloClick : number = 0
+  buttonActions : boolean = false;
+  controloClick : number = 0;
 
+  //Control de Imágenes//
+  uri : any;
+  userImage : any;
+  uriUser : any;
 
   //Exportar Datos a Excel//
   exportExcel()
@@ -85,6 +89,7 @@ export class AdminUserComponent implements OnInit
       next: (res: any) =>
       {
         this.users = res.users;
+        this.uriUser = environment.baseURI+'user/getImage/'
         this.collectionSize = this.users.length;
         for(let user of this.users)
         {
@@ -111,6 +116,9 @@ export class AdminUserComponent implements OnInit
         this.userView = res.user;
         this.userUpdate = res.user;
         this.userDelete = res.user;
+        this.userImage = this.userView.image;
+        this.uri = environment.baseURI + 'user/getImage/' + this.userImage;
+
       },
       error: (err) => {alert(err.error.message)}
     })

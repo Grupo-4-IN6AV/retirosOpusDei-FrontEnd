@@ -49,37 +49,6 @@ export class ExportExcelService
       }
     })
 
-
-      const start = {row: 5, col: 5};
-      const end = {row: 20, col: 25}
-
-      for (let i = start.row; i <= end.row; i++) {
-          const leftBorderCell = sheet.getCell(i, start.col);
-          const rightBorderCell = sheet.getCell(i, end.col);
-          leftBorderCell.border = {
-              ...leftBorderCell.border,
-              left: {style: 'thin'}
-          };
-          rightBorderCell.border = {
-              ...rightBorderCell.border,
-              right: {style: 'thin'}
-          };
-      }
-
-      for (let i = start.col; i <= end.col; i++) {
-          const topBorderCell = sheet.getCell(start.row, i);
-          const bottomBorderCell = sheet.getCell(end.row, i);
-          topBorderCell.border = {
-              ...topBorderCell.border,
-              top: {style: 'thin'}
-          };
-          bottomBorderCell.border = {
-              ...bottomBorderCell.border,
-              bottom: {style: 'thin'}
-          };
-      }
-
-
     //Insertar El Logo//
     const logoID = this._workbook.addImage(
       {
