@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit
     private _ScriptsLogin: ScriptLoginService
   )
   {
-    _ScriptsLogin.Carga(["app"]);
+    _ScriptsLogin.Carga(["login"]);
     this.user = new UserModel('', '', 1, '', '', '', '', '', '', '', true);
   }
 
@@ -93,27 +93,5 @@ export class LoginComponent implements OnInit
         })
       }
     }, 800);
-  }
-
-  register() {
-    this.userRest.register(this.user).subscribe
-      ({
-
-        next: (res: any) => {
-          Swal.fire({
-            title: res.message,
-            html: 'Already can Login now.',
-            confirmButtonColor: '#28B463'
-          })
-          this.router.navigateByUrl('/')
-        },
-        error: (err: any) => {
-          Swal.fire({
-            icon: 'error',
-            title: err.error.message || err.error,
-            confirmButtonColor: '#E74C3C'
-          });
-        },
-      });
   }
 }

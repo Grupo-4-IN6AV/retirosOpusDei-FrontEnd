@@ -13,7 +13,7 @@ export class ScriptLoginService {
     for(let archivo of archivos)
     {
       let script = document.createElement("script");
-      script.src = "./assets/js/Login/" + archivo + ".js";
+      script.src = "./assets/js/Login&Register/" + archivo + ".js";
       let body = document.getElementsByTagName("body")[0];
       body.appendChild( script );
     }

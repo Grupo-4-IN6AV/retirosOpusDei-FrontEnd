@@ -75,6 +75,9 @@ import { ContactUsComponent } from './components/landingPage/contact-us/contact-
 import { NavbarComponent } from './components/landingPage/navbar/navbar.component';
 import { DevelopsComponent } from './components/landingPage/develops/develops.component';
 import { SearchUserPipe } from './pipes/adminPipes/searchUser/search-user.pipe';
+import { RegisterComponent } from './components/landingPage/register/register.component';
+import { UbicacionesComponent } from './components/landingPage/ubicaciones/ubicaciones.component';
+import { NavDosComponent } from './components/landingPage/nav-dos/nav-dos.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -101,7 +104,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         ContactUsComponent,
         NavbarComponent,
         DevelopsComponent,
-        SearchUserPipe
+        SearchUserPipe,
+        RegisterComponent,
+        UbicacionesComponent,
+        NavDosComponent
     ],
     imports: [
         SwiperModule,
